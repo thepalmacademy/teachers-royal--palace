@@ -4,8 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Palm Teachers Royal Palace – Results Portal</title>
-<!-- Supabase JS SDK -->
+
+<!-- Supabase JS SDK CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 :root{--red:#c8102e;--navy:#1b2f6b;--bg:#f4f6f9;--card:#fff;--text:#1c2433;--muted:#5c667a;--line:#dde2ea;--blue:#2057e0;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -158,7 +160,9 @@ body{overflow-x:hidden}
 <script>
 // ---- SUPABASE CONFIGURATION ----
 const SUPABASE_URL = 'https://ivyvsuyunncsfukakxju.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_CC0kA8078Xd1pGbQLKdQTw_FyTQ2...'; // Replace with your complete publishable key if needed
+// 👇 REPLACE THE TEXT BELOW WITH YOUR ACTUAL SUPABASE ANON PUBLIC KEY 👇
+const SUPABASE_ANON_KEY = 'sb_secret_Dvaw6Bxt71dzRhiNTuspIg_itpTqhlP';
+
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const ORDER=["kg1","kg2","kg3","std1","std2","std3","std4","std5","std6","std7","form1","form2","form3"];
@@ -167,7 +171,7 @@ const grade=m=>m>=81?"A":m>=61?"B":m>=41?"C":m>=21?"D":"F";
 let DATA={},user=null,sort="rank",msg="";
 try{DATA=JSON.parse(localStorage.getItem("palmData")||"{}")}catch(e){}
 const $=s=>document.querySelector(s);
-const base=c=>(key(c).match(/^(kg\d?|std\d|form\d)/)||[''])[0]; // KG1 East -> kg1, Std 4 West -> std4
+const base=c=>(key(c).match(/^(kg\d?|std\d|form\d)/)||[''])[0]; 
 const classes=()=>Object.keys(DATA).sort((a,b)=>{const i=ORDER.indexOf(base(a)),j=ORDER.indexOf(base(b));return (i<0?99:i)-(j<0?99:j)||a.localeCompare(b)});
 
 // Check active Supabase session on load
@@ -212,7 +216,7 @@ function parseWB(wb){
     const cls=detectClass(title,sn);
     A.slice(hi+1).forEach((r,n)=>{
       const nm=String(r[ni]||'').trim();if(!nm)return;
-      if(sni>=0&&String(r[sni]).trim()==='')return; // skips summary rows at the bottom
+      if(sni>=0&&String(r[sni]).trim()==='')return; 
       const c=String(ci>=0&&r[ci]?r[ci]:cls).trim(),o=out[c]||(out[c]={subjects:sub2.map(i=>/^mathe$/i.test(H[i])?'MATH':H[i]),nameLabel:H[ni],rows:[]});
       o.rows.push({id:String(ii>=0&&r[ii]!==''?r[ii]:(sni>=0?r[sni]:n+1)),name:nm,sex:si>=0?String(r[si]).trim().charAt(0).toUpperCase():'',marks:sub2.map(i=>{const v=parseFloat(r[i]);return isNaN(v)?null:v}),grades:sub2.map(i=>/^g$/i.test(H[i+1]||'')?String(r[i+1]).trim().toUpperCase():'')});
     });
@@ -307,11 +311,11 @@ function bindLib(p){
   };
 }
 const NECTA=['form1','form2','form3'];
-const CENTRE={location:'Tunguu-Zanzibar'}; // change to your school location
+const CENTRE={location:'Tunguu-Zanzibar'}; 
 const np=m=>m>=75?1:m>=65?2:m>=45?3:m>=30?4:5,ng=m=>['','A','B','C','D','F'][np(m)];
 const SCODE={eng:201,kisw:202,htm:250,dini:207,geo:209,'b/s':252,math:204,bio:217,phy:215,che:216,arb:208,hist:211,english:201,kiswahili:202,'historia na maadili':250,geography:209,'business study':252,'business studies':252,mathematics:204,maths:204,biology:217,physics:215,chemistry:216,arabic:208,'arabic language':208,history:211};
 const comp=g=>g<1.5?['GRADE A(EXCELLENT)','#00b050']:g<=2.4?['GRADE B(VERY GOOD)','#00b050']:g<=3.4?['GRADE C(GOOD)','#92d050']:g<=4.5?['GRADE D(SATISFACTORY)','#ff0000']:['FAIL','#ff0000'];
-const WL=c=>['form1','form3'].includes(base(c))?'CLASS':'CENTRE'; // Form 1 and Form 3 say CLASS, Form 2 says CENTRE
+const WL=c=>['form1','form3'].includes(base(c))?'CLASS':'CENTRE'; 
 function necta(c,q){
   const D=DATA[c],S=D.subjects,lg=$('#logoBox img');
   const rows=D.rows.map(r=>{
@@ -414,7 +418,7 @@ function report(c,q){
   ${best?`<p><b>Best performed subject:</b> ${esc(best.s)} (${best.av.toFixed(1)}). <b>Weakest subject:</b> ${esc(worst.s)} (${worst.av.toFixed(1)}).</p>`:''}
   <p style='font-size:12px;color:var(--muted)'>Grading: A 81-100, B 61-80, C 41-60, D 21-40, F 0-20. Sat = students who sat the subject.</p></div>`;
 }
-// ---- Gallery, Our Teachers, Admissions ----
+
 const ld=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}},sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}};
 let GAL=ld('palmGal'),STAFF=ld('palmStaff'),PM='';
 const shrink=(f,w,q=.7)=>new Promise(res=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,w/im.width),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',q))};im.onerror=()=>res('');im.src=r.result};r.readAsDataURL(f)});
