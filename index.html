@@ -160,7 +160,6 @@ body{overflow-x:hidden}
 <script>
 // ---- SUPABASE CONFIGURATION ----
 const SUPABASE_URL = 'https://ivyvsuyunncsfukakxju.supabase.co';
-// 👇 REPLACE THE TEXT BELOW WITH YOUR ACTUAL SUPABASE ANON PUBLIC KEY 👇
 const SUPABASE_ANON_KEY = 'sb_publishable_CCOkA8O78Xd1pGbQLKdQTw_FyTQ2pLw';
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -181,7 +180,24 @@ window.addEventListener('DOMContentLoaded', async () => {
     user = { name: session.user.email };
     updNav();
   }
+  // Load remote data from Supabase tables on startup
+  await loadSupabaseData();
 });
+
+async function loadSupabaseData() {
+  try {
+    const { data: docRows } = await sb.from('documents').select('*');
+    if (docRows) DOCS = docRows;
+
+    const { data: galRows } = await sb.from('gallery').select('*');
+    if (galRows) GAL = galRows;
+
+    const { data: staffRows } = await sb.from('staff').select('*');
+    if (staffRows) STAFF = staffRows;
+  } catch(e) {
+    console.error('Error loading Supabase data:', e);
+  }
+}
 
 const ABBR={env:'Environment',diara:'Dini and Arabic',stec:'Science and Technology',rel:'Religion',sos:'Social Science',sci:'Science and Technology',cas:'Creative Arts and Sports',mathe:'Mathematics',ste:'Science and Technology',arab:'Arabic',eng:'English',kisw:'Kiswahili',math:'Mathematics',maths:'Mathematics',htm:'Historia na Maadili',geo:'Geography',phy:'Physics',bio:'Biology',che:'Chemistry',chem:'Chemistry',dini:'Dini','b/s':'Business Study',bs:'Business Study',hist:'History',arb:'Arabic'};
 const fullName=s=>{const k=String(s).toLowerCase().replace(/[.\s]+$/,'').replace(/^\s+/,'');return ABBR[k]||(/^arab/.test(k)?'Arabic':ABBR[ab(s).toLowerCase()]||String(s))};
@@ -277,7 +293,7 @@ function startBg(){
 }
 const SUBJ=['Biology','Physics','Chemistry','English','Geography','Mathematics'],FORMS=['Form 1','Form 2','Form 3','Form 4'];
 const LIB={papers:{title:'Past Papers',cats:['NECTA','Mock','School']},notes:{title:'Notes Materials'},scheme:{title:'Schemes of Work'}};
-let DOCS=[],F={},LM='';try{DOCS=JSON.parse(localStorage.getItem('palmDocs')||'[]')}catch(e){}
+let DOCS=[],F={},LM='';
 const esc=s=>String(s).replace(/[&<>\x22]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\x22':'&quot;'}[c]));
 const opt=(a,all,v)=>(all?`<option value=''>${all}</option>`:'')+a.map(x=>`<option${x===v?' selected':''}>${x}</option>`).join('');
 function lib(p){
@@ -288,28 +304,41 @@ function lib(p){
   <div class='bar'>${L.cats?`<label>Paper type<select id='f_cat'>${opt(L.cats,'All types',f.cat)}</select></label>`:''}<label>Form<select id='f_form'>${opt(FORMS,'All forms',f.form)}</select></label><label>Subject<select id='f_subj'>${opt(SUBJ,'All subjects',f.subj)}</select></label><label>Search<input id='f_q' value='${esc(f.q||'')}' placeholder='Title or year'></label></div>
   <div class='err'>${m}</div>
   ${items.length?items.map(d=>`<div class='item'><span><b>${esc(d.title)}</b><br><small>${[d.cat,d.form,d.subj,d.year].filter(Boolean).map(esc).join(' • ')}</small></span><span><a class='btn' href='${d.url}' target='_blank' rel='noopener'${d.fname?` download='${esc(d.fname)}'`:''}>Open</a>${user?`<button class='btn' data-del='${d.id}' style='border:0;box-shadow:none;background:#8a1c1c'>Delete</button>`:''}</div>`).join(''):`<p>Nothing here yet.${user?' Add a file below.':''}</p>`}
-  ${user?`<h3 style='color:var(--navy);margin:24px 0 4px'>Add material</h3><div class='bar'><label style='flex:2'>Title<input id='u_t'></label>${L.cats?`<label>Paper type<select id='u_c'>${opt(L.cats)}</select></label>`:''}<label>Form<select id='u_fm'>${opt(FORMS)}</select></label><label>Subject<select id='u_s'>${opt(SUBJ)}</select></label><label>Year<input id='u_y' placeholder='2025'></label></div><div class='bar'><label style='flex:2'>Link (Google Drive, etc.)<input id='u_l' placeholder='https://...'></label><label>Or upload a file (up to 1 MB)<input type='file' id='u_f'></label><button id='u_b'>Add to library</button></div>`:''}</div>`;
+  ${user?`<h3 style='color:var(--navy);margin:24px 0 4px'>Add material</h3><div class='bar'><label style='flex:2'>Title<input id='u_t'></label>${L.cats?`<label>Paper type<select id='u_c'>${opt(L.cats)}</select></label>`:''}<label>Form<select id='u_fm'>${opt(FORMS)}</select></label><label>Subject<select id='u_s'>${opt(SUBJ)}</select></label><label>Year<input id='u_y' placeholder='2025'></label></div><div class='bar'><label style='flex:2'>Link (Google Drive, etc.)<input id='u_l' placeholder='https://...'></label><label>Or upload a file<input type='file' id='u_f'></label><button id='u_b'>Add to library</button></div>`:''}</div>`;
 }
-function saveDocs(){try{localStorage.setItem('palmDocs',JSON.stringify(DOCS));return true}catch(e){return false}}
+
 function bindLib(p){
   ['cat','form','subj'].forEach(k=>{const e=$('#f_'+k);if(e)e.onchange=()=>{F[p][k]=e.value;go(p)}});
   $('#f_q').onchange=e=>{F[p].q=e.target.value;go(p)};
-  document.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{DOCS=DOCS.filter(d=>d.id!==b.dataset.del);saveDocs();go(p)});
+  document.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{
+    await sb.from('documents').delete().eq('id', b.dataset.del);
+    DOCS = DOCS.filter(d => String(d.id) !== String(b.dataset.del));
+    go(p);
+  });
   const ub=$('#u_b');if(!ub)return;
   ub.onclick=async()=>{
     const t=$('#u_t').value.trim(),l=$('#u_l').value.trim(),fl=$('#u_f').files[0];
     if(!t){LM='Enter a title.';return go(p)}
     if(!l&&!fl){LM='Add a link or choose a file.';return go(p)}
-    if(fl&&fl.size>1048576){LM='That file is over 1 MB. Upload it to Google Drive and paste the link instead.';return go(p)}
     let url=l,fname='';
-    if(fl){url=await new Promise(r=>{const x=new FileReader();x.onload=()=>r(x.result);x.readAsDataURL(fl)});fname=fl.name}
+    if(fl){
+      fname=fl.name;
+      const filePath=`papers/${Date.now()}_${fname}`;
+      const {error:uploadError}=await sb.storage.from('palm-school-files').upload(filePath,fl);
+      if(uploadError){LM='Upload error: '+uploadError.message;return go(p)}
+      const {data:{publicUrl}}=sb.storage.from('palm-school-files').getPublicUrl(filePath);
+      url=publicUrl;
+    }
     const d={id:String(Date.now()),kind:p,title:t,form:$('#u_fm').value,subj:$('#u_s').value,year:$('#u_y').value.trim(),url,fname};
     if($('#u_c'))d.cat=$('#u_c').value;
+    
+    const {error}=await sb.from('documents').insert([d]);
+    if(error){LM='Supabase error: '+error.message;return go(p)}
     DOCS.push(d);
-    if(!saveDocs()){DOCS.pop();LM='Browser storage is full. Use a link instead of a file.';return go(p)}
-    LM='Added.';go(p);
+    LM='Added successfully.';go(p);
   };
 }
+
 const NECTA=['form1','form2','form3'];
 const CENTRE={location:'Tunguu-Zanzibar'}; 
 const np=m=>m>=75?1:m>=65?2:m>=45?3:m>=30?4:5,ng=m=>['','A','B','C','D','F'][np(m)];
@@ -419,34 +448,72 @@ function report(c,q){
   <p style='font-size:12px;color:var(--muted)'>Grading: A 81-100, B 61-80, C 41-60, D 21-40, F 0-20. Sat = students who sat the subject.</p></div>`;
 }
 
-const ld=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}},sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}};
-let GAL=ld('palmGal'),STAFF=ld('palmStaff'),PM='';
+let GAL=[],STAFF=[],PM='';
 const shrink=(f,w,q=.7)=>new Promise(res=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,w/im.width),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',q))};im.onerror=()=>res('');im.src=r.result};r.readAsDataURL(f)});
 const delBtn=a=>`<button class='btn' ${a} style='border:0;box-shadow:none;background:#8a1c1c;padding:4px 10px;margin:4px 0 0'>Delete</button>`;
+
 function galPage(){const m=PM;PM='';
   return `<div class='card'><h2 style='margin-top:0;color:var(--navy)'>Gallery</h2><div class='err'>${m}</div>
-  ${GAL.length?`<div class='cols'>${GAL.map(g=>`<figure style='margin:0'><img src='${g.src}' alt='${esc(g.cap)}' style='width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px'><figcaption style='font-size:13px;color:var(--muted)'>${esc(g.cap)} ${user?delBtn(`data-gd='${g.id}'`):''}</figcaption></figure>`).join('')}</div>`:`<p>No photos yet.${user?'':''}</p>`}
-  ${user?`<h3 style='color:var(--navy);margin:24px 0 4px'>Add photos</h3><div class='bar'><label style='flex:2'>Caption<input id='g_c' placeholder='e.g. Sports day 2026'></label><label>Photos<input type='file' id='g_f' accept='image/*' multiple></label><button id='g_b'>Add</button></div>`:''}</div>`}
-function bindGal(){
-  document.querySelectorAll('[data-gd]').forEach(b=>b.onclick=()=>{GAL=GAL.filter(g=>String(g.id)!==b.dataset.gd);sv('palmGal',GAL);go('gallery')});
-  const b=$('#g_b');if(!b)return;
-  b.onclick=async()=>{const fs=[...$('#g_f').files];if(!fs.length){PM='Choose at least one photo.';return go('gallery')}
-    const old=GAL.slice(),cap=$('#g_c').value.trim();
-    for(const f of fs){const src=await shrink(f,900);if(src)GAL.push({id:Date.now()+GAL.length,src,cap})}
-    if(!sv('palmGal',GAL)){GAL=old;PM='Browser storage is full. Delete some photos and try again.'}else PM='Added.';go('gallery')};
+  ${GAL.length?`<div class='cols'>${GAL.map(g=>`<figure style='margin:0'><img src='${g.src}' alt='${esc(g.cap)}' style='width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px'><figcaption style='font-size:13px;color:var(--muted)'>${esc(g.cap)} ${user?delBtn(`data-gd='${g.id}'`):''}</figcaption></figure>`).join('')}</div>`:`<p>No photos yet.</p>`}
+  ${user?`<h3 style='color:var(--navy);margin:24px 0 4px'>Add photos</h3><div class='bar'><label style='flex:2'>Caption<input id='g_c' placeholder='e.g. Sports day 2026'></label><label>Photos<input type='file' id='g_f' accept='image/*' multiple></label><button id='g_b'>Add</button></div>`:''}</div>`;
 }
+
+function bindGal(){
+  document.querySelectorAll('[data-gd]').forEach(b=>b.onclick=async()=>{
+    await sb.from('gallery').delete().eq('id', b.dataset.gd);
+    GAL = GAL.filter(g => String(g.id) !== String(b.dataset.gd));
+    go('gallery');
+  });
+  const b=$('#g_b');if(!b)return;
+  b.onclick=async()=>{
+    const fs=[...$('#g_f').files];if(!fs.length){PM='Choose at least one photo.';return go('gallery')}
+    const cap=$('#g_c').value.trim();
+    for(const f of fs){
+      const filePath=`gallery/${Date.now()}_${f.name}`;
+      const {error:uploadError}=await sb.storage.from('palm-school-files').upload(filePath,f);
+      if(uploadError){PM='Upload error: '+uploadError.message;return go('gallery')}
+      const {data:{publicUrl}}=sb.storage.from('palm-school-files').getPublicUrl(filePath);
+      const newRec={id:String(Date.now()+Math.random()),src:publicUrl,cap};
+      const {error}=await sb.from('gallery').insert([newRec]);
+      if(!error) GAL.push(newRec);
+    }
+    PM='Added successfully.';go('gallery');
+  };
+}
+
 function staffPage(){const m=PM;PM='';
   return `<div class='card'><h2 style='margin-top:0;color:var(--navy)'>Our Teachers</h2><div class='err'>${m}</div>
-  ${STAFF.length?`<div class='cols'>${STAFF.map(s=>`<div class='item' style='flex-direction:column;text-align:center;justify-content:center'>${s.photo?`<img src='${s.photo}' alt='${esc(s.name)}' style='width:96px;height:96px;border-radius:50%;object-fit:cover'>`:`<div class='avatar' style='margin:0'>${esc(s.name.charAt(0))}</div>`}<b>${esc(s.name)}</b><small>${esc(s.role)}</small>${user?delBtn(`data-sd='${s.id}'`):''}</div>`).join('')}</div>`:`<p>No teachers listed yet.${user?'':''}</p>`}
-  ${user?`<h3 style='color:var(--navy);margin:24px 0 4px'>Add a teacher</h3><div class='bar'><label>Full name<input id='s_n'></label><label>Role / subject<input id='s_r' placeholder='e.g. Biology Teacher'></label><label>Photo (optional)<input type='file' id='s_f' accept='image/*'></label><button id='s_b'>Add</button></div>`:''}</div>`}
-function bindStaff(){
-  document.querySelectorAll('[data-sd]').forEach(b=>b.onclick=()=>{STAFF=STAFF.filter(s=>String(s.id)!==b.dataset.sd);sv('palmStaff',STAFF);go('staff')});
-  const b=$('#s_b');if(!b)return;
-  b.onclick=async()=>{const n=$('#s_n').value.trim();if(!n){PM='Enter the teacher name.';return go('staff')}
-    const f=$('#s_f').files[0],photo=f?await shrink(f,300):'',old=STAFF.slice();
-    STAFF.push({id:Date.now(),name:n,role:$('#s_r').value.trim(),photo});
-    if(!sv('palmStaff',STAFF)){STAFF=old;PM='Browser storage is full.'}else PM='Added.';go('staff')};
+  ${STAFF.length?`<div class='cols'>${STAFF.map(s=>`<div class='item' style='flex-direction:column;text-align:center;justify-content:center'>${s.photo?`<img src='${s.photo}' alt='${esc(s.name)}' style='width:96px;height:96px;border-radius:50%;object-fit:cover'>`:`<div class='avatar' style='margin:0'>${esc(s.name.charAt(0))}</div>`}<b>${esc(s.name)}</b><small>${esc(s.role)}</small>${user?delBtn(`data-sd='${s.id}'`):''}</div>`).join('')}</div>`:`<p>No teachers listed yet.</p>`}
+  ${user?`<h3 style='color:var(--navy);margin:24px 0 4px'>Add a teacher</h3><div class='bar'><label>Full name<input id='s_n'></label><label>Role / subject<input id='s_r' placeholder='e.g. Biology Teacher'></label><label>Photo (optional)<input type='file' id='s_f' accept='image/*'></label><button id='s_b'>Add</button></div>`:''}</div>`;
 }
+
+function bindStaff(){
+  document.querySelectorAll('[data-sd]').forEach(b=>b.onclick=async()=>{
+    await sb.from('staff').delete().eq('id', b.dataset.sd);
+    STAFF = STAFF.filter(s => String(s.id) !== String(b.dataset.sd));
+    go('staff');
+  });
+  const b=$('#s_b');if(!b)return;
+  b.onclick=async()=>{
+    const n=$('#s_n').value.trim();if(!n){PM='Enter the teacher name.';return go('staff')}
+    const f=$('#s_f').files[0];
+    let photo='';
+    if(f){
+      const filePath=`staff/${Date.now()}_${f.name}`;
+      const {error:uploadError}=await sb.storage.from('palm-school-files').upload(filePath,f);
+      if(!uploadError){
+        const {data:{publicUrl}}=sb.storage.from('palm-school-files').getPublicUrl(filePath);
+        photo=publicUrl;
+      }
+    }
+    const newStaff={id:String(Date.now()),name:n,role:$('#s_r').value.trim(),photo};
+    const {error}=await sb.from('staff').insert([newStaff]);
+    if(error){PM='Error: '+error.message;return go('staff')}
+    STAFF.push(newStaff);
+    PM='Added successfully.';go('staff');
+  };
+}
+
 const pages={
 papers:()=>lib('papers'),notes:()=>lib('notes'),scheme:()=>lib('scheme'),gallery:galPage,staff:staffPage,
 home:()=>`<div class="hero isw">${slides()}<div class="sweep"></div><div class="prog"></div><button class="arr l" id="hp" aria-label="Previous slide">&#10094;</button><button class="arr r" id="hn" aria-label="Next slide">&#10095;</button><div class="t"><div class="cps">${caps()}</div><div class="hbtn">${user?`<label class="btn">Change photos<input type="file" id="bgf" accept="image/*" multiple hidden></label><button class="btn" id="bgr" style="border:0;box-shadow:none">Reset</button><span style="margin-left:8px;font-size:13px;text-shadow:0 1px 4px #000">${bgnote()}</span>`:""}</div></div><div class="dots">${dots()}</div></div><div class="ticker"><span>Welcome to The Palm Academy &nbsp;&bull;&nbsp; Results are open to everyone &nbsp;&bull;&nbsp; Choose a class on the Results page to view the full report &nbsp;&bull;&nbsp; Past papers, notes and schemes of work are available for every Form</span></div><div class="card"><h2 style="color:var(--navy);margin-top:0">Results at a glance</h2>
@@ -464,6 +531,7 @@ login:()=>`<div class="card login"><div class="avatar">&#128100;</div><h2 style=
 <input id="u" type="email" placeholder="Email" autocomplete="email"><input id="p" type="password" placeholder="Password" autocomplete="current-password">
 <div class="err" id="err"></div><button id="lb">Log in</button></div>`
 };
+
 function dash(){return `<div class="card">${user?`<div class="out"><span style="margin-right:12px">Signed in as <b>${esc(user.name)}</b></span><button id="logout-btn">Log out</button></div>
 <div class="bar"><label style="flex:2">Upload results (Excel .xlsx)<input type="file" id="xf" accept=".xlsx,.xls"></label><button onclick="template()" style="background:#444;box-shadow:none">Download template</button></div>`:''}
 <p class="err" style="color:var(--navy)">${msg}</p>
@@ -471,6 +539,7 @@ ${classes().length?`<div class="bar"><label>Class<select id="cls">${classes().ma
 <label>Term<select id="trm"><option>First Term</option><option selected>Second Term</option><option>Third Term</option></select></label><label>Year<input id="yr" value="2026"></label>
 <label>Search student<input id="q" placeholder="Name"></label><button onclick="window.print()">Print</button>${user?`<button id="delc" style="background:#8a1c1c;box-shadow:none">Delete class</button><button id="dela" style="background:#8a1c1c;box-shadow:none">Delete all results</button>`:''}</div>
 <div class="stats" id="stats"></div><div class="wrap"><table id="tbl"></table></div><div id="rep"></div>`:`<p>${user?'No results yet. Upload your Excel file above. Use one sheet per class (for example “KG1 EAST” or “Std 4”), with the student name or exam number, then one column per subject, then TOTAL.':'No results have been published yet.'}</p>`}</div>`}
+
 function render(){
   const c=$("#cls").value,q=$("#q").value.toLowerCase(),one=c!=="ALL",subs=one?DATA[c].subjects:[];
   let rows=[];
@@ -485,6 +554,7 @@ function render(){
   document.querySelectorAll("th[data-s]").forEach(t=>t.onclick=()=>{sort=t.dataset.s;render()});
   $('#rep').innerHTML=one?(NECTA.includes(base(c))?necta(c,q):STDREP.includes(base(c))?stdRep(c,q):isKG(base(c))?kgRep(c,q):report(c,q)):'';if(one){$('#stats').innerHTML='';$('#tbl').innerHTML=''}
 }
+
 const updNav=()=>{
   const l=$('#loginLink');if(l)l.textContent=user?'Log out':'Admin Login';
   const b=$('#logoBox');if(b)b.style.cursor=user?'pointer':'default';
@@ -498,6 +568,7 @@ const updNav=()=>{
     }
   }
 };
+
 function go(p){
   if(p==='login'&&user){
     sb.auth.signOut().then(()=>{
@@ -540,6 +611,7 @@ function go(p){
   }
   updNav();
 }
+
 document.querySelectorAll("[data-p]").forEach(a=>a.onclick=()=>go(a.dataset.p));
 $("#logoFile").onclick=e=>{if(!user)e.preventDefault()};
 $("#logoFile").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$("#logoBox").innerHTML=`<img alt="School logo" src="${r.result}">`};r.readAsDataURL(f)};
