@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover">
 <title>The Palm Teachers Royal Palace – Results Portal</title>
 <style>
 :root{--red:#c8102e;--navy:#1b2f6b;--bg:#f4f6f9;--card:#fff;--text:#1c2433;--muted:#5c667a;--line:#dde2ea;--blue:#2057e0;
@@ -118,6 +118,9 @@ body{overflow-x:hidden}
 .cp.wel p{display:none}
 .hbtn{padding:0 clamp(20px,6vw,90px) 56px;margin:0;pointer-events:auto}
 .hero.isw::after{background:rgba(0,0,0,.4)}
+@media (max-width:800px){main{padding:16px 6px}.card{padding:14px 10px;border-radius:12px}.rpt{padding:8px}.rpt.nt table,.rpt.kg table{font-size:12px}}
+#zbox{touch-action:pan-x pan-y pinch-zoom}
+@media print{#zbox{zoom:1!important}}
 </style>
 </head>
 <body>
@@ -479,7 +482,14 @@ function dash(){return `<div class="card">${user?`<div class="out"><span style="
 ${classes().length?`<div class="bar"><label>Class<select id="cls">${classes().map(c=>`<option>${c}</option>`).join("")}<option value="ALL">All classes</option></select></label>
 <label>Term<select id="trm"><option>First Term</option><option selected>Second Term</option><option>Third Term</option></select></label><label>Year<input id="yr" value="2026"></label>
 <label>Search student<input id="q" placeholder="Name"></label><button onclick="window.print()">Print</button>${user?`<button id="delc" style="background:#8a1c1c;box-shadow:none">Delete class</button><button id="dela" style="background:#8a1c1c;box-shadow:none">Delete all results</button>`:''}</div>
-<div class="stats" id="stats"></div><div class="wrap"><table id="tbl"></table></div><div id="rep"></div>`:`<p>${user?'No results yet. Upload your Excel file above. Use one sheet per class (for example “KG1 EAST” or “Std 4”), with the student name or exam number, then one column per subject, then TOTAL.':'No results have been published yet.'}</p>`}</div>`}
+<div class="bar" style="align-items:center;gap:8px"><span>Zoom:</span><button id="zm" style="padding:8px 16px">&minus;</button><b id="zv">100%</b><button id="zp" style="padding:8px 16px">+</button><button id="zf" style="padding:8px 14px;background:#444;box-shadow:none">Fit to screen</button></div><div id="zbox"><div class="stats" id="stats"></div><div class="wrap"><table id="tbl"></table></div><div id="rep"></div></div>`:`<p>${user?'No results yet. Upload your Excel file above. Use one sheet per class (for example “KG1 EAST” or “Std 4”), with the student name or exam number, then one column per subject, then TOTAL.':'No results have been published yet.'}</p>`}</div>`}
+let ZOOM=null;
+function applyZoom(){const z0=$('#zbox');if(!z0)return;z0.style.zoom=1;let z=ZOOM;
+  if(z===null){if(window.innerWidth>800)z=1;else{const tw=Math.max(1,...[...z0.querySelectorAll('table')].map(t=>t.scrollWidth)),cw=z0.clientWidth||tw;z=Math.min(1,Math.max(.35,cw/tw))}}
+  z0.style.zoom=z;window.curZ=z;const v=$('#zv');if(v)v.textContent=Math.round(z*100)+'%'}
+function setZ(z){ZOOM=Math.max(.3,Math.min(2.5,z));applyZoom()}
+function bindZoom(){const m=$('#zm'),p=$('#zp'),f=$('#zf');if(!m)return;m.onclick=()=>setZ((window.curZ||1)-.1);p.onclick=()=>setZ((window.curZ||1)+.1);f.onclick=()=>{ZOOM=null;applyZoom()}}
+window.addEventListener('resize',()=>{if(ZOOM===null&&$('#zbox'))applyZoom()});
 function render(){
   const c=$("#cls").value,q=$("#q").value.toLowerCase(),one=c!=="ALL",subs=one?DATA[c].subjects:[];
   let rows=[];
@@ -492,7 +502,7 @@ function render(){
   $("#tbl").innerHTML=`<tr><th data-s="rank">Rank</th><th data-s="name">Student</th>${one?"":"<th>Class</th>"}${subs.map(s=>`<th>${s}</th>`).join("")}<th>Total</th><th>Avg</th><th>Grade</th></tr>`+
   (rows.length?rows.map(r=>`<tr><td>${r.rank}</td><td>${r.name}</td>${one?"":`<td>${r.cls}</td>`}${r.marks.map(m=>m===null?"<td>-</td>":`<td>${m} <span class="g g${grade(m)}">${grade(m)}</span></td>`).join("")}<td><b>${r.total}</b></td><td>${r.avg.toFixed(1)}</td><td><span class="g g${grade(r.avg)}">${grade(r.avg)}</span></td></tr>`).join(""):`<tr><td colspan="12">No students match your search.</td></tr>`);
   document.querySelectorAll("th[data-s]").forEach(t=>t.onclick=()=>{sort=t.dataset.s;render()});
-  $('#rep').innerHTML=one?(NECTA.includes(base(c))?necta(c,q):STDREP.includes(base(c))?stdRep(c,q):isKG(base(c))?kgRep(c,q):report(c,q)):'';if(one){$('#stats').innerHTML='';$('#tbl').innerHTML=''}
+  $('#rep').innerHTML=one?(NECTA.includes(base(c))?necta(c,q):STDREP.includes(base(c))?stdRep(c,q):isKG(base(c))?kgRep(c,q):report(c,q)):'';if(one){$('#stats').innerHTML='';$('#tbl').innerHTML=''}applyZoom();
 }
 const updNav=()=>{const l=$('#loginLink');if(l)l.textContent=user?'Log out':'Admin Login';const b=$('#logoBox');if(b)b.style.cursor=user?'pointer':'default'};
 function go(p){
@@ -501,7 +511,7 @@ function go(p){
   $("#main").innerHTML=pages[p]();window.scrollTo(0,0);clearInterval(window.tm);if(p==="home")startBg();if(LIB[p])bindLib(p);if(p==='gallery')bindGal();if(p==='staff')bindStaff();
   if(p==="results"){
     if(user&&$("#xf"))$("#xf").onchange=e=>e.target.files[0]&&upload(e.target.files[0]);
-    if(classes().length){$("#cls").onchange=render;$("#q").oninput=render;$("#trm").onchange=render;$("#yr").oninput=render;
+    if(classes().length){$("#cls").onchange=render;$("#q").oninput=render;$("#trm").onchange=render;$("#yr").oninput=render;bindZoom();
       if(user){arm($('#delc'),()=>{const c=$('#cls').value;if(c==='ALL'){msg='Choose one class first, then delete it.'}else{delete DATA[c];saveData();msg='Deleted '+c+'.'}go('results')});
       arm($('#dela'),()=>{DATA={};saveData();msg='All results deleted.';go('results')})}
       render()}
