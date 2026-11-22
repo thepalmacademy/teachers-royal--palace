@@ -66,7 +66,7 @@ footer a{display:block;color:var(--text);text-decoration:none;padding:5px 0;font
 @media (prefers-reduced-motion:reduce){.slide{transition:none}}
 .item{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;border-left:5px solid var(--red);background:var(--bg);border-radius:10px;padding:10px 14px;margin-bottom:8px}
 .item small{color:var(--muted)}.item a.btn{text-decoration:none;background:var(--blue);margin:2px}
-@media print{header,nav,.social,footer,.bar,.out,.burger,.scrim,.err,.demo-strip{display:none}.card{box-shadow:none;padding:0}.rpt{border:0}th{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+@media print{header,nav,.social,footer,.bar,.out,.burger,.scrim,.err{display:none}.card{box-shadow:none;padding:0}.rpt{border:0}th{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 .rpt{border:1px solid var(--line);border-radius:12px;padding:20px;background:var(--card)}
 .rh{text-align:center;margin-bottom:12px}.rh img{width:72px;height:72px;object-fit:contain}
 .rh h1{margin:4px 0;font-size:28px;color:var(--navy);letter-spacing:1px}.rh h2{margin:2px 0 8px;font-size:18px}
@@ -124,21 +124,13 @@ body{overflow-x:hidden}
 
 @media (max-width:800px){.onlyph{display:inline-block}}
 .onlyph,.onlyfs{display:none}
-body.fs header,body.fs .burger,body.fs nav,body.fs .social,body.fs footer,body.fs .scrim,body.fs .selbar,body.fs .out,body.fs .card>.err,body.fs .demo-strip{display:none!important}
+body.fs header,body.fs .burger,body.fs nav,body.fs .social,body.fs footer,body.fs .scrim,body.fs .selbar,body.fs .out,body.fs .card>.err{display:none!important}
 body.fs main{padding:4px}body.fs .card{padding:6px;box-shadow:none;border-radius:0}
 body.fs .onlyfs{display:inline-block}
 body.fs .zbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--card);padding:6px;margin:0 0 6px;border-bottom:1px solid var(--line)}
 @page{size:A4 portrait;margin:8mm}
 @media print{:root,:root:not([data-theme="light"]){--bg:#fff;--card:#fff;--text:#000;--muted:#444;--line:#bbb;--navy:#1b2f6b}
 body{background:#fff}main{padding:0;max-width:none;min-height:0}.rpt{padding:0}.selbar,.zbar,.onlyfs,.onlyph{display:none!important}.wrap{overflow:visible}tr{break-inside:avoid}h4,.sech{break-after:avoid}}
-
-/* Quick preview switcher strip */
-.demo-strip{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);border-left:5px solid #d49b27;border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:13px}
-.demo-strip b{color:var(--navy);margin-right:4px}
-.demo-pill{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;box-shadow:none;cursor:pointer;transition:all .15s}
-.demo-pill:hover{border-color:#d49b27}
-.demo-pill.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-.demo-tag{font-size:10px;opacity:.82;margin-left:4px;font-weight:600}
 
 /* ===== Page background: dark charcoal with blue curves ===== */
 body{background:#0b111e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450' preserveAspectRatio='xMinYMid slice'%3E%3Cdefs%3E%3CradialGradient id='bg' cx='.9' cy='0' r='1.2'%3E%3Cstop offset='0' stop-color='%231e293b'/%3E%3Cstop offset='.6' stop-color='%230f172a'/%3E%3Cstop offset='1' stop-color='%23070b14'/%3E%3C/radialGradient%3E%3CradialGradient id='a' cx='.15' cy='.45' r='.75'%3E%3Cstop offset='0' stop-color='%231e40af'/%3E%3Cstop offset='.55' stop-color='%2311254c'/%3E%3Cstop offset='1' stop-color='%23070b14'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='.3' cy='.4' r='.8'%3E%3Cstop offset='0' stop-color='%231d4ed8'/%3E%3Cstop offset='.6' stop-color='%230f294a'/%3E%3Cstop offset='1' stop-color='%23070b14'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.4' cy='.1' r='.9'%3E%3Cstop offset='0' stop-color='%232563eb'/%3E%3Cstop offset='.7' stop-color='%230c1e38'/%3E%3Cstop offset='1' stop-color='%23070b14'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='url(%23bg)'/%3E%3Cellipse cx='20' cy='160' rx='115' ry='330' fill='url(%23a)'/%3E%3Cellipse cx='95' cy='90' rx='190' ry='300' fill='url(%23b)'/%3E%3Cellipse cx='140' cy='310' rx='150' ry='85' fill='url(%23c)'/%3E%3Cellipse cx='215' cy='470' rx='290' ry='160' fill='url(%23c)'/%3E%3C/svg%3E") left center/cover no-repeat fixed}
@@ -174,12 +166,7 @@ nav .x{background:rgba(255,255,255,.6);color:#0f294a;border-radius:12px;margin:0
 <body>
 <header>
   <label class="logo" title="Click to add your school logo" id="logoBox">
-    <svg viewBox="0 0 80 80" width="66" height="66" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="37" fill="#0f294a" stroke="#d49b27" stroke-width="3"/>
-      <path d="M40 58 C40 44 38 35 40 26" stroke="#b88318" stroke-width="4" stroke-linecap="round"/>
-      <path d="M40 27 Q25 18 17 27 M40 27 Q27 12 18 16 M40 27 Q55 18 63 27 M40 27 Q53 12 62 16 M40 26 Q40 13 33 11 M40 26 Q43 13 49 12" stroke="#22c55e" stroke-width="3.2" fill="none" stroke-linecap="round"/>
-      <text x="40" y="69" text-anchor="middle" fill="#f5c451" font-size="8" font-weight="bold" font-family="sans-serif">PALM</text>
-    </svg>
+    <span id="logoTxt">Logo</span>
     <input type="file" accept="image/*" id="logoFile" hidden>
   </label>
   <div class="title"><small>THE PALM ACADEMY</small><h1>THE PALM TEACHERS ROYAL PALACE</h1></div>
@@ -190,7 +177,7 @@ nav .x{background:rgba(255,255,255,.6);color:#0f294a;border-radius:12px;margin:0
 <nav id="nav">
   <button class="x" id="closeNav" aria-label="Close menu">&times; Close</button>
   <div class="sbrand"><span>🌴</span><div><b>The Palm Academy</b><small>Results Portal</small></div></div>
-  <a data-p="home">Home</a><a data-p="about">About Us</a><a data-p="results" class="on">Results</a><a data-p="papers">Past Papers</a><a data-p="notes">Notes</a><a data-p="scheme">Schemes of Work</a><a data-p="gallery">Gallery</a><a data-p="staff">Our Teachers</a><a data-p="classes">Classes</a><a data-p="notices">Announcements</a><a data-p="contact">Contact</a><a data-p="faq">FAQs</a><a data-p="login" id="loginLink">Admin Login</a>
+  <a data-p="home" class="on">Home</a><a data-p="about">About Us</a><a data-p="results">Results</a><a data-p="papers">Past Papers</a><a data-p="notes">Notes</a><a data-p="scheme">Schemes of Work</a><a data-p="gallery">Gallery</a><a data-p="staff">Our Teachers</a><a data-p="classes">Classes</a><a data-p="notices">Announcements</a><a data-p="contact">Contact</a><a data-p="faq">FAQs</a><a data-p="login" id="loginLink">Admin Login</a>
 </nav>
 <main id="main"></main>
 <div class="social"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">X (Twitter)</a><a href="#">LinkedIn</a><a href="#">YouTube</a><a href="#">WhatsApp</a></div>
@@ -210,595 +197,401 @@ nav .x{background:rgba(255,255,255,.6);color:#0f294a;border-radius:12px;margin:0
   <div class="copy">© 2026 The Palm Teachers Royal Palace. All rights reserved.</div>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// Standalone interactive preview (works offline without requiring external database keys)
-const sb = null;
-const LS = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
-const TEACHERS = { admin: { name: 'Admin', pass: 'admin123' } };
-let ERR = '', CUR = 'results';
+// ---- 16 teacher accounts: replace names/usernames/passwords with real ones ----
+// ===== SUPABASE SETTINGS: paste your Project URL and anon public key between the quotes =====
+const SB_URL='https://ivyvsuyunncsfukakxju.supabase.co',SB_KEY='sb_publishable_CCOkA8O78Xd1pGbQLKdQTw_FyTQ2pLw';
+const sb=(SB_URL&&SB_KEY&&window.supabase)?window.supabase.createClient(SB_URL,SB_KEY):null;
+const LS=k=>sb?null:localStorage.getItem(k);
+const TEACHERS=sb?{}:{admin:{name:'Admin',pass:'admin123'}}; // demo login, used only when Supabase is not set up
+let ERR='',CUR='home';
+async function persist(k,v){if(sb){const {error}=await sb.from('site_data').upsert({key:k,value:v,updated_at:new Date().toISOString()});if(error){ERR=error.message;return false}return true}
+  try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){ERR='browser storage is full';return false}}
+const toBlob=d=>{const a=d.split(','),m=a[0].match(/:(.*?);/)[1],b=atob(a[1]),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return new Blob([u],{type:m})};
+async function upFile(path,file){const {error}=await sb.storage.from('palm-school-files').upload(path,file,{upsert:true,contentType:file.type||'application/octet-stream'});if(error)throw new Error(error.message);return sb.storage.from('palm-school-files').getPublicUrl(path).data.publicUrl}
+async function putImg(d,path){if(!sb)return d;try{return await upFile(path,toBlob(d))}catch(e){ERR=e.message;return null}}
+function logout(){user=null;if(sb)sb.auth.signOut();updNav()}
+const setLogo=u=>{$("#logoBox").innerHTML=`<img alt="School logo" src="${u}">`};
+const ORDER=["kg1","kg2","kg3","std1","std2","std3","std4","std5","std6","std7","form1","form2","form3"];
+const key=c=>String(c).toLowerCase().replace(/standard|class|darasa/g,"std").replace(/[^a-z0-9]/g,"");
+const grade=m=>m>=81?"A":m>=61?"B":m>=41?"C":m>=21?"D":"F";
+let DATA={},user=null,sort="rank",msg="";
+try{DATA=JSON.parse(LS("palmData")||"{}")}catch(e){}
+const $=s=>document.querySelector(s);
+const base=c=>(key(c).match(/^(kg\d?|std\d|form\d)/)||[''])[0]; // KG1 East -> kg1, Std 4 West -> std4
+const classes=()=>Object.keys(DATA).sort((a,b)=>{const i=ORDER.indexOf(base(a)),j=ORDER.indexOf(base(b));return (i<0?99:i)-(j<0?99:j)||a.localeCompare(b)});
 
-async function persist(k, v) {
-  try { localStorage.setItem(k, JSON.stringify(v)); return true; }
-  catch (e) { ERR = 'browser storage is full'; return false; }
+const ABBR={env:'Environment',diara:'Dini and Arabic',stec:'Science and Technology',rel:'Religion',sos:'Social Science',sci:'Science and Technology',cas:'Creative Arts and Sports',mathe:'Mathematics',ste:'Science and Technology',arab:'Arabic',eng:'English',kisw:'Kiswahili',math:'Mathematics',maths:'Mathematics',htm:'Historia na Maadili',geo:'Geography',phy:'Physics',bio:'Biology',che:'Chemistry',chem:'Chemistry',dini:'Dini','b/s':'Business Study',bs:'Business Study',hist:'History',arb:'Arabic'};
+const fullName=s=>{const k=String(s).toLowerCase().replace(/[.\s]+$/,'').replace(/^\s+/,'');return ABBR[k]||(/^arab/.test(k)?'Arabic':ABBR[ab(s).toLowerCase()]||String(s))};
+const ROMAN={i:1,ii:2,iii:3,iv:4,v:5,vi:6,vii:7};
+function detectClass(text,sn){
+  const SW=/east|west|north|south/i,st=((String(sn).match(SW)||String(text).match(SW)||[''])[0]).toUpperCase();
+  const f=t=>{let m=String(t).match(/form\s*(iv|iii|ii|i|[1-4])\b/i);if(m){const v=m[1].toLowerCase();return 'Form '+(ROMAN[v]||v)}
+    m=String(t).match(/(?:std|standard)\s*(vii|vi|iv|iii|ii|v|i|\d)\b/i);if(m){const v=m[1].toLowerCase();return 'Std '+(ROMAN[v]||v)}
+    m=String(t).match(/kg\s*(\d)/i);if(m)return 'KG'+m[1];return ''};
+  const a=f(sn);
+  if(a)return st&&!SW.test(sn)?a+' '+st:sn;
+  const b=f(text);
+  return b?b+(st?' '+st:''):sn;
 }
-const toBlob = d => {
-  const a = d.split(','), m = a[0].match(/:(.*?);/)[1], b = atob(a[1]), u = new Uint8Array(b.length);
-  for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i);
-  return new Blob([u], { type: m });
-};
-async function putImg(d) { return d; }
-function logout() { user = null; updNav(); }
-const setLogo = u => { $("#logoBox").innerHTML = `<img alt="School logo" src="${u}">`; };
-
-const ORDER = ["kg1","kg2","kg3","std1","std2","std3","std4","std5","std6","std7","form1","form2","form3"];
-const key = c => String(c).toLowerCase().replace(/standard|class|darasa/g,"std").replace(/[^a-z0-9]/g,"");
-const grade = m => m>=81?"A":m>=61?"B":m>=41?"C":m>=21?"D":"F";
-
-// Sample data across KG1, Std 4, Std 6 (grade scale), and Form 2 (NECTA division scale)
-let DATA = {
-  "KG1": {
-    nameLabel: "Pupil Name",
-    subjects: ["Reading", "Writing", "Counting", "Environment", "Dini & Arabic"],
-    rows: [
-      { id: "KG1-01", name: "Amina Suleiman Hamad", sex: "F", marks: [98, 96, 95, 97, 96] },
-      { id: "KG1-02", name: "Yusuf Nassor Juma", sex: "M", marks: [88, 84, 92, 85, 86] },
-      { id: "KG1-03", name: "Fatma Rashid Khamis", sex: "F", marks: [95, 94, 96, 95, 97] },
-      { id: "KG1-04", name: "Tariq Salim Omar", sex: "M", marks: [68, 64, 72, 66, 65] },
-      { id: "KG1-05", name: "Zainab Ali Othman", sex: "F", marks: [76, 74, 80, 72, 78] },
-      { id: "KG1-06", name: "Ibrahim Hafidh Said", sex: "M", marks: [54, 58, 52, 56, 55] },
-      { id: "KG1-07", name: "Mariam Mussa Bakar", sex: "F", marks: [46, 44, 48, 42, 45] },
-      { id: "KG1-08", name: "Abdulrahman Issa Haji", sex: "M", marks: [82, 79, 85, 80, 81] }
-    ]
-  },
-  "Std 4": {
-    nameLabel: "Student Name",
-    subjects: ["ENG", "KISW", "MATH", "STEC", "SOS", "DIARA"],
-    rows: [
-      { id: "S4-01", name: "Salma Abdalla Makame", sex: "F", marks: [89, 92, 86, 84, 88, 91] },
-      { id: "S4-02", name: "Khamis Omar Vuai", sex: "M", marks: [78, 82, 85, 79, 76, 80] },
-      { id: "S4-03", name: "Naima Hassan Pandu", sex: "F", marks: [91, 88, 94, 89, 87, 93] },
-      { id: "S4-04", name: "Juma Seif Mwadini", sex: "M", marks: [55, 62, 48, 52, 58, 60] },
-      { id: "S4-05", name: "Rahma Ally Kombo", sex: "F", marks: [68, 74, 65, 70, 71, 75] },
-      { id: "S4-06", name: "Hafidh Suleiman Zubeir", sex: "M", marks: [38, 44, 32, 36, 40, 42] },
-      { id: "S4-07", name: "Asha Ramadhan Ameir", sex: "F", marks: [83, 85, 81, 82, 84, 86] },
-      { id: "S4-08", name: "Farid Mohamed Sheha", sex: "M", marks: [62, 66, 59, 64, 61, 65] }
-    ]
-  },
-  "Std 6": {
-    nameLabel: "STUDENT NAME",
-    subjects: ["ENG", "KISW", "MATH", "STE", "SOS", "HTM", "DINI"],
-    rows: [
-      { id: "S6-01", name: "Rehema Kassim Khatib", sex: "F", marks: [86, 89, 84, 85, 82, 87, 90] },
-      { id: "S6-02", name: "Hamisi Hamad Mussa", sex: "M", marks: [74, 78, 71, 76, 72, 75, 79] },
-      { id: "S6-03", name: "Mwanasha Soud Abdalla", sex: "F", marks: [63, 68, 59, 64, 66, 65, 70] },
-      { id: "S6-04", name: "Jafari Ali Faki", sex: "M", marks: [46, 52, 42, 48, 45, 50, 54] },
-      { id: "S6-05", name: "Subira Nassor Rashid", sex: "F", marks: [79, 83, 76, 80, 77, 81, 84] },
-      { id: "S6-06", name: "Khalfan Othman Juma", sex: "M", marks: [34, 39, 28, 36, 35, 38, 41] },
-      { id: "S6-07", name: "Tatu Salim Mohamed", sex: "F", marks: [67, 71, 64, 68, 66, 70, 72] }
-    ]
-  },
-  "Form 2": {
-    nameLabel: "STUDENT NAME",
-    subjects: ["ENG", "KISW", "MATH", "BIO", "PHY", "CHE", "GEO", "HIST", "DINI"],
-    rows: [
-      { id: "F2-01", name: "Suleiman Rashid Abdalla", sex: "M", marks: [82, 85, 88, 84, 79, 81, 80, 83, 86] },
-      { id: "F2-02", name: "Amina Khamis Juma", sex: "F", marks: [78, 82, 75, 80, 72, 76, 77, 79, 84] },
-      { id: "F2-03", name: "Fahad Nassor Ally", sex: "M", marks: [66, 70, 68, 65, 60, 64, 67, 69, 72] },
-      { id: "F2-04", name: "Zainab Omar Hamad", sex: "F", marks: [55, 62, 48, 58, 45, 50, 56, 60, 65] },
-      { id: "F2-05", name: "Mbarouk Seif Othman", sex: "M", marks: [41, 49, 34, 44, 31, 36, 45, 47, 52] },
-      { id: "F2-06", name: "Fatma Hafidh Bakar", sex: "F", marks: [86, 89, 84, 87, 81, 83, 85, 88, 90] },
-      { id: "F2-07", name: "Ismail Issa Mwadini", sex: "M", marks: [27, 35, 22, 29, 24, 26, 31, 33, 38] }
-    ]
-  }
-};
-
-let user = null, sort = "rank", msg = "";
-try {
-  const saved = JSON.parse(LS("palmData") || "null");
-  if (saved && Object.keys(saved).length) DATA = saved;
-} catch (e) {}
-
-const $ = s => document.querySelector(s);
-const base = c => (key(c).match(/^(kg\d?|std\d|form\d)/) || [''])[0];
-const classes = () => Object.keys(DATA).sort((a, b) => {
-  const i = ORDER.indexOf(base(a)), j = ORDER.indexOf(base(b));
-  return (i < 0 ? 99 : i) - (j < 0 ? 99 : j) || a.localeCompare(b);
-});
-const DEFAULT_CLASSES = ['KG1','KG2','KG3','Std 1','Std 2','Std 3','Std 4','Std 5','Std 6','Std 7','Form 1','Form 2','Form 3'];
-const classOptions = () => {
-  const loaded = classes();
-  const out = [];
-  DEFAULT_CLASSES.forEach(dc => {
-    const b = base(dc);
-    const matches = loaded.filter(lc => base(lc) === b);
-    if (matches.length) out.push(...matches);
-    else out.push(dc);
-  });
-  loaded.forEach(lc => { if (!out.includes(lc)) out.push(lc); });
-  return out;
-};
-
-const ABBR = { env:'Environment', diara:'Dini and Arabic', stec:'Science and Technology', rel:'Religion', sos:'Social Science', sci:'Science and Technology', cas:'Creative Arts and Sports', mathe:'Mathematics', ste:'Science and Technology', arab:'Arabic', eng:'English', kisw:'Kiswahili', math:'Mathematics', maths:'Mathematics', htm:'Historia na Maadili', geo:'Geography', phy:'Physics', bio:'Biology', che:'Chemistry', chem:'Chemistry', dini:'Dini', 'b/s':'Business Study', bs:'Business Study', hist:'History', arb:'Arabic' };
-const fullName = s => {
-  const k = String(s).toLowerCase().replace(/[.\s]+$/, '').replace(/^\s+/, '');
-  return ABBR[k] || (/^arab/.test(k) ? 'Arabic' : ABBR[ab(s).toLowerCase()] || String(s));
-};
-const ROMAN = { i:1, ii:2, iii:3, iv:4, v:5, vi:6, vii:7 };
-function detectClass(text, sn) {
-  const SW = /east|west|north|south/i, st = ((String(sn).match(SW) || String(text).match(SW) || [''])[0]).toUpperCase();
-  const f = t => {
-    let m = String(t).match(/form\s*(iv|iii|ii|i|[1-4])\b/i);
-    if (m) { const v = m[1].toLowerCase(); return 'Form ' + (ROMAN[v] || v); }
-    m = String(t).match(/(?:std|standard)\s*(vii|vi|iv|iii|ii|v|i|\d)\b/i);
-    if (m) { const v = m[1].toLowerCase(); return 'Std ' + (ROMAN[v] || v); }
-    m = String(t).match(/kg\s*(\d)/i);
-    if (m) return 'KG' + m[1];
-    return '';
-  };
-  const a = f(sn);
-  if (a) return st && !SW.test(sn) ? a + ' ' + st : sn;
-  const b = f(text);
-  return b ? b + (st ? ' ' + st : '') : sn;
-}
-let DUPN = 0;
-function parseWB(wb) {
-  const out = {}, HDR = /name|jina|majina|student|candidate|exam\s*(number|no)/i, SKIP = /^(total|avg|av|average|mean|point|points|division|div|grade|grd|g|rank|pos|pst|position|no|s\/n|sn|#|abs|ttl|tt|tot|jumla|wastani|nafasi|daraja|remarks?|maoni)$/i, EXTRA = /teacher|signature|\bsign\b|phone|\btel\b|mobile|attend|head ?master|head ?teacher|language use|mwalimu|simu|saini|mahudhurio|remark|access|\bcode\b|\bpin\b|password|nambari ya siri|namba ya siri/i;
-  wb.SheetNames.forEach(sn => {
-    const A = XLSX.utils.sheet_to_json(wb.Sheets[sn], { header:1, defval:'' });
-    const hi = A.slice(0, 25).findIndex(r => r.some(c => HDR.test(String(c)) && !EXTRA.test(String(c)) && String(c).trim().length < 40));
-    if (hi < 0) return;
-    const H = A[hi].map(c => String(c).trim()), title = A.slice(0, hi).flat().join(' ');
-    let ni = H.findIndex(h => /name|jina|majina|exam\s*(number|no)/i.test(h) && !EXTRA.test(h));
-    if (ni < 0) ni = H.findIndex(h => HDR.test(h) && !EXTRA.test(h) && !/id|no/i.test(h));
-    if (ni < 0) return;
-    const ii = H.findIndex((h, i) => i !== ni && /^(id|reg|adm|cand|student id)/i.test(h)), sni = H.findIndex(h => /^(sn|s\/n|no\.?)$/i.test(h)), ci = H.findIndex(h => /^(class|darasa)/i.test(h)), si = H.findIndex(h => /^(sex|gender|jinsia)/i.test(h));
-    const ti = H.findIndex((h, i) => i > ni && /^(total|ttl|tt|jumla)$/i.test(h));
-    const sub = H.map((h, i) => i).filter(i => H[i] && ![ni, ii, sni, ci, si].includes(i) && !SKIP.test(H[i]) && !EXTRA.test(H[i]) && (ti < 0 || i < ti));
-    const okRow = r => String(r[ni] || '').trim() && (sni < 0 || String(r[sni]).trim() !== '');
-    const isMark = i => {
-      for (const r of A.slice(hi + 1)) {
-        if (!okRow(r)) continue;
-        const v = String(r[i]).trim();
-        if (v === '') continue;
-        const x = parseFloat(v);
-        if (isNaN(x)) { if (!/^(abs|a|-+|x|n\/a|nil)$/i.test(v)) return false; }
-        else if (x < 0 || x > 100) return false;
-      }
-      return true;
-    };
-    const sub2 = sub.filter(isMark);
-    const cls = detectClass(title, sn);
-    A.slice(hi + 1).forEach((r, n) => {
-      const nm = String(r[ni] || '').trim();
-      if (!nm) return;
-      if (sni >= 0 && String(r[sni]).trim() === '') return;
-      const c = String(ci >= 0 && r[ci] ? r[ci] : cls).trim(), o = out[c] || (out[c] = { subjects: sub2.map(i => /^mathe$/i.test(H[i]) ? 'MATH' : H[i]), nameLabel: H[ni], rows: [] });
-      o.rows.push({
-        id: String(ii >= 0 && r[ii] !== '' ? r[ii] : (sni >= 0 ? r[sni] : n + 1)),
-        name: nm,
-        sex: si >= 0 ? String(r[si]).trim().charAt(0).toUpperCase() : '',
-        marks: sub2.map(i => { const v = parseFloat(r[i]); return isNaN(v) ? null : v; }),
-        grades: sub2.map(i => /^g$/i.test(H[i + 1] || '') ? String(r[i + 1]).trim().toUpperCase() : '')
-      });
+let DUPN=0;
+function parseWB(wb){
+  const out={},HDR=/name|jina|majina|student|candidate|exam\s*(number|no)/i,SKIP=/^(total|avg|av|average|mean|point|points|division|div|grade|grd|g|rank|pos|pst|position|no|s\/n|sn|#|abs|ttl|tt|tot|jumla|wastani|nafasi|daraja|remarks?|maoni)$/i,EXTRA=/teacher|signature|\bsign\b|phone|\btel\b|mobile|attend|head ?master|head ?teacher|language use|mwalimu|simu|saini|mahudhurio|remark|access|\bcode\b|\bpin\b|password|nambari ya siri|namba ya siri/i;
+  wb.SheetNames.forEach(sn=>{
+    const A=XLSX.utils.sheet_to_json(wb.Sheets[sn],{header:1,defval:''});
+    const hi=A.slice(0,25).findIndex(r=>r.some(c=>HDR.test(String(c))&&!EXTRA.test(String(c))&&String(c).trim().length<40));
+    if(hi<0)return;
+    const H=A[hi].map(c=>String(c).trim()),title=A.slice(0,hi).flat().join(' ');
+    let ni=H.findIndex(h=>/name|jina|majina|exam\s*(number|no)/i.test(h)&&!EXTRA.test(h));
+    if(ni<0)ni=H.findIndex(h=>HDR.test(h)&&!EXTRA.test(h)&&!/id|no/i.test(h));
+    if(ni<0)return;
+    const ii=H.findIndex((h,i)=>i!==ni&&/^(id|reg|adm|cand|student id)/i.test(h)),sni=H.findIndex(h=>/^(sn|s\/n|no\.?)$/i.test(h)),ci=H.findIndex(h=>/^(class|darasa)/i.test(h)),si=H.findIndex(h=>/^(sex|gender|jinsia)/i.test(h));
+    const ti=H.findIndex((h,i)=>i>ni&&/^(total|ttl|tt|jumla)$/i.test(h));
+    const sub=H.map((h,i)=>i).filter(i=>H[i]&&![ni,ii,sni,ci,si].includes(i)&&!SKIP.test(H[i])&&!EXTRA.test(H[i])&&(ti<0||i<ti));
+    const okRow=r=>String(r[ni]||'').trim()&&(sni<0||String(r[sni]).trim()!=='');
+    const isMark=i=>{for(const r of A.slice(hi+1)){if(!okRow(r))continue;const v=String(r[i]).trim();if(v==='')continue;const x=parseFloat(v);if(isNaN(x)){if(!/^(abs|a|-+|x|n\/a|nil)$/i.test(v))return false}else if(x<0||x>100)return false}return true};
+    const sub2=sub.filter(isMark);
+    const cls=detectClass(title,sn);
+    A.slice(hi+1).forEach((r,n)=>{
+      const nm=String(r[ni]||'').trim();if(!nm)return;
+      if(sni>=0&&String(r[sni]).trim()==='')return; // skips summary rows at the bottom
+      const c=String(ci>=0&&r[ci]?r[ci]:cls).trim(),o=out[c]||(out[c]={subjects:sub2.map(i=>/^mathe$/i.test(H[i])?'MATH':H[i]),nameLabel:H[ni],rows:[]});
+      o.rows.push({id:String(ii>=0&&r[ii]!==''?r[ii]:(sni>=0?r[sni]:n+1)),name:nm,sex:si>=0?String(r[si]).trim().charAt(0).toUpperCase():'',marks:sub2.map(i=>{const v=parseFloat(r[i]);return isNaN(v)?null:v}),grades:sub2.map(i=>/^g$/i.test(H[i+1]||'')?String(r[i+1]).trim().toUpperCase():'')});
     });
   });
-  let dn = 0;
-  for (const c in out) {
-    const seen = new Set();
-    out[c].rows = out[c].rows.filter(r => {
-      const k = r.name + '|' + JSON.stringify(r.marks);
-      if (seen.has(k)) { dn++; return false; }
-      seen.add(k);
-      return true;
-    });
-  }
-  DUPN = dn;
+  let dn=0;for(const c in out){const seen=new Set();out[c].rows=out[c].rows.filter(r=>{const k=r.name+'|'+JSON.stringify(r.marks);if(seen.has(k)){dn++;return false}seen.add(k);return true})}DUPN=dn;
   return out;
 }
-async function saveData() {
-  const ok = await persist('palmData', DATA);
-  if (!ok) { msg += ' Not saved: ' + ERR + '.'; if (CUR === 'results') go('results'); }
-}
-function arm(b, fn) {
-  b.dataset.t = b.textContent;
-  b.onclick = () => {
-    if (b.dataset.a) { fn(); }
-    else { b.dataset.a = '1'; b.textContent = 'Click again to confirm'; setTimeout(() => { b.dataset.a = ''; b.textContent = b.dataset.t; }, 4000); }
-  };
-}
-function upload(f) {
-  const r = new FileReader();
-  r.onload = () => {
-    try {
-      const d = parseWB(XLSX.read(r.result, { type: "array" }));
-      if (!Object.keys(d).length) { msg = "No results found. Each sheet needs a header row with a Name column and numeric marks."; }
-      else { DATA = { ...DATA, ...d }; msg = 'Loaded: ' + Object.keys(d).join(', ') + '.' + (DUPN ? ' ' + DUPN + ' repeated student rows were removed.' : ''); saveData(); }
-    } catch (e) { msg = "Could not read that file. Use an .xlsx file."; }
-    go("results");
-  };
+async function saveData(){const ok=await persist('palmData',DATA);if(!ok){msg+=' Not saved: '+ERR+'.';if(CUR==='results')go('results')}}
+function arm(b,fn){b.dataset.t=b.textContent;b.onclick=()=>{if(b.dataset.a){fn()}else{b.dataset.a='1';b.textContent='Click again to confirm';setTimeout(()=>{b.dataset.a='';b.textContent=b.dataset.t},4000)}}}
+function upload(f){
+  const r=new FileReader();
+  r.onload=()=>{try{
+    const d=parseWB(XLSX.read(r.result,{type:"array"}));
+    if(!Object.keys(d).length){msg="No results found. Each sheet needs a header row with a Name column and numeric marks (not letter grades). Download the template to see the format.";}
+    else{DATA={...DATA,...d};msg='Loaded: '+Object.keys(d).join(', ')+'.'+(DUPN?' '+DUPN+' repeated student rows were removed.':'');saveData();}
+  }catch(e){msg="Could not read that file. Use an .xlsx file."}go("results")};
   r.readAsArrayBuffer(f);
 }
-function template() {
-  const wb = XLSX.utils.book_new(), S = ["Kiswahili","English","Maths","Science","Social Studies","Civics"];
-  ["Std 1","Std 2","Form 1"].forEach(c => {
-    const rows = [1, 2, 3].map(i => {
-      const o = { ID: c.replace(" ", "") + "-00" + i, Name: "Student " + i, Sex: i % 2 ? "F" : "M" };
-      S.forEach(s => o[s] = Math.round(40 + Math.random() * 55));
-      return o;
-    });
-    XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(rows), c);
-  });
-  XLSX.writeFile(wb, "palm-results-template.xlsx");
+function template(){
+  const wb=XLSX.utils.book_new(),S=["Kiswahili","English","Maths","Science","Social Studies","Civics"];
+  ["Std 1","Std 2","Form 1"].forEach(c=>{const rows=[1,2,3].map(i=>{const o={ID:c.replace(" ","")+"-00"+i,Name:"Student "+i,Sex:i%2?"F":"M"};S.forEach(s=>o[s]=Math.round(40+Math.random()*55));return o});
+    XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(rows),c)});
+  XLSX.writeFile(wb,"palm-results-template.xlsx");
 }
 
-const stu = (x, u, s) => `<circle cx='${x}' cy='158' r='36' fill='#2b1a10'/><circle cx='${x}' cy='172' r='32' fill='${s}'/><rect x='${x-35}' y='205' width='70' height='115' rx='18' fill='${u}'/><rect x='${x-22}' y='250' width='44' height='30' rx='4' fill='#f6c744'/>`;
-const SVGS = [
-  `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400' preserveAspectRatio='xMidYMid slice'><defs><linearGradient id='a' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#ffd9a0'/><stop offset='1' stop-color='#7ec8e3'/></linearGradient></defs><rect width='800' height='400' fill='url(#a)'/><circle cx='620' cy='120' r='46' fill='#fff3c4'/><path d='M0 230 Q100 200 200 230 T400 230 T600 230 T800 230 V400 H0Z' fill='#4fa3c7'/><path d='M0 280 Q100 245 200 280 T400 280 T600 280 T800 280 V400 H0Z' fill='#2f86b0'/><path d='M0 330 Q100 300 200 330 T400 330 T600 330 T800 330 V400 H0Z' fill='#1d6a95'/></svg>`,
-  `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400' preserveAspectRatio='xMidYMid slice'><rect width='800' height='400' fill='#bfe3ff'/><circle cx='700' cy='70' r='40' fill='#fff3c4'/><rect y='300' width='800' height='100' fill='#6bb36a'/>${stu(250,'#1b2f6b','#8d5a3b')}${stu(400,'#c8102e','#a8704a')}${stu(550,'#1b2f6b','#6f4428')}</svg>`
-];
-const DEFBG = SVGS.map(s => `url(${encodeURI(s).replace(/\(/g,'%28').replace(/\)/g,'%29').replace(/'/g,'%27').replace(/#/g,'%23')})`).map(u => u.replace('url(','url(data:image/svg+xml,'));
-let PHOTOS = [];
-const CAPS = [
-  { t:'WELCOME TO THE PALM TEACHERS ROYAL PALACE', p:'' },
-  { t:'The Power of Teaching', p:'A great teacher inspires learners to discover their potential and achieve their dreams.' },
-  { t:'Shape the Future', p:'Every lesson you teach helps build a better future for the next generation.' }
-];
-const sc = () => Math.max(CAPS.length, PHOTOS.length);
-const ci = i => i < CAPS.length ? i : 1 + ((i - 1) % (CAPS.length - 1));
-const slides = () => Array.from({ length: sc() }, (_, i) => {
-  const L = PHOTOS.length ? PHOTOS.map(p => `url(${p})`) : DEFBG;
-  return L[i % L.length];
-}).map((b, i) => `<div class="slide${i ? "" : " on"}" style="background:${b} center/cover"></div>`).join("");
-const caps = () => Array.from({ length: sc() }, (_, i) => `<div class='cp${i ? '' : ' on wel'}'><h2>${CAPS[ci(i)].t}</h2><p>${CAPS[ci(i)].p}</p></div>`).join('');
-const dots = () => Array.from({ length: sc() }, (_, i) => `<i class='${i ? '' : 'on'}'></i>`).join('');
-function startBg() {
-  const S = [...document.querySelectorAll('.slide')], C = [...document.querySelectorAll('.cp')], D = [...document.querySelectorAll('.dots i')];
-  let cur = 0;
-  const fx = () => { for (const [q, c] of [['.sweep','go'],['.prog','run']]) { const e = document.querySelector(q); if (e) { e.classList.remove(c); void e.offsetWidth; e.classList.add(c); } } };
-  const show = n => {
-    n = (n + S.length) % S.length;
-    if (n === cur || !S.length) return;
-    const old = S[cur];
-    S.forEach(x => { if (x !== old) x.classList.remove('out'); });
-    old.classList.remove('on'); old.classList.add('out');
-    setTimeout(() => { old.style.transition = 'none'; old.classList.remove('out'); void old.offsetWidth; old.style.transition = ''; }, 2500);
-    cur = n;
-    S.forEach((x, k) => x.classList.toggle('on', k === cur));
-    C.forEach((x, k) => x.classList.toggle('on', k === cur));
-    D.forEach((x, k) => x.classList.toggle('on', k === cur));
-    fx();
-    const hh = document.querySelector('.hero'); if (hh) hh.classList.toggle('isw', cur === 0);
-  };
-  const play = () => { clearInterval(window.tm); window.tm = setInterval(() => show(cur + 1), 6000); };
-  const hp = $('#hp'), hn = $('#hn');
-  if (hp) hp.onclick = () => { show(cur - 1); play(); };
-  if (hn) hn.onclick = () => { show(cur + 1); play(); };
-  D.forEach((d, k) => d.onclick = () => { show(k); play(); });
-  play(); fx();
+const stu=(x,u,s)=>`<circle cx='${x}' cy='158' r='36' fill='#2b1a10'/><circle cx='${x}' cy='172' r='32' fill='${s}'/><rect x='${x-35}' y='205' width='70' height='115' rx='18' fill='${u}'/><rect x='${x-22}' y='250' width='44' height='30' rx='4' fill='#f6c744'/>`;
+const SVGS=[
+`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400' preserveAspectRatio='xMidYMid slice'><defs><linearGradient id='a' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#ffd9a0'/><stop offset='1' stop-color='#7ec8e3'/></linearGradient></defs><rect width='800' height='400' fill='url(#a)'/><circle cx='620' cy='120' r='46' fill='#fff3c4'/><path d='M0 230 Q100 200 200 230 T400 230 T600 230 T800 230 V400 H0Z' fill='#4fa3c7'/><path d='M0 280 Q100 245 200 280 T400 280 T600 280 T800 280 V400 H0Z' fill='#2f86b0'/><path d='M0 330 Q100 300 200 330 T400 330 T600 330 T800 330 V400 H0Z' fill='#1d6a95'/></svg>`,
+`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400' preserveAspectRatio='xMidYMid slice'><rect width='800' height='400' fill='#8a5a33'/><circle cx='400' cy='210' r='150' fill='#f6f2ea'/><circle cx='400' cy='210' r='118' fill='#e8e0d0'/><ellipse cx='370' cy='215' rx='70' ry='48' fill='#e2b062'/><circle cx='455' cy='180' r='30' fill='#d6341f'/><circle cx='465' cy='250' r='26' fill='#d6341f'/><circle cx='330' cy='160' r='22' fill='#4c9a3b'/><circle cx='360' cy='155' r='18' fill='#4c9a3b'/><rect x='170' y='120' width='12' height='170' rx='6' fill='#ccc'/><rect x='640' y='120' width='12' height='170' rx='6' fill='#ccc'/></svg>`,
+`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400' preserveAspectRatio='xMidYMid slice'><rect width='800' height='400' fill='#bfe3ff'/><circle cx='700' cy='70' r='40' fill='#fff3c4'/><rect y='300' width='800' height='100' fill='#6bb36a'/>${stu(250,'#1b2f6b','#8d5a3b')}${stu(400,'#c8102e','#a8704a')}${stu(550,'#1b2f6b','#6f4428')}</svg>`,
+`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400' preserveAspectRatio='xMidYMid slice'><rect width='800' height='400' fill='#ffe2b8'/><circle cx='120' cy='70' r='40' fill='#fff3c4'/><rect y='300' width='800' height='100' fill='#7bbf6a'/>${stu(150,'#1f7a4d','#8d5a3b')}${stu(275,'#c8102e','#a8704a')}${stu(400,'#1b2f6b','#6f4428')}${stu(525,'#c8102e','#8d5a3b')}${stu(650,'#1f7a4d','#a8704a')}</svg>`,
+`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400' preserveAspectRatio='xMidYMid slice'><defs><linearGradient id='b' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#ff9a5a'/><stop offset='0.6' stop-color='#ffd9a0'/><stop offset='1' stop-color='#cfe9f5'/></linearGradient></defs><rect width='800' height='400' fill='url(#b)'/><circle cx='440' cy='270' r='70' fill='#fff3c4'/><rect y='290' width='800' height='110' fill='#1d6a95'/><path d='M170 340 Q190 240 160 150' stroke='#5b3a1c' stroke-width='12' fill='none' stroke-linecap='round'/><path d='M160 150 Q100 110 60 150 M160 150 Q130 90 80 90 M160 150 Q200 100 250 120 M160 150 Q215 150 240 190 M160 150 Q150 95 170 70' stroke='#1f7a4d' stroke-width='9' fill='none' stroke-linecap='round'/></svg>`];
+const DEFBG=SVGS.map(s=>`url(${encodeURI(s).replace(/\(/g,'%28').replace(/\)/g,'%29').replace(/'/g,'%27').replace(/#/g,'%23')})`).map(u=>u.replace('url(','url(data:image/svg+xml,'));
+let PHOTOS=[];try{PHOTOS=JSON.parse(LS("palmBg")||"[]")}catch(e){}
+const slides=()=>Array.from({length:sc()},(_,i)=>{const L=PHOTOS.length?PHOTOS.map(p=>`url(${p})`):DEFBG;return L[i%L.length]}).map((b,i)=>`<div class="slide${i?"":" on"}" style="background:${b} center/cover"></div>`).join("");
+const CAPS=[{t:'WELCOME TO THE PALM TEACHERS ROYAL PALACE',p:''},{t:'The Power of Teaching',p:'A great teacher inspires learners to discover their potential and achieve their dreams.'},{t:'Shape the Future',p:'Every lesson you teach helps build a better future for the next generation.'},{t:'Every Child Matters',p:'Recognise every learner’s ability, respect their differences and support their progress.'},{t:'Teach with Passion',p:'Teaching is not just a profession; it is a commitment to transforming lives.'},{t:'Inspire Excellence',p:'Encourage learners to work hard, think critically and believe in themselves.'},{t:'Be a Role Model',p:'Your actions, discipline and values teach lessons beyond the classroom.'},{t:'Patience and Understanding',p:'Every learner develops differently. Be patient, supportive and encouraging.'},{t:'Together We Succeed',p:'Strong teamwork among teachers creates a better learning environment.'},{t:'Professional Commitment',p:'Prepare your lessons, manage your classroom and give every learner your best.'},{t:'Beyond the Classroom',p:'A teacher’s influence extends far beyond textbooks and examinations.'}];
+const sc=()=>Math.max(CAPS.length,PHOTOS.length);
+const ci=i=>i<CAPS.length?i:1+((i-1)%(CAPS.length-1));
+let BGM='';const bgnote=()=>{const m=BGM||(PHOTOS.length+' of 15 photos');BGM='';return m};
+const caps=()=>Array.from({length:sc()},(_,i)=>`<div class='cp${i?'':' on wel'}'><h2>${CAPS[ci(i)].t}</h2><p>${CAPS[ci(i)].p}</p></div>`).join('');
+const dots=()=>Array.from({length:sc()},(_,i)=>`<i class='${i?'':'on'}'></i>`).join('');
+function startBg(){
+  const S=[...document.querySelectorAll('.slide')],C=[...document.querySelectorAll('.cp')],D=[...document.querySelectorAll('.dots i')];let cur=0;
+  const fx=()=>{for(const [q,c] of [['.sweep','go'],['.prog','run']]){const e=document.querySelector(q);if(e){e.classList.remove(c);void e.offsetWidth;e.classList.add(c)}}};
+  const show=n=>{n=(n+S.length)%S.length;if(n===cur||!S.length)return;const old=S[cur];S.forEach(x=>{if(x!==old)x.classList.remove('out')});
+    old.classList.remove('on');old.classList.add('out');
+    setTimeout(()=>{old.style.transition='none';old.classList.remove('out');void old.offsetWidth;old.style.transition=''},2500);
+    cur=n;S.forEach((x,k)=>x.classList.toggle('on',k===cur));C.forEach((x,k)=>x.classList.toggle('on',k===cur));D.forEach((x,k)=>x.classList.toggle('on',k===cur));fx();const hh=document.querySelector('.hero');if(hh)hh.classList.toggle('isw',cur===0)};
+  const play=()=>{clearInterval(window.tm);window.tm=setInterval(()=>show(cur+1),6000)};
+  const hp=$('#hp'),hn=$('#hn');if(hp)hp.onclick=()=>{show(cur-1);play()};if(hn)hn.onclick=()=>{show(cur+1);play()};
+  D.forEach((d,k)=>d.onclick=()=>{show(k);play()});play();fx();
+  const f=$("#bgf");if(f)f.onchange=async e=>{
+    const out=[];for(const file of e.target.files){const u=await shrink(file,1100,.6),p=u&&await putImg(u,'banner/'+Date.now()+'-'+out.length+'.jpg');if(p)out.push(p);else BGM='Upload failed: '+ERR}
+    if(out.length){const old=PHOTOS.slice();PHOTOS=[...PHOTOS,...out].slice(0,15);
+      if(await persist('palmBg',PHOTOS))BGM='Added. '+PHOTOS.length+' of 15 photos.';else{PHOTOS=old;BGM='Could not save: '+ERR}
+      go('home')}};
+  const rb=$("#bgr");if(rb)rb.onclick=()=>{PHOTOS=[];persist("palmBg",[]);go("home")};
 }
-
-const SUBJ = ['Biology','Physics','Chemistry','English','Geography','Mathematics'], FORMS = ['Form 1','Form 2','Form 3','Form 4'];
-const LIB = { papers:{ title:'Past Papers', cats:['NECTA','Mock','School'] }, notes:{ title:'Notes Materials' }, scheme:{ title:'Schemes of Work' } };
-let DOCS = [
-  { id:'1', kind:'papers', cat:'NECTA', form:'Form 2', subj:'Mathematics', year:'2026', title:'Form Two Assessment – Basic Mathematics', url:'#' },
-  { id:'2', kind:'notes', form:'Form 1', subj:'Biology', year:'2026', title:'Cell Structure & Classification Notes', url:'#' },
-  { id:'3', kind:'scheme', form:'Form 3', subj:'Physics', year:'2026', title:'Form Three Physics Scheme of Work', url:'#' }
-], F = {}, LM = '';
-const esc = s => String(s).replace(/[&<>\x22]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','\x22':'&quot;' }[c]));
-const opt = (a, all, v) => (all ? `<option value=''>${all}</option>` : '') + a.map(x => `<option${x === v ? ' selected' : ''}>${x}</option>`).join('');
-function lib(p) {
-  const L = LIB[p], f = F[p] || (F[p] = {}), q = (f.q || '').toLowerCase();
-  const items = DOCS.filter(d => d.kind === p && (!f.cat || d.cat === f.cat) && (!f.form || d.form === f.form) && (!f.subj || d.subj === f.subj) && (!q || (d.title + d.year).toLowerCase().includes(q)));
-  const m = LM; LM = '';
+const SUBJ=['Biology','Physics','Chemistry','English','Geography','Mathematics'],FORMS=['Form 1','Form 2','Form 3','Form 4'];
+const LIB={papers:{title:'Past Papers',cats:['NECTA','Mock','School']},notes:{title:'Notes Materials'},scheme:{title:'Schemes of Work'}};
+let DOCS=[],F={},LM='';try{DOCS=JSON.parse(LS('palmDocs')||'[]')}catch(e){}
+const esc=s=>String(s).replace(/[&<>\x22]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\x22':'&quot;'}[c]));
+const opt=(a,all,v)=>(all?`<option value=''>${all}</option>`:'')+a.map(x=>`<option${x===v?' selected':''}>${x}</option>`).join('');
+function lib(p){
+  const L=LIB[p],f=F[p]||(F[p]={}),q=(f.q||'').toLowerCase();
+  const items=DOCS.filter(d=>d.kind===p&&(!f.cat||d.cat===f.cat)&&(!f.form||d.form===f.form)&&(!f.subj||d.subj===f.subj)&&(!q||(d.title+d.year).toLowerCase().includes(q)));
+  const m=LM;LM='';
   return `<div class='card'><h2 style='margin-top:0;color:var(--navy)'>${L.title}</h2>
-  <div class='bar'>${L.cats ? `<label>Paper type<select id='f_cat'>${opt(L.cats, 'All types', f.cat)}</select></label>` : ''}<label>Form<select id='f_form'>${opt(FORMS, 'All forms', f.form)}</select></label><label>Subject<select id='f_subj'>${opt(SUBJ, 'All subjects', f.subj)}</select></label><label>Search<input id='f_q' value='${esc(f.q || '')}' placeholder='Title or year'></label></div>
+  <div class='bar'>${L.cats?`<label>Paper type<select id='f_cat'>${opt(L.cats,'All types',f.cat)}</select></label>`:''}<label>Form<select id='f_form'>${opt(FORMS,'All forms',f.form)}</select></label><label>Subject<select id='f_subj'>${opt(SUBJ,'All subjects',f.subj)}</select></label><label>Search<input id='f_q' value='${esc(f.q||'')}' placeholder='Title or year'></label></div>
   <div class='err'>${m}</div>
-  ${items.length ? items.map(d => `<div class='item'><span><b>${esc(d.title)}</b><br><small>${[d.cat, d.form, d.subj, d.year].filter(Boolean).map(esc).join(' • ')}</small></span><span><a class='btn' href='#' onclick="go('results');return false">Open</a></span></div>`).join('') : `<p>Nothing here yet.</p>`}</div>`;
+  ${items.length?items.map(d=>`<div class='item'><span><b>${esc(d.title)}</b><br><small>${[d.cat,d.form,d.subj,d.year].filter(Boolean).map(esc).join(' • ')}</small></span><span><a class='btn' href='${d.url}' target='_blank' rel='noopener'${d.fname?` download='${esc(d.fname)}'`:''}>Open</a>${user?`<button class='btn' data-del='${d.id}' style='border:0;box-shadow:none;background:#8a1c1c'>Delete</button>`:''}</span></div>`).join(''):`<p>Nothing here yet.${user?' Add a file below.':''}</p>`}
+  ${user?`<h3 style='color:var(--navy);margin:24px 0 4px'>Add material</h3><div class='bar'><label style='flex:2'>Title<input id='u_t'></label>${L.cats?`<label>Paper type<select id='u_c'>${opt(L.cats)}</select></label>`:''}<label>Form<select id='u_fm'>${opt(FORMS)}</select></label><label>Subject<select id='u_s'>${opt(SUBJ)}</select></label><label>Year<input id='u_y' placeholder='2025'></label></div><div class='bar'><label style='flex:2'>Link (Google Drive, etc.)<input id='u_l' placeholder='https://...'></label><label>Or upload a file (up to 1 MB)<input type='file' id='u_f'></label><button id='u_b'>Add to library</button></div>`:''}</div>`;
 }
-function bindLib(p) {
-  ['cat', 'form', 'subj'].forEach(k => { const e = $('#f_' + k); if (e) e.onchange = () => { F[p][k] = e.value; go(p); }; });
-  $('#f_q').onchange = e => { F[p].q = e.target.value; go(p); };
+function saveDocs(){return persist('palmDocs',DOCS)}
+async function saveDoc(d){if(sb){const {error}=await sb.from('documents').insert([d]);if(error){ERR=error.message;return false}return true}return saveDocs()}
+function bindLib(p){
+  ['cat','form','subj'].forEach(k=>{const e=$('#f_'+k);if(e)e.onchange=()=>{F[p][k]=e.value;go(p)}});
+  $('#f_q').onchange=e=>{F[p].q=e.target.value;go(p)};
+  document.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{if(sb)await sb.from('documents').delete().eq('id',b.dataset.del);DOCS=DOCS.filter(d=>String(d.id)!==String(b.dataset.del));if(!sb)saveDocs();go(p)});
+  const ub=$('#u_b');if(!ub)return;
+  ub.onclick=async()=>{
+    const t=$('#u_t').value.trim(),l=$('#u_l').value.trim(),fl=$('#u_f').files[0];
+    if(!t){LM='Enter a title.';return go(p)}
+    if(!l&&!fl){LM='Add a link or choose a file.';return go(p)}
+    if(fl&&fl.size>(sb?20971520:1048576)){LM='That file is too big. Upload it to Google Drive and paste the link instead.';return go(p)}
+    let url=l,fname='';
+    if(fl){try{url=sb?await upFile('library/'+Date.now()+'-'+fl.name.replace(/[^\w.-]/g,'_'),fl):await new Promise(r=>{const x=new FileReader();x.onload=()=>r(x.result);x.readAsDataURL(fl)})}catch(e){LM='Upload failed: '+e.message;return go(p)}fname=fl.name}
+    const d={id:String(Date.now()),kind:p,title:t,form:$('#u_fm').value,subj:$('#u_s').value,year:$('#u_y').value.trim(),url,fname};
+    if($('#u_c'))d.cat=$('#u_c').value;
+    DOCS.push(d);
+    if(!await saveDoc(d)){DOCS.pop();LM='Could not save: '+ERR+'.';return go(p)}
+    LM='Added.';go(p);
+  };
 }
-
-// NECTA division layout strictly for Form 1 - Form 3
-const NECTA = ['form1', 'form2', 'form3'];
-const CENTRE = { location: 'Tunguu-Zanzibar' };
-const np = m => m >= 75 ? 1 : m >= 65 ? 2 : m >= 45 ? 3 : m >= 30 ? 4 : 5, ng = m => ['', 'A', 'B', 'C', 'D', 'F'][np(m)];
-const SCODE = { eng:201, kisw:202, htm:250, dini:207, geo:209, 'b/s':252, math:204, bio:217, phy:215, che:216, arb:208, hist:211, english:201, kiswahili:202, 'historia na maadili':250, geography:209, 'business study':252, 'business studies':252, mathematics:204, maths:204, biology:217, physics:215, chemistry:216, arabic:208, 'arabic language':208, history:211 };
-const comp = g => g < 1.5 ? ['GRADE A(EXCELLENT)', '#00b050'] : g <= 2.4 ? ['GRADE B(VERY GOOD)', '#00b050'] : g <= 3.4 ? ['GRADE C(GOOD)', '#92d050'] : g <= 4.5 ? ['GRADE D(SATISFACTORY)', '#ff0000'] : ['FAIL', '#ff0000'];
-const WL = c => ['form1', 'form3'].includes(base(c)) ? 'CLASS' : 'CENTRE';
-function necta(c, q) {
-  const D = DATA[c], S = D.subjects, lg = $('#logoBox img');
-  const rows = D.rows.map(r => {
-    const ps = r.marks.filter(x => x !== null).map(np).sort((a, b) => a - b), n = ps.length, sum = ps.slice(0, 7).reduce((a, b) => a + b, 0);
-    const pts = n ? Math.round(n < 7 ? sum * 7 / n : sum) : 0, div = !n ? 'INC' : pts <= 17 ? 'I' : pts <= 21 ? 'II' : pts <= 25 ? 'III' : pts <= 33 ? 'IV' : '0';
-    return { ...r, pts, div, n };
+const NECTA=['form1','form2','form3'];
+const CENTRE={location:'Tunguu-Zanzibar'}; // change to your school location
+const np=m=>m>=75?1:m>=65?2:m>=45?3:m>=30?4:5,ng=m=>['','A','B','C','D','F'][np(m)];
+const SCODE={eng:201,kisw:202,htm:250,dini:207,geo:209,'b/s':252,math:204,bio:217,phy:215,che:216,arb:208,hist:211,english:201,kiswahili:202,'historia na maadili':250,geography:209,'business study':252,'business studies':252,mathematics:204,maths:204,biology:217,physics:215,chemistry:216,arabic:208,'arabic language':208,history:211};
+const comp=g=>g<1.5?['GRADE A(EXCELLENT)','#00b050']:g<=2.4?['GRADE B(VERY GOOD)','#00b050']:g<=3.4?['GRADE C(GOOD)','#92d050']:g<=4.5?['GRADE D(SATISFACTORY)','#ff0000']:['FAIL','#ff0000'];
+const WL=c=>['form1','form3'].includes(base(c))?'CLASS':'CENTRE'; // Form 1 and Form 3 say CLASS, Form 2 says CENTRE
+function necta(c,q){
+  const D=DATA[c],S=D.subjects,lg=$('#logoBox img');
+  const rows=D.rows.map(r=>{
+    const ps=r.marks.filter(x=>x!==null).map(np).sort((a,b)=>a-b),n=ps.length,sum=ps.slice(0,7).reduce((a,b)=>a+b,0);
+    const pts=n?Math.round(n<7?sum*7/n:sum):0,div=!n?'INC':pts<=17?'I':pts<=21?'II':pts<=25?'III':pts<=33?'IV':'0';
+    return {...r,pts,div,n};
   });
-  const DV = ['I', 'II', 'III', 'IV', '0'], cnt = (sx, d) => rows.filter(r => (!sx || r.sex === sx) && r.div === d).length;
-  const shown = rows.filter(r => r.name.toLowerCase().includes(q));
-  const sat = rows.filter(r => r.n > 0).length, passed = rows.filter(r => ['I', 'II', 'III', 'IV'].includes(r.div)).length;
-  let ent = 0, gp = 0;
-  const ss = S.map((s, i) => {
-    const v = rows.map(r => r.marks[i]).filter(x => x !== null), k = v.length, sum = v.reduce((a, x) => a + np(x), 0);
-    ent += k; gp += sum;
-    return { s, k, reg: rows.length, pass: v.filter(x => np(x) < 5).length, gpa: k ? sum / k : 0 };
-  });
-  const order = ss.filter(x => x.k).sort((a, b) => a.gpa - b.gpa);
-  const cg = ent ? gp / ent : 0, cc = comp(cg), cell = (t, bg) => `<td style='background:${bg};color:#000;font-weight:700'>${t}</td>`;
-  const T = (h, b, st, cl) => `<div class='wrap ${cl || ''}'><table style='${st || ''}'><tr>${h}</tr>${b}</table></div>`;
-  return `<div class='rpt nt'><div class='rh'>${lg ? `<img src='${lg.src}' alt='Logo'><br>` : ''}<h1>THE PALM ACADEMY</h1><h2>${esc($('#trm').value)} Examination Results - ${esc($('#yr').value)}</h2><h3>${esc(c)}</h3></div>
+  const DV=['I','II','III','IV','0'],cnt=(sx,d)=>rows.filter(r=>(!sx||r.sex===sx)&&r.div===d).length;
+  const shown=rows.filter(r=>r.name.toLowerCase().includes(q));
+  const sat=rows.filter(r=>r.n>0).length,passed=rows.filter(r=>['I','II','III','IV'].includes(r.div)).length;
+  let ent=0,gp=0;
+  const ss=S.map((s,i)=>{const v=rows.map(r=>r.marks[i]).filter(x=>x!==null),k=v.length,sum=v.reduce((a,x)=>a+np(x),0);ent+=k;gp+=sum;
+    return {s,k,reg:rows.length,pass:v.filter(x=>np(x)<5).length,gpa:k?sum/k:0}});
+  const order=ss.filter(x=>x.k).sort((a,b)=>a.gpa-b.gpa);
+  const cg=ent?gp/ent:0,cc=comp(cg),cell=(t,bg)=>`<td style='background:${bg};color:#000;font-weight:700'>${t}</td>`;
+  const T=(h,b,st,cl)=>`<div class='wrap ${cl||''}'><table style='${st||''}'><tr>${h}</tr>${b}</table></div>`;
+  return `<div class='rpt nt'><div class='rh'>${lg?`<img src='${lg.src}' alt='Logo'><br>`:''}<h1>THE PALM ACADEMY</h1><h2>${esc($('#trm').value)} Examination Results - ${esc($('#yr').value)}</h2><h3>${esc(c)}</h3></div>
   <div class='sech l2'>DIVISION PERFORMANCE SUMMARY</div>
-  ${T(`<th>SEX</th>${DV.map(d => `<th>${d}</th>`).join('')}`, [['M','M'],['F','F'],['','T']].map(([sx, l]) => `<tr><td><b>${l}</b></td>${DV.map(d => `<td>${cnt(sx, d)}</td>`).join('')}</tr>`).join(''), 'width:auto;margin:0;min-width:300px', 'dbl')}
+  ${T(`<th>SEX</th>${DV.map(d=>`<th>${d}</th>`).join('')}`,[['M','M'],['F','F'],['','T']].map(([sx,l])=>`<tr><td><b>${l}</b></td>${DV.map(d=>`<td>${cnt(sx,d)}</td>`).join('')}</tr>`).join(''),'width:auto;margin:0;min-width:300px','dbl')}
   <div class='sech l2' style='margin-top:24px'>STUDENTS RESULTS</div>
-  ${T(`<th>#</th><th>STUDENT NAME</th><th>Gender</th>${S.map(s => `<th>${esc(s)}</th>`).join('')}<th>Point</th><th>Division</th>`, shown.map((r, k) => `<tr><td>${k + 1}</td><td class='l'>${esc(r.name)}</td><td>${r.sex || '-'}</td>${r.marks.map(m => `<td>${m === null ? '--' : ng(m)}</td>`).join('')}<td>${r.pts}</td><td><b>${r.div}</b></td></tr>`).join('') || `<tr><td colspan='${S.length + 5}'>No students match your search.</td></tr>`, 'width:100%', 'dbl')}
+  ${T(`<th>#</th><th>STUDENT NAME</th><th>Gender</th>${S.map(s=>`<th>${esc(s)}</th>`).join('')}<th>Point</th><th>Division</th>`,shown.map((r,k)=>`<tr><td>${k+1}</td><td class='l'>${esc(r.name)}</td><td>${r.sex||'-'}</td>${r.marks.map(m=>`<td>${m===null?'--':ng(m)}</td>`).join('')}<td>${r.pts}</td><td><b>${r.div}</b></td></tr>`).join('')||`<tr><td colspan='${S.length+5}'>No students match your search.</td></tr>`,'width:100%','dbl')}
   <div class='sech' style='margin-top:24px'>EXAMINATION ${WL(c)} OVERALL PERFORMANCE</div>
   <div class='wrap'><table style='text-align:left'>
-  <tr><td class='l'>EXAMINATION ${WL(c) === 'CLASS' ? 'SCHOOL' : 'CENTRE'} LOCATION</td><td class='l'>${esc(CENTRE.location)}</td></tr>
-  <tr><td class='l'>TOTAL PASSED CANDIDATES</td>${cell(passed, '#00ff00').replace('<td', '<td class=\'l\'')}</tr>
-  <tr><td class='l'>EXAMINATION ${WL(c)} GPA</td><td class='l'><b>${ent ? cg.toFixed(3) : '-'}</b> <span style='background:${cc[1]};color:#000;font-weight:700;padding:2px 6px'>${ent ? cc[0] : ''}</span></td></tr></table></div>
+  <tr><td class='l'>EXAMINATION ${WL(c)==='CLASS'?'SCHOOL':'CENTRE'} LOCATION</td><td class='l'>${esc(CENTRE.location)}</td></tr>
+  <tr><td class='l'>TOTAL PASSED CANDIDATES</td>${cell(passed,'#00ff00').replace('<td','<td class=\'l\'')}</tr>
+  <tr><td class='l'>EXAMINATION ${WL(c)} GPA</td><td class='l'><b>${ent?cg.toFixed(3):'-'}</b> <span style='background:${cc[1]};color:#000;font-weight:700;padding:2px 6px'>${ent?cc[0]:''}</span></td></tr></table></div>
   <div class='sech' style='margin-top:14px;color:var(--navy)'>EXAMINATION ${WL(c)} DIVISION PERFORMANCE</div>
-  ${T(`<th>REGIST</th><th>ABSENT</th><th>SAT</th><th>WITHHELD</th><th>NO-CA</th><th>CLEAN</th>${DV.map(d => `<th>DIV ${d}</th>`).join('')}`, `<tr><td>${rows.length}</td><td>${rows.length - sat}</td><td>${sat}</td><td>0</td><td>0</td><td>${sat}</td>${DV.map(d => `<td>${cnt('', d)}</td>`).join('')}</tr>`)}
+  ${T(`<th>REGIST</th><th>ABSENT</th><th>SAT</th><th>WITHHELD</th><th>NO-CA</th><th>CLEAN</th>${DV.map(d=>`<th>DIV ${d}</th>`).join('')}`,`<tr><td>${rows.length}</td><td>${rows.length-sat}</td><td>${sat}</td><td>0</td><td>0</td><td>${sat}</td>${DV.map(d=>`<td>${cnt('',d)}</td>`).join('')}</tr>`)}
   <div class='sech' style='margin-top:18px;color:var(--navy);font-size:14px'>EXAMINATION SUBJECTS PERFORMANCE</div>
-  ${T(`<th>SUBJECT CODE</th><th>SUBJECT NAME</th><th>REG</th><th>SAT</th><th>W/HD</th><th>CLEAN</th><th>PASS</th><th>GPA</th><th>RANK</th><th>COMPETENCY LEVEL</th>`, [...order, ...ss.filter(x => !x.k)].map(x => {
-    const rk = order.indexOf(x), cl = comp(x.gpa);
-    return `<tr><td>${SCODE[x.s.toLowerCase().trim()] || ''}</td><td class='l'>${esc((fullName(x.s)).toUpperCase())}</td><td>${x.reg}</td><td>${x.k}</td><td>${x.reg - x.k}</td><td>${x.k}</td><td>${x.pass}</td><td>${x.k ? x.gpa.toFixed(4) : '-'}</td><td>${rk < 0 ? '-' : (rk + 1) + '/' + order.length}</td>${x.k ? cell(cl[0], cl[1]) : '<td>-</td>'}</tr>`;
-  }).join(''))}
+  ${T(`<th>SUBJECT CODE</th><th>SUBJECT NAME</th><th>REG</th><th>SAT</th><th>W/HD</th><th>CLEAN</th><th>PASS</th><th>GPA</th><th>RANK</th><th>COMPETENCY LEVEL</th>`,[...order,...ss.filter(x=>!x.k)].map(x=>{const rk=order.indexOf(x),cl=comp(x.gpa);return `<tr><td>${SCODE[x.s.toLowerCase().trim()]||''}</td><td class='l'>${esc((fullName(x.s)).toUpperCase())}</td><td>${x.reg}</td><td>${x.k}</td><td>${x.reg-x.k}</td><td>${x.k}</td><td>${x.pass}</td><td>${x.k?x.gpa.toFixed(4):'-'}</td><td>${rk<0?'-':(rk+1)+'/'+order.length}</td>${x.k?cell(cl[0],cl[1]):'<td>-</td>'}</tr>`}).join(''))}
   <p style='font-size:12px;color:var(--muted)'>Grades: A 75-100, B 65-74, C 45-64, D 30-44, F 0-29. Points: best 7 subjects (A=1 ... F=5; scaled if fewer than 7). Division I 7-17, II 18-21, III 22-25, IV 26-33, 0 34-35. GPA = average grade points (lower is better). Rank = subject position by GPA.</p></div>`;
 }
-
-// Grade system scale for Std 5 up to Std 7 (NO NECTA Division)
-const STDREP = ['std5', 'std6', 'std7'];
-const ABBD = { mathe:'MATH', maths:'MATH', sci:'STE' };
-const ABFULL = [[/^engl/,'ENG'],[/^kisw/,'KISW'],[/^math/,'MATH'],[/^relig/,'REL'],[/^dini and ar|^diara/,'DIARA'],[/^dini/,'DINI'],[/^arab/,'ARAB'],[/^social/,'SOS'],[/^creative/,'CAS'],[/^science|^sci$/,'STE'],[/^environ/,'ENV'],[/^historia/,'HTM'],[/^geog/,'GEO'],[/^business/,'B/S']];
-const ab = s => {
-  const k = String(s).toLowerCase().trim();
-  for (const [r, a] of ABFULL) if (r.test(k)) return a;
-  return (ABBD[k] || String(s)).toUpperCase();
-};
-const comp2 = a => a >= 81 ? ['GRADE A(EXCELLENT)', '#00b050'] : a >= 61 ? ['GRADE B(VERY GOOD)', '#00b050'] : a >= 41 ? ['GRADE C(GOOD)', '#92d050'] : a >= 21 ? ['GRADE D(PASS)', '#e0432d'] : ['GRADE F(FAIL)', '#ff0000'];
-function stdRep(c, q) {
-  const D = DATA[c], S = D.subjects, lg = $('#logoBox img'), n = D.rows.length;
-  const rows = D.rows.map(r => {
-    const v = r.marks.filter(x => x !== null), t = v.reduce((a, b) => a + b, 0), avg = v.length ? Math.min(100, t / S.length) : 0;
-    return { ...r, total: t, avg, gr: v.length ? grade(avg) : 'ABS' };
-  });
-  rows.slice().sort((a, b) => b.total - a.total).forEach((r, i) => r.pos = i + 1);
-  const gOf = (r, i) => r.marks[i] === null ? '' : grade(r.marks[i]);
-  const G = ['A', 'B', 'C', 'D', 'F', 'ABS'], cnt = (sx, g) => rows.filter(r => (!sx || r.sex === sx) && r.gr === g).length;
-  const shown = rows.filter(r => r.name.toLowerCase().includes(q));
-  const ss = S.map((s, i) => {
-    const v = rows.map(r => r.marks[i]).filter(x => x !== null), k = v.length, g = ['A', 'B', 'C', 'D', 'F'].map(x => rows.filter(r => gOf(r, i) === x).length);
-    return { s, k, reg: n, abs: n - k, pass: rows.filter(r => gOf(r, i) && gOf(r, i) !== 'F').length, avg: k ? v.reduce((a, b) => a + b, 0) / k : 0, g };
-  });
-  const order = ss.filter(x => x.k).sort((a, b) => b.avg - a.avg), p2 = x => String(x).padStart(2, '0');
-  const T = (h, b, st, cl) => `<div class='wrap ${cl || ''}'><table style='${st || ''}'><tr>${h}</tr>${b}</table></div>`;
-  return `<div class='rpt nt nstd'><div class='rh'>${lg ? `<img src='${lg.src}' alt='Logo'><br>` : ''}<h1>THE PALM ACADEMY</h1><h2>${esc($('#trm').value)} Examination Results - ${esc($('#yr').value)}</h2><h3>${esc(c)}</h3></div>
+const STDREP=['std5','std6','std7'];
+const ABBD={mathe:'MATH',maths:'MATH',sci:'STE'};
+const ABFULL=[[/^engl/,'ENG'],[/^kisw/,'KISW'],[/^math/,'MATH'],[/^relig/,'REL'],[/^dini and ar|^diara/,'DIARA'],[/^dini/,'DINI'],[/^arab/,'ARAB'],[/^social/,'SOS'],[/^creative/,'CAS'],[/^science|^sci$/,'STE'],[/^environ/,'ENV'],[/^historia/,'HTM'],[/^geog/,'GEO'],[/^business/,'B/S']];
+const ab=s=>{const k=String(s).toLowerCase().trim();for(const [r,a] of ABFULL)if(r.test(k))return a;return (ABBD[k]||String(s)).toUpperCase()};
+const comp2=a=>a>=81?['GRADE A(EXCELLENT)','#00b050']:a>=61?['GRADE B(VERY GOOD)','#00b050']:a>=41?['GRADE C(GOOD)','#92d050']:a>=21?['GRADE D(PASS)','#e0432d']:['GRADE F(FAIL)','#ff0000'];
+function stdRep(c,q){
+  const D=DATA[c],S=D.subjects,lg=$('#logoBox img'),n=D.rows.length;
+  const rows=D.rows.map(r=>{const v=r.marks.filter(x=>x!==null),t=v.reduce((a,b)=>a+b,0),avg=v.length?Math.min(100,t/S.length):0;return {...r,total:t,avg,gr:v.length?grade(avg):'ABS'}});
+  rows.slice().sort((a,b)=>b.total-a.total).forEach((r,i)=>r.pos=i+1);
+  const gOf=(r,i)=>{return r.marks[i]===null?'':grade(r.marks[i])};
+  const G=['A','B','C','D','F','ABS'],cnt=(sx,g)=>rows.filter(r=>(!sx||r.sex===sx)&&r.gr===g).length;
+  const shown=rows.filter(r=>r.name.toLowerCase().includes(q));
+  const ss=S.map((s,i)=>{const v=rows.map(r=>r.marks[i]).filter(x=>x!==null),k=v.length,g=['A','B','C','D','F'].map(x=>rows.filter(r=>gOf(r,i)===x).length);
+    return {s,k,reg:n,abs:n-k,pass:rows.filter(r=>gOf(r,i)&&gOf(r,i)!=='F').length,avg:k?v.reduce((a,b)=>a+b,0)/k:0,g}});
+  const order=ss.filter(x=>x.k).sort((a,b)=>b.avg-a.avg),p2=x=>String(x).padStart(2,'0');
+  const T=(h,b,st,cl)=>`<div class='wrap ${cl||''}'><table style='${st||''}'><tr>${h}</tr>${b}</table></div>`;
+  return `<div class='rpt nt nstd'><div class='rh'>${lg?`<img src='${lg.src}' alt='Logo'><br>`:''}<h1>THE PALM ACADEMY</h1><h2>${esc($('#trm').value)} Examination Results - ${esc($('#yr').value)}</h2><h3>${esc(c)}</h3></div>
   <div class='sech l2'>GRADE PERFORMANCE SUMMARY</div>
-  ${T(`<th>SEX</th>${G.map(g => `<th>${g}</th>`).join('')}`, [['F','F'],['M','M'],['','T']].map(([sx, l]) => `<tr><td><b>${l}</b></td>${G.map(g => `<td>${cnt(sx, g)}</td>`).join('')}</tr>`).join(''), 'width:auto;margin:0;min-width:300px', 'dbl')}
+  ${T(`<th>SEX</th>${G.map(g=>`<th>${g}</th>`).join('')}`,[['F','F'],['M','M'],['','T']].map(([sx,l])=>`<tr><td><b>${l}</b></td>${G.map(g=>`<td>${cnt(sx,g)}</td>`).join('')}</tr>`).join(''),'width:auto;margin:0;min-width:300px','dbl')}
   <div class='sech l2' style='margin-top:24px'>STUDENTS RESULTS</div>
-  ${T(`<th>#</th><th>STUDENT NAME</th><th>Gender</th>${S.map(s => `<th>${esc(ab(s))}</th><th>G</th>`).join('')}<th>TTL</th><th>AVG</th><th>GRD</th><th>POS</th>`, shown.map((r, k) => `<tr><td>${k + 1}</td><td class='l'>${esc(r.name)}</td><td>${r.sex || '-'}</td>${r.marks.map((m, i) => `<td>${m === null ? '--' : m}</td><td>${gOf(r, i) || '--'}</td>`).join('')}<td>${r.total}</td><td>${r.avg.toFixed(1)}</td><td><b>${r.gr}</b></td><td>${r.pos}</td></tr>`).join('') || `<tr><td colspan='${S.length * 2 + 7}'>No students match your search.</td></tr>`, 'width:100%', 'dbl')}
-  <p style='font-size:11px;color:var(--muted);margin:6px 0 0'>${S.map(s => esc(ab(s)) + ' = ' + esc((fullName(s)).toUpperCase())).join(', ')}, TTL = TOTAL MARKS OF ALL SUBJECTS, AVG = TTL DIVIDED BY ${S.length} SUBJECTS, GRD = OVERALL GRADE, POS = POSITION</p>
+  ${T(`<th>#</th><th>STUDENT NAME</th><th>Gender</th>${S.map(s=>`<th>${esc(ab(s))}</th><th>G</th>`).join('')}<th>TTL</th><th>AVG</th><th>GRD</th><th>POS</th>`,shown.map((r,k)=>`<tr><td>${k+1}</td><td class='l'>${esc(r.name)}</td><td>${r.sex||'-'}</td>${r.marks.map((m,i)=>`<td>${m===null?'--':m}</td><td>${gOf(r,i)||'--'}</td>`).join('')}<td>${r.total}</td><td>${r.avg.toFixed(1)}</td><td><b>${r.gr}</b></td><td>${r.pos}</td></tr>`).join('')||`<tr><td colspan='${S.length*2+7}'>No students match your search.</td></tr>`,'width:100%','dbl')}
+  <p style='font-size:11px;color:var(--muted);margin:6px 0 0'>${S.map(s=>esc(ab(s))+' = '+esc((fullName(s)).toUpperCase())).join(', ')}, TTL = TOTAL MARKS OF ALL SUBJECTS, AVG = TTL DIVIDED BY ${S.length} SUBJECTS, GRD = OVERALL GRADE, POS = POSITION</p>
   <div class='sech' style='margin-top:24px;color:var(--navy)'>EXAMINATION SUBJECTS PERFORMANCE</div>
-  ${T(`<th>SUBJECT NAME</th><th>ABBREVIATION</th><th>REG</th><th>ABS</th><th>PASS</th><th>AVERAGE</th><th>GRADE</th><th>RANK</th><th colspan='5'>SUBJECTS COUNTS GRADE</th>`, ss.map(x => {
-    const cl = comp2(x.avg), rk = order.indexOf(x);
-    return `<tr><td class='l'>${esc((fullName(x.s)).toUpperCase())}</td><td>${esc(ab(x.s))}</td><td>${x.reg}</td><td>${x.abs || ''}</td><td><b>${x.pass}</b></td><td><b>${x.k ? x.avg.toFixed(1) : '-'}</b></td>${x.k ? `<td style='background:${cl[1]};color:#000'>${cl[0]}</td>` : '<td>-</td>'}<td>${rk < 0 ? '-' : (rk + 1) + '/' + order.length}</td>${x.g.map((v, i) => `<td><b>${'ABCDF'[i]}:</b> ${p2(v)}</td>`).join('')}</tr>`;
-  }).join(''))}
+  ${T(`<th>SUBJECT NAME</th><th>ABBREVIATION</th><th>REG</th><th>ABS</th><th>PASS</th><th>AVERAGE</th><th>GRADE</th><th>RANK</th><th colspan='5'>SUBJECTS COUNTS GRADE</th>`,ss.map(x=>{const cl=comp2(x.avg),rk=order.indexOf(x);return `<tr><td class='l'>${esc((fullName(x.s)).toUpperCase())}</td><td>${esc(ab(x.s))}</td><td>${x.reg}</td><td>${x.abs||''}</td><td><b>${x.pass}</b></td><td><b>${x.k?x.avg.toFixed(1):'-'}</b></td>${x.k?`<td style='background:${cl[1]};color:#000'>${cl[0]}</td>`:'<td>-</td>'}<td>${rk<0?'-':(rk+1)+'/'+order.length}</td>${x.g.map((v,i)=>`<td><b>${'ABCDF'[i]}:</b> ${p2(v)}</td>`).join('')}</tr>`}).join(''))}
   <p style='font-size:12px;color:var(--muted)'>Grades: A 81-100, B 61-80, C 41-60, D 21-40, F 0-20. PASS = students with A to D. Rank = subject position by average.</p></div>`;
 }
-
-// KG1 up to Std 4 layout
-const isKG = k => /^(kg\d?|std[1-4])$/.test(k);
-const kg = m => m >= 95 ? 'A+' : m >= 70 ? 'A' : m >= 60 ? 'B' : m >= 50 ? 'C' : m >= 40 ? 'D' : 'F';
-const KGL = { 'A+':'Outstanding', 'A':'Excellent', 'B':'Very Good', 'C':'Good', 'D':'Pass', 'F':'Fail' };
-const gcl = g => 'g-' + (g === 'A+' ? 'Ap' : g);
-const RKC = ['#c9a227','#9aa3b2','#b0702d','#3b6fd4','#3a9bc7','#7a3fc4','#c93a7a','#5b6573'];
-const ordn = k => k + (k % 100 >= 11 && k % 100 <= 13 ? 'th' : ['th','st','nd','rd'][k % 10] || 'th');
-function kgRep(c, q) {
-  const D = DATA[c], S = D.subjects, n = D.rows.length, lg = $('#logoBox img'), s4 = base(c) === 'std4', gf = s4 ? grade : kg, LB = s4 ? { A:'Excellent', B:'Very Good', C:'Good', D:'Pass', F:'Fail' } : KGL, GL = s4 ? ['A','B','C','D','F'] : ['A+','A','B','C','D','F'], p2 = x => String(x).padStart(2, '0');
-  const rows = D.rows.map(r => {
-    const v = r.marks.filter(x => x !== null), t = v.reduce((a, b) => a + b, 0), avg = v.length && S.length ? t / S.length : 0;
-    return { ...r, total: t, avg, gr: v.length ? gf(avg) : 'ABS' };
-  });
-  rows.slice().sort((a, b) => b.total - a.total).forEach((r, i) => r.pos = i + 1);
-  const cnt = (sx, g) => rows.filter(r => (!sx || r.sex === sx) && r.gr === g).length;
-  const shown = rows.filter(r => r.name.toLowerCase().includes(q));
-  const ss = S.map((s, i) => {
-    const v = rows.map(r => r.marks[i]).filter(x => x !== null), k = v.length;
-    return { s, k, abs: n - k, avg: k ? v.reduce((a, b) => a + b, 0) / k : 0, g: GL.map(x => v.filter(m => gf(m) === x).length) };
-  });
-  const order = ss.filter(x => x.k).sort((a, b) => b.avg - a.avg);
-  const W = (h, b) => `<div class='wrap'><table><tr>${h}</tr>${b}</table></div>`;
-  return `<div class='rpt kg'><div class='rh'>${lg ? `<img src='${lg.src}' alt='Logo'><br>` : ''}<h1>THE PALM ACADEMY</h1><h2>${esc($('#trm').value)} Examination Results - ${esc($('#yr').value)}</h2><h3>${esc(c)}</h3></div>
+const isKG=k=>/^(kg\d?|std[1-4])$/.test(k);
+const kg=m=>m>=95?'A+':m>=70?'A':m>=60?'B':m>=50?'C':m>=40?'D':'F';
+const KGL={'A+':'Outstanding','A':'Excellent','B':'Very Good','C':'Good','D':'Pass','F':'Fail'};
+const gcl=g=>'g-'+(g==='A+'?'Ap':g);
+const RKC=['#c9a227','#9aa3b2','#b0702d','#3b6fd4','#3a9bc7','#7a3fc4','#c93a7a','#5b6573'];
+const ordn=k=>k+(k%100>=11&&k%100<=13?'th':['th','st','nd','rd'][k%10]||'th');
+function kgRep(c,q){
+  const D=DATA[c],S=D.subjects,n=D.rows.length,lg=$('#logoBox img'),s4=base(c)==='std4',gf=s4?grade:kg,LB=s4?{A:'Excellent',B:'Very Good',C:'Good',D:'Pass',F:'Fail'}:KGL,GL=s4?['A','B','C','D','F']:['A+','A','B','C','D','F'],p2=x=>String(x).padStart(2,'0');
+  const rows=D.rows.map(r=>{const v=r.marks.filter(x=>x!==null),t=v.reduce((a,b)=>a+b,0),avg=v.length&&S.length?t/S.length:0;return {...r,total:t,avg,gr:v.length?gf(avg):'ABS'}});
+  rows.slice().sort((a,b)=>b.total-a.total).forEach((r,i)=>r.pos=i+1);
+  const cnt=(sx,g)=>rows.filter(r=>(!sx||r.sex===sx)&&r.gr===g).length;
+  const shown=rows.filter(r=>r.name.toLowerCase().includes(q));
+  const ss=S.map((s,i)=>{const v=rows.map(r=>r.marks[i]).filter(x=>x!==null),k=v.length;return {s,k,abs:n-k,avg:k?v.reduce((a,b)=>a+b,0)/k:0,g:GL.map(x=>v.filter(m=>gf(m)===x).length)}});
+  const order=ss.filter(x=>x.k).sort((a,b)=>b.avg-a.avg);
+  const W=(h,b)=>`<div class='wrap'><table><tr>${h}</tr>${b}</table></div>`;
+  return `<div class='rpt kg'><div class='rh'>${lg?`<img src='${lg.src}' alt='Logo'><br>`:''}<h1>THE PALM ACADEMY</h1><h2>${esc($('#trm').value)} Examination Results - ${esc($('#yr').value)}</h2><h3>${esc(c)}</h3></div>
   <h4 class='kgh'>Average Grade Summary</h4>
-  ${W(`<th>Average Grade</th>${GL.map(g => `<th>${g}</th>`).join('')}`, [['M','Male'],['F','Female'],['','Total']].map(([sx, l]) => `<tr><td class='l'>${sx ? l : `<b>${l}</b>`}</td>${GL.map(g => `<td>${sx ? cnt(sx, g) : `<b>${cnt('', g)}</b>`}</td>`).join('')}</tr>`).join(''))}
+  ${W(`<th>Average Grade</th>${GL.map(g=>`<th>${g}</th>`).join('')}`,[['M','Male'],['F','Female'],['','Total']].map(([sx,l])=>`<tr><td class='l'>${sx?l:`<b>${l}</b>`}</td>${GL.map(g=>`<td>${sx?cnt(sx,g):`<b>${cnt('',g)}</b>`}</td>`).join('')}</tr>`).join(''))}
   <h4 class='kgh'>Full Student Results</h4>
-  ${W(`<th>#</th><th>${esc(D.nameLabel || 'Student Name')}</th><th>Gender</th>${S.map(s => `<th>${esc(String(s).toUpperCase())}</th>`).join('')}<th>Total</th><th>Grade</th><th>Pos</th>`, shown.map((r, k) => `<tr><td>${k + 1}</td><td class='l'>${esc(r.name)}</td><td>${r.sex || '-'}</td>${r.marks.map(m => { const g = m === null ? '' : gf(m); return `<td class='${g ? gcl(g) : ''}'>${g || '--'}</td>`; }).join('')}<td><b>${r.total}</b></td><td class='${r.gr === 'ABS' ? '' : gcl(r.gr)}'><b>${r.gr}</b></td><td>${r.pos}</td></tr>`).join('') || `<tr><td colspan='${S.length + 6}'>No students match your search.</td></tr>`)}
+  ${W(`<th>#</th><th>${esc(D.nameLabel||'Student Name')}</th><th>Gender</th>${S.map(s=>`<th>${esc(String(s).toUpperCase())}</th>`).join('')}<th>Total</th><th>Grade</th><th>Pos</th>`,shown.map((r,k)=>`<tr><td>${k+1}</td><td class='l'>${esc(r.name)}</td><td>${r.sex||'-'}</td>${r.marks.map(m=>{const g=m===null?'':gf(m);return `<td class='${g?gcl(g):''}'>${g||'--'}</td>`}).join('')}<td><b>${r.total}</b></td><td class='${r.gr==='ABS'?'':gcl(r.gr)}'><b>${r.gr}</b></td><td>${r.pos}</td></tr>`).join('')||`<tr><td colspan='${S.length+6}'>No students match your search.</td></tr>`)}
   <h4 class='kgh'>Subjects Performance Summary</h4>
-  ${W(`<th>Short</th><th>Full Name</th><th>REG</th><th>SAT</th><th>ABS</th><th>AVG</th><th>Rank</th><th>Grade</th>${GL.map(g => `<th>${g}</th>`).join('')}`, ss.map(x => {
-    const rk = order.indexOf(x), g = gf(x.avg);
-    return `<tr><td>${esc(String(x.s).toUpperCase())}</td><td class='l'>${esc((['kg1', 'kg2'].includes(base(c)) ? String(x.s) : fullName(x.s)).toUpperCase())}</td><td>${n}</td><td>${x.k}</td><td>${x.abs}</td><td><b>${x.k ? x.avg.toFixed(1) : '-'}</b></td><td>${rk < 0 ? '-' : `<span class='rk' style='background:${RKC[rk % 8]}'>${ordn(rk + 1)}</span>`}</td><td class='${gcl(g)}'>${x.k ? g + ' - ' + LB[g] : '-'}</td>${x.g.map(v => `<td>${p2(v)}</td>`).join('')}</tr>`;
-  }).join(''))}
-  <p style='font-size:12px;color:var(--muted)'>Grades: ${s4 ? 'A 81-100, B 61-80, C 41-60, D 21-40, F 0-20' : 'A+ 95-100, A 70-94, B 60-69, C 50-59, D 40-49, F below 40'}. Average = total marks divided by ${S.length} subjects. Subject AVG = average mark of the students who sat it.</p></div>`;
+  ${W(`<th>Short</th><th>Full Name</th><th>REG</th><th>SAT</th><th>ABS</th><th>AVG</th><th>Rank</th><th>Grade</th>${GL.map(g=>`<th>${g}</th>`).join('')}`,ss.map(x=>{const rk=order.indexOf(x),g=gf(x.avg);return `<tr><td>${esc(String(x.s).toUpperCase())}</td><td class='l'>${esc((['kg1','kg2'].includes(base(c))?String(x.s):fullName(x.s)).toUpperCase())}</td><td>${n}</td><td>${x.k}</td><td>${x.abs}</td><td><b>${x.k?x.avg.toFixed(1):'-'}</b></td><td>${rk<0?'-':`<span class='rk' style='background:${RKC[rk%8]}'>${ordn(rk+1)}</span>`}</td><td class='${gcl(g)}'>${x.k?g+' - '+LB[g]:'-'}</td>${x.g.map(v=>`<td>${p2(v)}</td>`).join('')}</tr>`}).join(''))}
+  <p style='font-size:12px;color:var(--muted)'>Grades: ${s4?'A 81-100, B 61-80, C 41-60, D 21-40, F 0-20':'A+ 95-100, A 70-94, B 60-69, C 50-59, D 40-49, F below 40'}. Average = total marks divided by ${S.length} subjects. Subject AVG = average mark of the students who sat it.</p></div>`;
 }
-
-const perf = a => a >= 81 ? 'Excellent' : a >= 61 ? 'Good' : a >= 41 ? 'Satisfactory' : a >= 21 ? 'Weak' : 'Poor';
-function report(c, q) {
-  const D = DATA[c], S = D.subjects, lg = $('#logoBox img');
-  const rows = D.rows.map(r => {
-    const v = r.marks.filter(x => x !== null), t = v.reduce((a, b) => a + b, 0);
-    return { ...r, total: t, avg: v.length ? t / v.length : 0 };
-  });
-  rows.slice().sort((a, b) => b.total - a.total).forEach((r, i) => r.rank = i + 1);
-  rows.sort((a, b) => a.rank - b.rank);
-  const gs = { A:0, B:0, C:0, D:0, F:0 };
-  rows.forEach(r => gs[grade(r.avg)]++);
-  const n = rows.length, cav = n ? rows.reduce((a, r) => a + r.avg, 0) / n : 0;
-  const shown = rows.filter(r => r.name.toLowerCase().includes(q));
-  const ss = S.map((s, i) => {
-    const v = rows.map(r => r.marks[i]).filter(x => x !== null), k = v.length, av = k ? v.reduce((a, b) => a + b, 0) / k : 0;
-    return { s, k, av, hi: k ? Math.max(...v) : 0, lo: k ? Math.min(...v) : 0, ps: k ? Math.round(v.filter(x => x >= 41).length / k * 100) : 0 };
-  });
-  const best = ss.slice().sort((a, b) => b.av - a.av)[0], worst = ss.slice().sort((a, b) => a.av - b.av)[0];
-  return `<div class='rpt'><div class='rh'>${lg ? `<img src='${lg.src}' alt='Logo'>` : ''}<h1>THE PALM ACADEMY</h1><h2>${esc($('#trm').value)} Examination Results - ${esc($('#yr').value)}</h2><h3>${esc(c)}</h3></div>
-  <h4>Grade summary</h4><div class='wrap'><table><tr><th>Grade</th>${Object.keys(gs).map(g => `<th>${g}</th>`).join('')}<th>Students</th><th>Class average</th><th>Pass rate (C and above)</th></tr>
-  <tr><td>Number of students</td>${Object.values(gs).map(v => `<td>${v}</td>`).join('')}<td><b>${n}</b></td><td><b>${cav.toFixed(1)}</b></td><td><b>${n ? Math.round((gs.A + gs.B + gs.C) / n * 100) : 0}%</b></td></tr></table></div>
-  <h4>Student results</h4><div class='wrap'><table><tr><th>Pos</th><th>Name</th>${S.map(s => `<th>${esc(s)}</th>`).join('')}<th>Total</th><th>Avg</th><th>Grade</th></tr>
-  ${shown.map(r => `<tr><td>${r.rank}</td><td>${esc(r.name)}</td>${r.marks.map(m => m === null ? '<td>-</td>' : `<td>${m} <span class='g g${grade(m)}'>${grade(m)}</span></td>`).join('')}<td><b>${r.total}</b></td><td>${r.avg.toFixed(1)}</td><td><span class='g g${grade(r.avg)}'>${grade(r.avg)}</span></td></tr>`).join('') || `<tr><td colspan='20'>No students match your search.</td></tr>`}</table></div>
+const perf=a=>a>=81?'Excellent':a>=61?'Good':a>=41?'Satisfactory':a>=21?'Weak':'Poor';
+function report(c,q){
+  const D=DATA[c],S=D.subjects,lg=$('#logoBox img');
+  const rows=D.rows.map(r=>{const v=r.marks.filter(x=>x!==null),t=v.reduce((a,b)=>a+b,0);return {...r,total:t,avg:v.length?t/v.length:0}});
+  rows.slice().sort((a,b)=>b.total-a.total).forEach((r,i)=>r.rank=i+1);rows.sort((a,b)=>a.rank-b.rank);
+  const gs={A:0,B:0,C:0,D:0,F:0};rows.forEach(r=>gs[grade(r.avg)]++);
+  const n=rows.length,cav=n?rows.reduce((a,r)=>a+r.avg,0)/n:0;
+  const shown=rows.filter(r=>r.name.toLowerCase().includes(q));
+  const ss=S.map((s,i)=>{const v=rows.map(r=>r.marks[i]).filter(x=>x!==null),k=v.length,av=k?v.reduce((a,b)=>a+b,0)/k:0;return {s,k,av,hi:k?Math.max(...v):0,lo:k?Math.min(...v):0,ps:k?Math.round(v.filter(x=>x>=41).length/k*100):0}});
+  const best=ss.slice().sort((a,b)=>b.av-a.av)[0],worst=ss.slice().sort((a,b)=>a.av-b.av)[0];
+  return `<div class='rpt'><div class='rh'>${lg?`<img src='${lg.src}' alt='Logo'>`:''}<h1>THE PALM ACADEMY</h1><h2>${esc($('#trm').value)} Examination Results - ${esc($('#yr').value)}</h2><h3>${esc(c)}</h3></div>
+  <h4>Grade summary</h4><div class='wrap'><table><tr><th>Grade</th>${Object.keys(gs).map(g=>`<th>${g}</th>`).join('')}<th>Students</th><th>Class average</th><th>Pass rate (C and above)</th></tr>
+  <tr><td>Number of students</td>${Object.values(gs).map(v=>`<td>${v}</td>`).join('')}<td><b>${n}</b></td><td><b>${cav.toFixed(1)}</b></td><td><b>${n?Math.round((gs.A+gs.B+gs.C)/n*100):0}%</b></td></tr></table></div>
+  <h4>Student results</h4><div class='wrap'><table><tr><th>Pos</th><th>Name</th>${S.map(s=>`<th>${esc(s)}</th>`).join('')}<th>Total</th><th>Avg</th><th>Grade</th></tr>
+  ${shown.map(r=>`<tr><td>${r.rank}</td><td>${esc(r.name)}</td>${r.marks.map(m=>m===null?'<td>-</td>':`<td>${m} <span class='g g${grade(m)}'>${grade(m)}</span></td>`).join('')}<td><b>${r.total}</b></td><td>${r.avg.toFixed(1)}</td><td><span class='g g${grade(r.avg)}'>${grade(r.avg)}</span></td></tr>`).join('')||`<tr><td colspan='20'>No students match your search.</td></tr>`}</table></div>
   <h4>Subject performance summary</h4><div class='wrap'><table><tr><th>Subject</th><th>Sat</th><th>Average</th><th>Highest</th><th>Lowest</th><th>Pass rate</th><th>Grade</th><th>Performance</th></tr>
-  ${ss.map(x => `<tr><td>${esc(x.s)}</td><td>${x.k}</td><td>${x.av.toFixed(1)}</td><td>${x.hi}</td><td>${x.lo}</td><td>${x.ps}%</td><td><span class='g g${grade(x.av)}'>${grade(x.av)}</span></td><td><div class='pb'><i style='width:${Math.min(100, x.av)}%'></i></div>${perf(x.av)}</td></tr>`).join('')}</table></div>
-  ${best ? `<p><b>Best performed subject:</b> ${esc(best.s)} (${best.av.toFixed(1)}). <b>Weakest subject:</b> ${esc(worst.s)} (${worst.av.toFixed(1)}).</p>` : ''}
+  ${ss.map(x=>`<tr><td>${esc(x.s)}</td><td>${x.k}</td><td>${x.av.toFixed(1)}</td><td>${x.hi}</td><td>${x.lo}</td><td>${x.ps}%</td><td><span class='g g${grade(x.av)}'>${grade(x.av)}</span></td><td><div class='pb'><i style='width:${Math.min(100,x.av)}%'></i></div>${perf(x.av)}</td></tr>`).join('')}</table></div>
+  ${best?`<p><b>Best performed subject:</b> ${esc(best.s)} (${best.av.toFixed(1)}). <b>Weakest subject:</b> ${esc(worst.s)} (${worst.av.toFixed(1)}).</p>`:''}
   <p style='font-size:12px;color:var(--muted)'>Grading: A 81-100, B 61-80, C 41-60, D 21-40, F 0-20. Sat = students who sat the subject.</p></div>`;
 }
-
-let GAL = [], STAFF = [
-  { id:'1', name:'Mwalimu Hamad Juma', role:'Head of Academics', photo:'' },
-  { id:'2', name:'Mwalimu Amina Suleiman', role:'Early Childhood & Primary Lead', photo:'' },
-  { id:'3', name:'Mwalimu Said Omar', role:'Upper Primary & Secondary Lead', photo:'' }
-], PM = '';
-function galPage() { return `<div class='card'><h2 style='margin-top:0;color:var(--navy)'>Gallery</h2><p>Campus and classroom highlights.</p></div>`; }
-function staffPage() { return `<div class='card'><h2 style='margin-top:0;color:var(--navy)'>Our Teachers</h2><div class='cols'>${STAFF.map(s => `<div class='item' style='flex-direction:column;text-align:center;justify-content:center'><div class='avatar' style='margin:0'>${esc(s.name.charAt(0))}</div><b>${esc(s.name)}</b><small>${esc(s.role)}</small></div>`).join('')}</div></div>`; }
-
-const pages = {
-  papers: () => lib('papers'), notes: () => lib('notes'), scheme: () => lib('scheme'), gallery: galPage, staff: staffPage,
-  home: () => `<div class="hero isw">${slides()}<div class="sweep"></div><div class="prog"></div><button class="arr l" id="hp" aria-label="Previous slide">&#10094;</button><button class="arr r" id="hn" aria-label="Next slide">&#10095;</button><div class="t"><div class="cps">${caps()}</div><div class="hbtn"></div></div><div class="dots">${dots()}</div></div><div class="ticker"><span>Welcome to The Palm Academy &nbsp;&bull;&nbsp; Results are open to everyone &nbsp;&bull;&nbsp; Std 5–Std 7 use the grade system scale while Form 1–Form 3 use NECTA divisions</span></div><div class="card"><h2 style="color:var(--navy);margin-top:0">Results at a glance</h2>
-  <p>View the results of every student in every class, from KG1 to Form 3. No login needed. Results are ranked automatically and can be printed.</p>
-  <div class="cols"><div class="stat"><b>${classes().length || "-"}</b>Classes loaded</div><div class="stat"><b>${classes().reduce((a, c) => a + DATA[c].rows.length, 0)}</b>Students</div></div>
-  <p><button onclick="go('results')">View results</button></p></div>`,
-  about: () => `<div class="card"><h2 style="margin-top:0;color:var(--navy)">About Us</h2><p>The Palm Teachers Royal Palace is a school committed to quality teaching and learning across KG1–KG3, Std 1–Std 7, and Form 1–Form 3.</p></div>`,
-  classes: () => `<div class="card"><h2 style="margin-top:0;color:var(--navy)">Classes</h2><div class="cols">${classOptions().map(c => `<div class="stat" style="cursor:pointer" onclick="presetClass('${c}')"><b>${c}</b>${DATA[c] ? DATA[c].rows.length + ' students' : 'Ready for upload'}</div>`).join("")}</div></div>`,
-  notices: () => `<div class="card"><h2 style="margin-top:0;color:var(--navy)">Announcements</h2><p><b>Second Term 2026 Results are ready.</b> Std 5–Std 7 use the grade system scale (A–F, TTL, AVG, GRD, POS) and Form 1–Form 3 use NECTA divisions.</p></div>`,
-  contact: () => `<div class="card"><h2 style="margin-top:0;color:var(--navy)">Contact Us</h2><p>Phone: +255 000 000 000<br>Email: info@palmteachers.example<br>P.O. Box 000, Zanzibar</p></div>`,
-  faq: () => `<div class="card"><h2 style="margin-top:0;color:var(--navy)">FAQs</h2><p><b>Who can view results?</b><br>Everyone can view results without logging in. Only the admin can upload or edit.</p><p><b>How are grades given?</b><br>A: 81–100, B: 61–80, C: 41–60, D: 21–40, F: 0–20.</p></div>`,
-  results: () => dash(),
-  login: () => `<div class="card login"><div class="avatar">&#128100;</div><h2 style="margin:0 0 6px;color:var(--navy)">Admin login</h2>
-  <p style="color:var(--muted);margin:0 0 10px">Demo credentials: <b>admin</b> / <b>admin123</b></p>
-  <input id="u" placeholder="Username" value="admin" autocomplete="username"><input id="p" type="password" placeholder="Password" value="admin123" autocomplete="current-password">
-  <div class="err" id="err"></div><button id="lb">Log in</button></div>`
+// ---- Gallery, Our Teachers, Admissions ----
+const ld=k=>{try{return JSON.parse(LS(k)||'[]')}catch(e){return[]}},sv=(k,v)=>persist(k,v);
+let GAL=ld('palmGal'),STAFF=ld('palmStaff'),PM='';
+const shrink=(f,w,q=.7)=>new Promise(res=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,w/im.width),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',q))};im.onerror=()=>res('');im.src=r.result};r.readAsDataURL(f)});
+const delBtn=a=>`<button class='btn' ${a} style='border:0;box-shadow:none;background:#8a1c1c;padding:4px 10px;margin:4px 0 0'>Delete</button>`;
+function galPage(){const m=PM;PM='';
+  return `<div class='card'><h2 style='margin-top:0;color:var(--navy)'>Gallery</h2><div class='err'>${m}</div>
+  ${GAL.length?`<div class='cols'>${GAL.map(g=>`<figure style='margin:0'><img src='${g.src}' alt='${esc(g.cap)}' style='width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px'><figcaption style='font-size:13px;color:var(--muted)'>${esc(g.cap)} ${user?delBtn(`data-gd='${g.id}'`):''}</figcaption></figure>`).join('')}</div>`:`<p>No photos yet.${user?'':''}</p>`}
+  ${user?`<h3 style='color:var(--navy);margin:24px 0 4px'>Add photos</h3><div class='bar'><label style='flex:2'>Caption<input id='g_c' placeholder='e.g. Sports day 2026'></label><label>Photos<input type='file' id='g_f' accept='image/*' multiple></label><button id='g_b'>Add</button></div>`:''}</div>`}
+function bindGal(){
+  document.querySelectorAll('[data-gd]').forEach(b=>b.onclick=async()=>{
+    if(sb)await sb.from('gallery').delete().eq('id',String(b.dataset.gd));
+    GAL=GAL.filter(g=>String(g.id)!==String(b.dataset.gd));if(!sb)sv('palmGal',GAL);go('gallery')});
+  const b=$('#g_b');if(!b)return;
+  b.onclick=async()=>{const fs=[...$('#g_f').files];if(!fs.length){PM='Choose at least one photo.';return go('gallery')}
+    const cap=$('#g_c').value.trim();let bad=0;
+    for(const f of fs){const id=String(Date.now())+Math.floor(Math.random()*1000),u=await shrink(f,1100,.7),src=u&&await putImg(u,'gallery/'+id+'.jpg');
+      if(!src){bad++;continue}
+      const row={id,src,cap};
+      if(sb){const {error}=await sb.from('gallery').insert([row]);if(error){ERR=error.message;bad++;continue}}
+      GAL.push(row)}
+    if(!sb)await sv('palmGal',GAL);
+    PM=bad?'Some photos failed: '+ERR:'Added successfully.';go('gallery')};
+}
+function staffPage(){const m=PM;PM='';
+  return `<div class='card'><h2 style='margin-top:0;color:var(--navy)'>Our Teachers</h2><div class='err'>${m}</div>
+  ${STAFF.length?`<div class='cols'>${STAFF.map(s=>`<div class='item' style='flex-direction:column;text-align:center;justify-content:center'>${s.photo?`<img src='${s.photo}' alt='${esc(s.name)}' style='width:96px;height:96px;border-radius:50%;object-fit:cover'>`:`<div class='avatar' style='margin:0'>${esc(s.name.charAt(0))}</div>`}<b>${esc(s.name)}</b><small>${esc(s.role)}</small>${user?delBtn(`data-sd='${s.id}'`):''}</div>`).join('')}</div>`:`<p>No teachers listed yet.${user?'':''}</p>`}
+  ${user?`<h3 style='color:var(--navy);margin:24px 0 4px'>Add a teacher</h3><div class='bar'><label>Full name<input id='s_n'></label><label>Role / subject<input id='s_r' placeholder='e.g. Biology Teacher'></label><label>Photo (optional)<input type='file' id='s_f' accept='image/*'></label><button id='s_b'>Add</button></div>`:''}</div>`}
+function bindStaff(){
+  document.querySelectorAll('[data-sd]').forEach(b=>b.onclick=async()=>{
+    if(sb)await sb.from('staff').delete().eq('id',String(b.dataset.sd));
+    STAFF=STAFF.filter(x=>String(x.id)!==String(b.dataset.sd));if(!sb)sv('palmStaff',STAFF);go('staff')});
+  const b=$('#s_b');if(!b)return;
+  b.onclick=async()=>{const n=$('#s_n').value.trim();if(!n){PM='Enter the teacher name.';return go('staff')}
+    const f=$('#s_f').files[0],id=String(Date.now());
+    const photo=f?(await putImg(await shrink(f,300),'staff/'+id+'.jpg')||''):'';
+    if(f&&!photo){PM='Photo upload failed: '+ERR;return go('staff')}
+    const row={id,name:n,role:$('#s_r').value.trim(),photo};
+    if(sb){const {error}=await sb.from('staff').insert([row]);if(error){PM='Error: '+error.message;return go('staff')}}
+    STAFF.push(row);if(!sb)await sv('palmStaff',STAFF);
+    PM='Added successfully.';go('staff')};
+}
+const pages={
+papers:()=>lib('papers'),notes:()=>lib('notes'),scheme:()=>lib('scheme'),gallery:galPage,staff:staffPage,
+home:()=>`<div class="hero isw">${slides()}<div class="sweep"></div><div class="prog"></div><button class="arr l" id="hp" aria-label="Previous slide">&#10094;</button><button class="arr r" id="hn" aria-label="Next slide">&#10095;</button><div class="t"><div class="cps">${caps()}</div><div class="hbtn">${user?`<label class="btn">Change photos<input type="file" id="bgf" accept="image/*" multiple hidden></label><button class="btn" id="bgr" style="border:0;box-shadow:none">Reset</button><span style="margin-left:8px;font-size:13px;text-shadow:0 1px 4px #000">${bgnote()}</span>`:""}</div></div><div class="dots">${dots()}</div></div><div class="ticker"><span>Welcome to The Palm Academy &nbsp;&bull;&nbsp; Results are open to everyone &nbsp;&bull;&nbsp; Choose a class on the Results page to view the full report &nbsp;&bull;&nbsp; Past papers, notes and schemes of work are available for every Form</span></div><div class="card"><h2 style="color:var(--navy);margin-top:0">Results at a glance</h2>
+<p>View the results of every student in every class, from KG1 to Form 3. No login needed. Results are ranked automatically and can be printed.</p>
+<div class="cols"><div class="stat"><b>${classes().length||"-"}</b>Classes loaded</div><div class="stat"><b>${classes().reduce((a,c)=>a+DATA[c].rows.length,0)}</b>Students</div></div>
+<p><button onclick="go('results')">View results</button></p></div>`,
+about:()=>`<div class="card"><h2 style="margin-top:0;color:var(--navy)">About Us</h2><p>The Palm Teachers Royal Palace is a school committed to quality teaching and learning. Add your school history, mission and vision here.</p></div>`,
+classes:()=>`<div class="card"><h2 style="margin-top:0;color:var(--navy)">Classes</h2><div class="cols">${classes().map(c=>`<div class="stat"><b>${c}</b>${DATA[c].rows.length} students</div>`).join("")||"<p>No results loaded yet.</p>"}</div></div>`,
+notices:()=>`<div class="card"><h2 style="margin-top:0;color:var(--navy)">Announcements</h2><p><b>Results are ready.</b> Teachers can view them after signing in.</p></div>`,
+contact:()=>`<div class="card"><h2 style="margin-top:0;color:var(--navy)">Contact Us</h2><p>Phone: +255 000 000 000<br>Email: info@palmteachers.example<br>P.O. Box 000, Zanzibar</p></div>`,
+faq:()=>`<div class="card"><h2 style="margin-top:0;color:var(--navy)">FAQs</h2><p><b>Who can view results?</b><br>Everyone can view results without logging in. Only the admin can upload or edit.</p><p><b>I forgot my password.</b><br>Contact the school office.</p><p><b>How are grades given?</b><br>A: 81–100, B: 61–80, C: 41–60, D: 21–40, F: 0–20.</p></div>`,
+results:()=>dash(),
+login:()=>`<div class="card login"><div class="avatar">&#128100;</div><h2 style="margin:0 0 6px;color:var(--navy)">Admin login</h2>
+<p style="color:var(--muted);margin:0 0 10px">Only the admin can upload or edit content.</p>
+<input id="u" placeholder="${sb?'Admin email':'Username'}" autocomplete="username"><input id="p" type="password" placeholder="Password" autocomplete="current-password">
+<div class="err" id="err"></div><button id="lb">Log in</button></div>`
 };
-
-let SELECTED_CLASS = 'Std 6';
-function presetClass(c) {
-  SELECTED_CLASS = c;
-  if (CUR !== 'results') go('results');
-  else { $('#cls').value = c; render(); }
+function dash(){return `<div class="card">${user?`<div class="out"><span style="margin-right:12px">Signed in as <b>Admin</b></span><button onclick="logout();go('home')">Log out</button></div>
+<div class="bar selbar"><label style="flex:2">Upload results (Excel .xlsx)<input type="file" id="xf" accept=".xlsx,.xls"></label><button onclick="template()" style="background:#444;box-shadow:none">Download template</button></div>`:''}
+<p class="err" style="color:var(--navy)">${msg}</p>
+${classes().length?`<div class="bar selbar"><label>Class<select id="cls">${classes().map(c=>`<option>${c}</option>`).join("")}<option value="ALL">All classes</option></select></label>
+<label>Term<select id="trm"><option>First Term</option><option selected>Second Term</option><option>Third Term</option></select></label><label>Year<input id="yr" value="2026"></label>
+<label>Search student<input id="q" placeholder="Name"></label><button id="vw" class="onlyph">View results</button><button onclick="window.print()">Print</button>${user?`<button id="delc" style="background:#8a1c1c;box-shadow:none">Delete class</button><button id="dela" style="background:#8a1c1c;box-shadow:none">Delete all results</button>`:''}</div>
+<div class="bar zbar" style="align-items:center;gap:8px"><button id="bk" class="onlyfs" style="background:#444;box-shadow:none">&larr; Back</button><span>Zoom:</span><button id="zm" style="padding:8px 16px">&minus;</button><b id="zv">100%</b><button id="zp" style="padding:8px 16px">+</button><button id="zf" style="padding:8px 14px;background:#444;box-shadow:none">Fit to screen</button><button class="onlyfs" onclick="window.print()" style="padding:8px 14px">Print</button></div><div id="zbox"><div class="stats" id="stats"></div><div class="wrap"><table id="tbl"></table></div><div id="rep"></div></div>`:`<p>${user?'No results yet. Upload your Excel file above. Use one sheet per class (for example “KG1 EAST” or “Std 4”), with the student name or exam number, then one column per subject, then TOTAL.':'No results have been published yet.'}</p>`}</div>`}
+let ZOOM=null,FS=false;
+function applyZoom(){const z0=$('#zbox');if(!z0)return;z0.style.zoom=1;let z=ZOOM;
+  if(z===null){if(window.innerWidth>800)z=1;else{const tw=Math.max(1,...[...z0.querySelectorAll('table')].map(t=>t.scrollWidth)),cw=(z0.parentElement?z0.parentElement.clientWidth:z0.clientWidth)||window.innerWidth-32;z=Math.min(1,Math.max(.22,(cw-4)/tw))}}
+  z0.style.zoom=z;window.curZ=z;const v=$('#zv');if(v)v.textContent=Math.round(z*100)+'%'}
+function printFit(){const z0=$('#zbox');if(!z0)return;z0.style.zoom=1;const tw=Math.max(1,...[...z0.querySelectorAll('table')].map(t=>t.scrollWidth));z0.style.zoom=Math.min(1,720/tw)}
+window.addEventListener('beforeprint',printFit);window.addEventListener('afterprint',()=>{applyZoom()});
+function setZ(z){ZOOM=Math.max(.2,Math.min(2.5,z));applyZoom()}
+function bindZoom(){const m=$('#zm'),p=$('#zp'),f=$('#zf');if(!m)return;const bk=$('#bk'),vw=$('#vw');if(bk)bk.onclick=()=>{FS=false;document.body.classList.remove('fs');render();window.scrollTo(0,0)};if(vw)vw.onclick=()=>{FS=true;document.body.classList.add('fs');render();window.scrollTo(0,0)};
+  m.onclick=()=>setZ((window.curZ||1)-.1);p.onclick=()=>setZ((window.curZ||1)+.1);f.onclick=()=>{ZOOM=null;applyZoom()}}
+window.addEventListener('resize',()=>{if(ZOOM===null&&$('#zbox'))applyZoom()});
+function render(){
+  const c=$("#cls").value,q=$("#q").value.toLowerCase(),one=c!=="ALL",subs=one?DATA[c].subjects:[];
+  let rows=[];
+  (one?[c]:classes()).forEach(k=>{const g=DATA[k].rows.map(r=>{const v=r.marks.filter(x=>x!==null);const t=v.reduce((a,b)=>a+b,0);return {...r,cls:k,total:t,avg:v.length?t/v.length:0}});
+    g.slice().sort((a,b)=>b.total-a.total).forEach((r,i)=>r.rank=i+1);rows.push(...g)});
+  rows=rows.filter(r=>r.name.toLowerCase().includes(q));
+  rows.sort((a,b)=>sort==="name"?a.name.localeCompare(b.name):(one?0:classes().indexOf(a.cls)-classes().indexOf(b.cls))||a.rank-b.rank);
+  const all=rows.length?rows.reduce((a,r)=>a+r.avg,0)/rows.length:0,top=rows.slice().sort((a,b)=>b.avg-a.avg)[0];
+  $("#stats").innerHTML=`<div class="stat"><b>${rows.length}</b>Students</div><div class="stat"><b>${all.toFixed(1)}</b>Average</div><div class="stat"><b>${top?top.name.split(" ")[0]:"-"}</b>Top student</div><div class="stat"><b>${rows.filter(r=>r.avg>=41).length}</b>Passed (C and above)</div>`;
+  $("#tbl").innerHTML=`<tr><th data-s="rank">Rank</th><th data-s="name">Student</th>${one?"":"<th>Class</th>"}${subs.map(s=>`<th>${s}</th>`).join("")}<th>Total</th><th>Avg</th><th>Grade</th></tr>`+
+  (rows.length?rows.map(r=>`<tr><td>${r.rank}</td><td>${r.name}</td>${one?"":`<td>${r.cls}</td>`}${r.marks.map(m=>m===null?"<td>-</td>":`<td>${m} <span class="g g${grade(m)}">${grade(m)}</span></td>`).join("")}<td><b>${r.total}</b></td><td>${r.avg.toFixed(1)}</td><td><span class="g g${grade(r.avg)}">${grade(r.avg)}</span></td></tr>`).join(""):`<tr><td colspan="12">No students match your search.</td></tr>`);
+  document.querySelectorAll("th[data-s]").forEach(t=>t.onclick=()=>{sort=t.dataset.s;render()});
+  const showIt=true;
+  $('#rep').innerHTML=one?(NECTA.includes(base(c))?necta(c,q):STDREP.includes(base(c))?stdRep(c,q):isKG(base(c))?kgRep(c,q):report(c,q)):'';if(one){$('#stats').innerHTML='';$('#tbl').innerHTML=''}applyZoom();
 }
-
-function dash() {
-  const opts = classOptions(), initial = opts.includes(SELECTED_CLASS) ? SELECTED_CLASS : (classes()[0] || opts[0]);
-  return `<div class="card">
-  <div class="demo-strip">
-    <b>Preview Class:</b>
-    <button type="button" class="demo-pill" data-jump="KG1">KG1 <span class="demo-tag">(Junior KG Scale)</span></button>
-    <button type="button" class="demo-pill" data-jump="Std 4">Std 4 <span class="demo-tag">(Std 4 Scale)</span></button>
-    <button type="button" class="demo-pill" data-jump="Std 6">Std 6 <span class="demo-tag">(Grade Scale A–F)</span></button>
-    <button type="button" class="demo-pill" data-jump="Form 2">Form 2 <span class="demo-tag">(NECTA Division)</span></button>
-  </div>
-  ${user ? `<div class="out"><span style="margin-right:12px">Signed in as <b>Admin</b></span><button onclick="logout();go('home')">Log out</button></div>
-  <div class="bar selbar"><label style="flex:2">Upload results (Excel .xlsx)<input type="file" id="xf" accept=".xlsx,.xls"></label><button onclick="template()" style="background:#444;box-shadow:none">Download template</button></div>` : ''}
-  <p class="err" style="color:var(--navy)">${msg}</p>
-  <div class="bar selbar"><label>Class<select id="cls">${opts.map(c => `<option${c === initial ? ' selected' : ''}>${c}</option>`).join("")}<option value="ALL">All classes</option></select></label>
-  <label>Term<select id="trm"><option>First Term</option><option selected>Second Term</option><option>Third Term</option></select></label><label>Year<input id="yr" value="2026"></label>
-  <label>Search student<input id="q" placeholder="Name"></label><button id="vw" class="onlyph">View results</button><button onclick="window.print()">Print</button>${user ? `<button id="delc" style="background:#8a1c1c;box-shadow:none">Delete class</button><button id="dela" style="background:#8a1c1c;box-shadow:none">Delete all results</button>` : ''}</div>
-  <div class="bar zbar" style="align-items:center;gap:8px"><button id="bk" class="onlyfs" style="background:#444;box-shadow:none">&larr; Back</button><span>Zoom:</span><button id="zm" style="padding:8px 16px">&minus;</button><b id="zv">100%</b><button id="zp" style="padding:8px 16px">+</button><button id="zf" style="padding:8px 14px;background:#444;box-shadow:none">Fit to screen</button><button class="onlyfs" onclick="window.print()" style="padding:8px 14px">Print</button></div><div id="zbox"><div class="stats" id="stats"></div><div class="wrap"><table id="tbl"></table></div><div id="rep"></div></div></div>`;
-}
-
-let ZOOM = null, FS = false;
-function applyZoom() {
-  const z0 = $('#zbox'); if (!z0) return; z0.style.zoom = 1; let z = ZOOM;
-  if (z === null) {
-    if (window.innerWidth > 800) z = 1;
-    else {
-      const tw = Math.max(1, ...[...z0.querySelectorAll('table')].map(t => t.scrollWidth)), cw = (z0.parentElement ? z0.parentElement.clientWidth : z0.clientWidth) || window.innerWidth - 32;
-      z = Math.min(1, Math.max(.22, (cw - 4) / tw));
-    }
+const updNav=()=>{const l=$('#loginLink');if(l)l.textContent=user?'Log out':'Admin Login';const b=$('#logoBox');if(b)b.style.cursor=user?'pointer':'default'};
+function go(p){
+  FS=false;document.body.classList.remove('fs');
+  if(p==='login'&&user){logout();p='home'}CUR=p;
+  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.p===p));
+  $("#main").innerHTML=pages[p]();window.scrollTo(0,0);clearInterval(window.tm);if(p==="home")startBg();if(LIB[p])bindLib(p);if(p==='gallery')bindGal();if(p==='staff')bindStaff();
+  if(p==="results"){
+    if(user&&$("#xf"))$("#xf").onchange=e=>e.target.files[0]&&upload(e.target.files[0]);
+    if(classes().length){$("#cls").onchange=render;$("#q").oninput=render;$("#trm").onchange=render;$("#yr").oninput=render;bindZoom();
+      if(user){arm($('#delc'),()=>{const c=$('#cls').value;if(c==='ALL'){msg='Choose one class first, then delete it.'}else{delete DATA[c];saveData();msg='Deleted '+c+'.'}go('results')});
+      arm($('#dela'),()=>{DATA={};saveData();msg='All results deleted.';go('results')})}
+      render()}
   }
-  z0.style.zoom = z; window.curZ = z; const v = $('#zv'); if (v) v.textContent = Math.round(z * 100) + '%';
-}
-function printFit() { const z0 = $('#zbox'); if (!z0) return; z0.style.zoom = 1; const tw = Math.max(1, ...[...z0.querySelectorAll('table')].map(t => t.scrollWidth)); z0.style.zoom = Math.min(1, 720 / tw); }
-window.addEventListener('beforeprint', printFit); window.addEventListener('afterprint', () => { applyZoom(); });
-function setZ(z) { ZOOM = Math.max(.2, Math.min(2.5, z)); applyZoom(); }
-function bindZoom() {
-  const m = $('#zm'), p = $('#zp'), f = $('#zf'); if (!m) return;
-  const bk = $('#bk'), vw = $('#vw');
-  if (bk) bk.onclick = () => { FS = false; document.body.classList.remove('fs'); render(); window.scrollTo(0, 0); };
-  if (vw) vw.onclick = () => { FS = true; document.body.classList.add('fs'); render(); window.scrollTo(0, 0); };
-  m.onclick = () => setZ((window.curZ || 1) - .1); p.onclick = () => setZ((window.curZ || 1) + .1); f.onclick = () => { ZOOM = null; applyZoom(); };
-}
-window.addEventListener('resize', () => { if (ZOOM === null && $('#zbox')) applyZoom(); });
-
-function render() {
-  const c = $("#cls").value, q = $("#q").value.toLowerCase(), one = c !== "ALL";
-  SELECTED_CLASS = c;
-  document.querySelectorAll('.demo-pill').forEach(b => b.classList.toggle('active', b.dataset.jump === c));
-  if (one && !DATA[c]) {
-    const lg = $('#logoBox img'), b = base(c), isLower = isKG(b), rptCls = isLower ? 'kg' : (STDREP.includes(b) ? 'nt nstd' : 'nt');
-    $('#stats').innerHTML = ''; $('#tbl').innerHTML = '';
-    $('#rep').innerHTML = `<div class='rpt ${rptCls}'><div class='rh'>${lg ? `<img src='${lg.src}' alt='Logo'><br>` : ''}<h1>THE PALM ACADEMY</h1><h2>${esc($('#trm').value)} Examination Results - ${esc($('#yr').value)}</h2><h3>${esc(c)}</h3></div><p style='text-align:center;color:var(--muted);padding:24px 0'>${user ? 'No results uploaded for ' + esc(c) + ' yet. Upload your Excel file above with a sheet named “' + esc(c) + '”.' : 'No results have been published for ' + esc(c) + ' yet.'}</p></div>`;
-    applyZoom(); return;
-  }
-  const subs = one ? DATA[c].subjects : [];
-  let rows = [];
-  (one ? [c] : classes()).forEach(k => {
-    const g = DATA[k].rows.map(r => {
-      const v = r.marks.filter(x => x !== null);
-      const t = v.reduce((a, b) => a + b, 0);
-      return { ...r, cls: k, total: t, avg: v.length ? t / v.length : 0 };
-    });
-    g.slice().sort((a, b) => b.total - a.total).forEach((r, i) => r.rank = i + 1);
-    rows.push(...g);
-  });
-  rows = rows.filter(r => r.name.toLowerCase().includes(q));
-  rows.sort((a, b) => sort === "name" ? a.name.localeCompare(b.name) : (one ? 0 : classes().indexOf(a.cls) - classes().indexOf(b.cls)) || a.rank - b.rank);
-  const all = rows.length ? rows.reduce((a, r) => a + r.avg, 0) / rows.length : 0, top = rows.slice().sort((a, b) => b.avg - a.avg)[0];
-  $("#stats").innerHTML = `<div class="stat"><b>${rows.length}</b>Students</div><div class="stat"><b>${all.toFixed(1)}</b>Average</div><div class="stat"><b>${top ? top.name.split(" ")[0] : "-"}</b>Top student</div><div class="stat"><b>${rows.filter(r => r.avg >= 41).length}</b>Passed (C and above)</div>`;
-  $("#tbl").innerHTML = `<tr><th data-s="rank">Rank</th><th data-s="name">Student</th>${one ? "" : "<th>Class</th>"}${subs.map(s => `<th>${s}</th>`).join("")}<th>Total</th><th>Avg</th><th>Grade</th></tr>` +
-    (rows.length ? rows.map(r => `<tr><td>${r.rank}</td><td>${r.name}</td>${one ? "" : `<td>${r.cls}</td>`}${r.marks.map(m => m === null ? "<td>-</td>" : `<td>${m} <span class="g g${grade(m)}">${grade(m)}</span></td>`).join("")}<td><b>${r.total}</b></td><td>${r.avg.toFixed(1)}</td><td><span class="g g${grade(r.avg)}">${grade(r.avg)}</span></td></tr>`).join("") : `<tr><td colspan="12">No students match your search.</td></tr>`);
-  document.querySelectorAll("th[data-s]").forEach(t => t.onclick = () => { sort = t.dataset.s; render(); });
-  $('#rep').innerHTML = one ? (isKG(base(c)) ? kgRep(c, q) : STDREP.includes(base(c)) ? stdRep(c, q) : NECTA.includes(base(c)) ? necta(c, q) : report(c, q)) : '';
-  if (one) { $('#stats').innerHTML = ''; $('#tbl').innerHTML = ''; }
-  applyZoom();
-}
-
-const updNav = () => { const l = $('#loginLink'); if (l) l.textContent = user ? 'Log out' : 'Admin Login'; const b = $('#logoBox'); if (b) b.style.cursor = user ? 'pointer' : 'default'; };
-function go(p) {
-  FS = false; document.body.classList.remove('fs');
-  if (p === 'login' && user) { logout(); p = 'home'; } CUR = p;
-  document.querySelectorAll("nav a").forEach(a => a.classList.toggle("on", a.dataset.p === p));
-  $("#main").innerHTML = pages[p](); window.scrollTo(0, 0); clearInterval(window.tm);
-  if (p === "home") startBg();
-  if (LIB[p]) bindLib(p);
-  if (p === 'gallery') bindGal();
-  if (p === 'staff') bindStaff();
-  if (p === "results") {
-    if (user && $("#xf")) $("#xf").onchange = e => e.target.files[0] && upload(e.target.files[0]);
-    document.querySelectorAll('.demo-pill').forEach(b => b.onclick = () => { $('#cls').value = b.dataset.jump; render(); });
-    if ($("#cls")) {
-      $("#cls").onchange = render; $("#q").oninput = render; $("#trm").onchange = render; $("#yr").oninput = render; bindZoom();
-      if (user) {
-        arm($('#delc'), () => { const c = $('#cls').value; if (c === 'ALL') { msg = 'Choose one class first, then delete it.'; } else if (!DATA[c]) { msg = 'No uploaded results to delete for ' + c + '.'; } else { delete DATA[c]; saveData(); msg = 'Deleted ' + c + '.'; } go('results'); });
-        arm($('#dela'), () => { DATA = {}; saveData(); msg = 'All results deleted.'; go('results'); });
-      }
-      render();
-    }
-  }
-  if (p === "login") {
-    $("#lb").onclick = async () => {
-      const em = $("#u").value.trim(), pw = $("#p").value, bad = () => { $("#err").textContent = "Wrong username or password. Use admin / admin123."; };
-      const t = TEACHERS[em.toLowerCase()];
-      if (t && t.pass === pw) { user = t; msg = ""; go("results"); } else bad();
-    };
-    $("#p").onkeydown = e => { if (e.key === "Enter") $("#lb").click(); };
+  if(p==="login"){
+    $("#lb").onclick=async()=>{const em=$("#u").value.trim(),pw=$("#p").value,bad=()=>{$("#err").textContent="Wrong email or password. Check both and try again."};
+      if(sb){const {error}=await sb.auth.signInWithPassword({email:em,password:pw});if(error)return bad();user={name:'Admin',email:em};msg="";go("results")}
+      else{const t=TEACHERS[em.toLowerCase()];if(t&&t.pass===pw){user=t;msg="";go("results")}else bad()}};
+    $("#p").onkeydown=e=>{if(e.key==="Enter")$("#lb").click()}
   }
   updNav();
 }
-document.querySelectorAll("[data-p]").forEach(a => a.onclick = () => go(a.dataset.p));
-const nav = $("#nav"), scrim = $("#scrim");
-const setNav = o => { nav.classList.toggle("open", o); scrim.classList.toggle("show", o); };
-$("#burger").onclick = () => setNav(true); $("#closeNav").onclick = () => setNav(false); scrim.onclick = () => setNav(false);
-nav.addEventListener("click", e => { if (e.target.tagName === "A") setNav(false); });
-
-// Open directly on the Results page with Std 6 (grade scale) active so you can see it immediately
-go("results");
+document.querySelectorAll("[data-p]").forEach(a=>a.onclick=()=>go(a.dataset.p));
+$("#logoFile").onclick=e=>{if(!user)e.preventDefault()};
+$("#logoFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;const d=await shrink(f,400,.9),u=d&&await putImg(d,'logo-'+Date.now()+'.jpg');if(!u)return;setLogo(u);persist('palmLogo',u)};
+try{const l=JSON.parse(LS('palmLogo')||'null');if(l)setLogo(l)}catch(e){}
+const nav=$("#nav"),scrim=$("#scrim");
+const setNav=o=>{nav.classList.toggle("open",o);scrim.classList.toggle("show",o)};
+$("#burger").onclick=()=>setNav(true);$("#closeNav").onclick=()=>setNav(false);scrim.onclick=()=>setNav(false);
+nav.addEventListener("click",e=>{if(e.target.tagName==="A")setNav(false)});
+go("home");
+async function loadRemote(){
+  if(!sb)return;
+  const errs=[];
+  try{const {data:{session}}=await sb.auth.getSession();if(session)user={name:session.user.email,email:session.user.email}}catch(e){}
+  const tbl=async t=>{const r=await sb.from(t).select('*');if(r.error){errs.push(t+': '+r.error.message);return null}return r.data};
+  const kv=await tbl('site_data'),d=await tbl('documents'),g=await tbl('gallery'),st=await tbl('staff');
+  const m={};(kv||[]).forEach(r=>m[r.key]=r.value);
+  if(kv){DATA=m.palmData||{};PHOTOS=m.palmBg||[];if(m.palmLogo)setLogo(m.palmLogo)}
+  if(d)DOCS=d;if(g)GAL=g;if(st)STAFF=st;
+  updNav();go(CUR||'home');
+  if(errs.length)$('#main').insertAdjacentHTML('afterbegin',"<p class='err'>Database problem: "+esc(errs.join(' | '))+"</p>");
+}
+loadRemote();
 </script>
 </body>
 </html>
