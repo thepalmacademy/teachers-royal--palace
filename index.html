@@ -132,11 +132,14 @@ body.fs .zbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backgr
 @media print{:root,:root:not([data-theme="light"]){--bg:#fff;--card:#fff;--text:#000;--muted:#444;--line:#bbb;--navy:#1b2f6b}
 body{background:#fff}main{padding:0;max-width:none;min-height:0}.rpt{padding:0}.selbar,.zbar,.onlyfs,.onlyph{display:none!important}.wrap{overflow:visible}tr{break-inside:avoid}h4,.sech{break-after:avoid}}
 
+/* ===== Page background: warm sunrise cream ===== */
+body{background:linear-gradient(180deg,#fff8ef 0%,#ffeed9 55%,#ffe2bf 100%);background-attachment:fixed}
+footer{background:rgba(255,255,255,.5)}
 /* ===== Glassmorphism sidebar (phone only) ===== */
 :root{--sbw:0px}
 .sbrand{display:none}
 @media (max-width:800px){
-body{background:radial-gradient(700px 480px at 6% 0%,rgba(247,148,29,.30),transparent 60%),radial-gradient(700px 480px at 100% 28%,rgba(156,67,16,.20),transparent 60%),radial-gradient(700px 480px at 30% 100%,rgba(255,184,64,.28),transparent 60%),var(--bg);background-attachment:fixed}
+body{background:radial-gradient(700px 480px at 6% 0%,rgba(247,148,29,.30),transparent 60%),radial-gradient(700px 480px at 100% 28%,rgba(156,67,16,.20),transparent 60%),radial-gradient(700px 480px at 30% 100%,rgba(255,184,64,.28),transparent 60%),linear-gradient(180deg,#fff8ef 0%,#ffeed9 55%,#ffe2bf 100%);background-attachment:fixed}
 .sbrand{display:flex;align-items:center;gap:12px;padding:6px 10px 16px;margin-bottom:8px;border-bottom:1px solid rgba(74,35,16,.15)}
 .sbrand span{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:26px;background:linear-gradient(135deg,#ffb840,#f7941d);box-shadow:0 6px 16px rgba(224,123,10,.45)}
 .sbrand b{display:block;color:#4a2310;font-size:15px;line-height:1.2}.sbrand small{color:#7a5a45;font-size:12px}
@@ -155,6 +158,8 @@ nav .x{background:rgba(255,255,255,.55);color:#4a2310;border-radius:12px;margin:
 }
 @media (max-width:800px) and (prefers-color-scheme:dark){nav{background:rgba(38,26,19,.55);border-color:rgba(255,255,255,.14)}nav a,.sbrand b{color:#f3e9df}.sbrand small{color:#c9b8a6}nav a::before{background:rgba(255,255,255,.1)}nav a:hover{background:rgba(255,255,255,.12)}nav .x{background:rgba(255,255,255,.12);color:#f3e9df}.sbrand{border-color:rgba(255,255,255,.14)}}
 @media print{nav,.sbrand,.burger{display:none!important}}
+@media (prefers-color-scheme:dark){body{background:linear-gradient(180deg,#1a120d,#2a1a10)!important}footer{background:rgba(38,26,19,.6)}}
+@media print{body{background:#fff!important}footer{background:none}}
 </style>
 </head>
 <body>
