@@ -388,7 +388,7 @@ function necta(c,q){
   ${T(`<th>SUBJECT CODE</th><th>SUBJECT NAME</th><th>REG</th><th>SAT</th><th>W/HD</th><th>CLEAN</th><th>PASS</th><th>GPA</th><th>RANK</th><th>COMPETENCY LEVEL</th>`,[...order,...ss.filter(x=>!x.k)].map(x=>{const rk=order.indexOf(x),cl=comp(x.gpa);return `<tr><td>${SCODE[x.s.toLowerCase().trim()]||''}</td><td class='l'>${esc((fullName(x.s)).toUpperCase())}</td><td>${x.reg}</td><td>${x.k}</td><td>${x.reg-x.k}</td><td>${x.k}</td><td>${x.pass}</td><td>${x.k?x.gpa.toFixed(4):'-'}</td><td>${rk<0?'-':(rk+1)+'/'+order.length}</td>${x.k?cell(cl[0],cl[1]):'<td>-</td>'}</tr>`}).join(''))}
   <p style='font-size:12px;color:var(--muted)'>Grades: A 75-100, B 65-74, C 45-64, D 30-44, F 0-29. Points: best 7 subjects (A=1 ... F=5; scaled if fewer than 7). Division I 7-17, II 18-21, III 22-25, IV 26-33, 0 34-35. GPA = average grade points (lower is better). Rank = subject position by GPA.</p></div>`;
 }
-const STDREP=['std5','std6','std7'];
+const STDREP=[];
 const ABBD={mathe:'MATH',maths:'MATH',sci:'STE'};
 const ABFULL=[[/^engl/,'ENG'],[/^kisw/,'KISW'],[/^math/,'MATH'],[/^relig/,'REL'],[/^dini and ar|^diara/,'DIARA'],[/^dini/,'DINI'],[/^arab/,'ARAB'],[/^social/,'SOS'],[/^creative/,'CAS'],[/^science|^sci$/,'STE'],[/^environ/,'ENV'],[/^historia/,'HTM'],[/^geog/,'GEO'],[/^business/,'B/S']];
 const ab=s=>{const k=String(s).toLowerCase().trim();for(const [r,a] of ABFULL)if(r.test(k))return a;return (ABBD[k]||String(s)).toUpperCase()};
@@ -414,7 +414,7 @@ function stdRep(c,q){
   ${T(`<th>SUBJECT NAME</th><th>ABBREVIATION</th><th>REG</th><th>ABS</th><th>PASS</th><th>AVERAGE</th><th>GRADE</th><th>RANK</th><th colspan='5'>SUBJECTS COUNTS GRADE</th>`,ss.map(x=>{const cl=comp2(x.avg),rk=order.indexOf(x);return `<tr><td class='l'>${esc((fullName(x.s)).toUpperCase())}</td><td>${esc(ab(x.s))}</td><td>${x.reg}</td><td>${x.abs||''}</td><td><b>${x.pass}</b></td><td><b>${x.k?x.avg.toFixed(1):'-'}</b></td>${x.k?`<td style='background:${cl[1]};color:#000'>${cl[0]}</td>`:'<td>-</td>'}<td>${rk<0?'-':(rk+1)+'/'+order.length}</td>${x.g.map((v,i)=>`<td><b>${'ABCDF'[i]}:</b> ${p2(v)}</td>`).join('')}</tr>`}).join(''))}
   <p style='font-size:12px;color:var(--muted)'>Grades: A 81-100, B 61-80, C 41-60, D 21-40, F 0-20. PASS = students with A to D. Rank = subject position by average.</p></div>`;
 }
-const isKG=k=>/^(kg\d?|std[1-4])$/.test(k);
+const isKG=k=>/^(kg\d?|std[1-7])$/.test(k);
 const kg=m=>m>=95?'A+':m>=70?'A':m>=60?'B':m>=50?'C':m>=40?'D':'F';
 const KGL={'A+':'Outstanding','A':'Excellent','B':'Very Good','C':'Good','D':'Pass','F':'Fail'};
 const gcl=g=>'g-'+(g==='A+'?'Ap':g);
