@@ -186,6 +186,20 @@ table.otable .c{text-align:center}
 @media print{.rhead,.crumb,.back-link,.zbar,.tools{display:none!important}.dpanel{box-shadow:none;padding:0;background:#fff;max-width:none}}
 
 @media (max-width:800px){.rhead{padding:14px 12px 16px}.rhead .crest{width:56px;height:56px}.rhead h1{font-size:20px}.rhead h2{font-size:13px}}
+/* coloured class cards, rounded on both sides */
+.school-card{border:1px solid var(--line);border-left:7px solid var(--cc,#0f294a);border-right:7px solid var(--cc,#0f294a);border-radius:14px;background:linear-gradient(90deg,color-mix(in srgb,var(--cc,#0f294a) 9%,var(--card)),var(--card) 40%,color-mix(in srgb,var(--cc,#0f294a) 9%,var(--card)))}
+.school-card .name{color:var(--cc,#0f294a)}.school-card .arrow{color:var(--cc,#d49b27);font-size:26px;font-weight:700}
+.school-card:hover{box-shadow:0 6px 18px color-mix(in srgb,var(--cc,#0f294a) 35%,transparent)}
+tr.t2>td:first-child{border-left:5px solid var(--cc);font-weight:700}
+/* active student row: hover = yellow, tap cycles green > yellow > purple > off */
+table.stu tr{cursor:pointer;transition:background .15s}
+table.stu tr:hover>td{background:#fff0a8!important}
+table.stu tr.hl1>td{background:#74e08f!important;font-weight:700}
+table.stu tr.hl2>td{background:#ffe45e!important;font-weight:700}
+table.stu tr.hl3>td{background:#c9a2ff!important;font-weight:700}
+table.stu tr.hl1>td:not([class*="g-"]),table.stu tr.hl2>td:not([class*="g-"]),table.stu tr.hl3>td:not([class*="g-"]),table.stu tr:hover>td:not([class*="g-"]){color:#111!important}
+table.stu tr.hl1>td:first-child{box-shadow:inset 6px 0 0 #1f9d4a}table.stu tr.hl2>td:first-child{box-shadow:inset 6px 0 0 #d49b00}table.stu tr.hl3>td:first-child{box-shadow:inset 6px 0 0 #7a3ac8}
+@media print{table.stu tr{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style>
 </head>
 <body>
@@ -457,10 +471,10 @@ function kgRep(c,q){
   return `<div class='rpt kg'><div class='dh'><h2>${esc(c)}</h2><div class='ey'>RESULTS SHEET: ${esc(c.toUpperCase())} &mdash; ${esc(RTERM.toUpperCase())} EXAMINATION (${esc(RYEAR)})</div></div>
   <h4 class='kgh'>Average Grade Summary</h4>
   ${W(`<th>Average Grade</th>${GL.map(g=>`<th>${g}</th>`).join('')}`,[['M','Male'],['F','Female'],['','Total']].map(([sx,l])=>`<tr><td class='l'>${sx?l:`<b>${l}</b>`}</td>${GL.map(g=>`<td>${sx?cnt(sx,g):`<b>${cnt('',g)}</b>`}</td>`).join('')}</tr>`).join(''))}
-  <h4 class='kgh'>Subjects Performance Summary</h4>
-  ${W(`<th>Short</th><th>Full Name</th><th>REG</th><th>SAT</th><th>ABS</th><th>AVG</th><th>Rank</th><th>Grade</th>${GL.map(g=>`<th>${g}</th>`).join('')}`,ss.map(x=>{const rk=order.indexOf(x),g=gf(x.avg);return `<tr><td>${esc(String(x.s).toUpperCase())}</td><td class='l'>${esc((['kg1','kg2'].includes(base(c))?String(x.s):fullName(x.s)).toUpperCase())}</td><td>${n}</td><td>${x.k}</td><td>${x.abs}</td><td><b>${x.k?x.avg.toFixed(1):'-'}</b></td><td>${rk<0?'-':`<span class='rk' style='background:${RKC[rk%8]}'>${ordn(rk+1)}</span>`}</td><td class='${gcl(g)}'>${x.k?g+' - '+LB[g]:'-'}</td>${x.g.map(v=>`<td>${p2(v)}</td>`).join('')}</tr>`}).join(''))}
   <h4 class='kgh'>Full Student Results</h4>
   ${W(`<th>#</th><th>${esc(D.nameLabel||'Student Name')}</th><th>Gender</th>${S.map(s=>`<th>${esc(String(s).toUpperCase())}</th>`).join('')}<th>Total</th><th>Grade</th><th>Pos</th>`,shown.map((r,k)=>`<tr><td>${k+1}</td><td class='l'>${esc(r.name)}</td><td>${r.sex||'-'}</td>${r.marks.map(m=>{const g=m===null?'':gf(m);return `<td class='${g?gcl(g):''}'>${g||'--'}</td>`}).join('')}<td><b>${r.total}</b></td><td class='${r.gr==='ABS'?'':gcl(r.gr)}'><b>${r.gr}</b></td><td>${r.pos}</td></tr>`).join('')||`<tr><td colspan='${S.length+6}'>No students match your search.</td></tr>`)}
+  <h4 class='kgh'>Subjects Performance Summary</h4>
+  ${W(`<th>Short</th><th>Full Name</th><th>REG</th><th>SAT</th><th>ABS</th><th>AVG</th><th>Rank</th><th>Grade</th>${GL.map(g=>`<th>${g}</th>`).join('')}`,ss.map(x=>{const rk=order.indexOf(x),g=gf(x.avg);return `<tr><td>${esc(String(x.s).toUpperCase())}</td><td class='l'>${esc((['kg1','kg2'].includes(base(c))?String(x.s):fullName(x.s)).toUpperCase())}</td><td>${n}</td><td>${x.k}</td><td>${x.abs}</td><td><b>${x.k?x.avg.toFixed(1):'-'}</b></td><td>${rk<0?'-':`<span class='rk' style='background:${RKC[rk%8]}'>${ordn(rk+1)}</span>`}</td><td class='${gcl(g)}'>${x.k?g+' - '+LB[g]:'-'}</td>${x.g.map(v=>`<td>${p2(v)}</td>`).join('')}</tr>`}).join(''))}
   <p style='font-size:12px;color:var(--muted)'>Grades: ${s4?'A 81-100, B 61-80, C 41-60, D 21-40, F 0-20':'A+ 95-100, A 70-94, B 60-69, C 50-59, D 40-49, F below 40'}. Average = total marks divided by ${S.length} subjects. Subject AVG = average mark of the students who sat it.</p></div>`;
 }
 const perf=a=>a>=81?'Excellent':a>=61?'Good':a>=41?'Satisfactory':a>=21?'Weak':'Poor';
@@ -547,11 +561,12 @@ let RTERM='Second Term',RYEAR='2026',VIEWCLS=null;
 function rankBadge(n){return `<span class="rank-badge rank-${n<=10?n:10}">${ordn(n)}</span>`}
 function sAvg(c,r){const S=DATA[c].subjects,v=r.marks.filter(x=>x!==null),t=v.reduce((a,b)=>a+b,0),b=base(c);return v.length?((STDREP.includes(b)||isKG(b))?Math.min(100,t/S.length):t/v.length):0}
 function repHtml(c,q){const b=base(c);return NECTA.includes(b)?necta(c,q):STDREP.includes(b)?stdRep(c,q):isKG(b)?kgRep(c,q):report(c,q)}
-function cardsHtml(q){return classes().filter(c=>c.toLowerCase().includes(q)).map(c=>`<a class="school-card" data-open="${esc(c)}"><div><div class="name">${esc(c)}</div><div class="meta">Candidates: ${DATA[c].rows.length} &nbsp;|&nbsp; Exam: ${esc(c)} - ${esc(RTERM)} ${esc(RYEAR)}</div></div><div class="arrow">&#8250;</div></a>`).join('')}
+const PAL=['#1f9d4a','#e0a800','#7a3ac8','#2f6fdb','#d6336c','#e8590c','#0e9aa7','#8a6d1d'];
+function cardsHtml(q){const all=classes();return all.filter(c=>c.toLowerCase().includes(q)).map(c=>`<a class="school-card" style="--cc:${PAL[all.indexOf(c)%PAL.length]}" data-open="${esc(c)}"><div><div class="name">${esc(c)}</div><div class="meta">Candidates: ${DATA[c].rows.length} &nbsp;|&nbsp; Exam: ${esc(c)} - ${esc(RTERM)} ${esc(RYEAR)}</div></div><div class="arrow">&#8250;</div></a>`).join('')}
 function overallHtml(){
-  const stu=[],cav=[],subj={};let cand=0;
+  const stu=[],cav=[],subj={},top2=[];let cand=0;
   classes().forEach(c=>{const D=DATA[c],rs=D.rows.map(r=>({name:r.name,cls:c,avg:sAvg(c,r),has:r.marks.some(x=>x!==null)})).filter(r=>r.has);
-    rs.forEach(r=>stu.push(r));cand+=D.rows.length;cav.push({c,avg:rs.length?rs.reduce((a,r)=>a+r.avg,0)/rs.length:0,n:D.rows.length});
+    rs.forEach(r=>stu.push(r));top2.push({c,list:rs.slice().sort((a,b)=>b.avg-a.avg).slice(0,2)});cand+=D.rows.length;cav.push({c,avg:rs.length?rs.reduce((a,r)=>a+r.avg,0)/rs.length:0,n:D.rows.length});
     D.subjects.forEach((s,i)=>{const v=D.rows.map(r=>r.marks[i]).filter(x=>x!==null);if(!v.length)return;const k=fullName(s).toUpperCase();(subj[k]||(subj[k]={short:ab(s),list:[]})).list.push({c,avg:v.reduce((a,b)=>a+b,0)/v.length})})});
   if(!stu.length)return '<p>No marks yet.</p>';
   stu.sort((a,b)=>b.avg-a.avg);cav.sort((a,b)=>b.avg-a.avg);
@@ -561,6 +576,7 @@ function overallHtml(){
   <div class="ocard"><div class="label">Best Class</div><div class="value">${esc(cav[0].c)}</div><div class="sub">Average score: ${cav[0].avg.toFixed(1)}</div></div>
   <div class="ocard"><div class="label">Top Student</div><div class="value">${esc(stu[0].name)}</div><div class="sub">${esc(stu[0].cls)} &mdash; Average: ${stu[0].avg.toFixed(1)}</div></div></div>
   <div class="stitle">Top Students Overall (School)</div>${T('<th class="c">#</th><th>Student</th><th>Class</th><th class="c">Average</th>',stu.slice(0,10).map((r,i)=>`<tr><td class="c">${rankBadge(i+1)}</td><td>${esc(r.name)}</td><td>${lk(r.cls)}</td><td class="c"><b>${r.avg.toFixed(1)}</b></td></tr>`).join(''))}
+  <div class="stitle">Top 2 Students of Each Class</div>${T('<th>Class</th><th class="c">Position</th><th>Student</th><th class="c">Average</th>',top2.map((x,k)=>x.list.map((r,i)=>`<tr style="--cc:${PAL[k%PAL.length]}" class="t2"><td>${i?'':lk(x.c)}</td><td class="c">${rankBadge(i+1)}</td><td>${esc(r.name)}</td><td class="c"><b>${r.avg.toFixed(1)}</b></td></tr>`).join('')).join(''))}
   <div class="stitle">Best Classes Overall (By Average)</div>${T('<th class="c">#</th><th>Class</th><th class="c">Average Score</th><th class="c">Candidates</th>',cav.slice(0,10).map((x,i)=>`<tr><td class="c">${rankBadge(i+1)}</td><td>${lk(x.c)}</td><td class="c"><b>${x.avg.toFixed(1)}</b></td><td class="c">${x.n}</td></tr>`).join(''))}
   <div class="stitle">Best Class Per Subject</div>${T('<th>Short</th><th>Full Name</th><th>Best Class</th><th class="c">Average</th>',Object.keys(subj).map(k=>{const b=subj[k].list.sort((a,c)=>c.avg-a.avg)[0];return `<tr><td>${esc(subj[k].short)}</td><td>${esc(k)}</td><td>${lk(b.c)}</td><td class="c"><b>${b.avg.toFixed(1)}</b></td></tr>`}).join(''))}`;
 }
@@ -589,15 +605,16 @@ function openClass(c){VIEWCLS=c;history.pushState({cls:c},'');go('results')}
 function backList(){if(history.state&&history.state.cls)history.back();else{VIEWCLS=null;go('results')}}
 function drawCards(){const sq=$('#sq'),el=$('#clist');if(!el)return;const h=cardsHtml(sq?sq.value.trim().toLowerCase():'');el.innerHTML=h;const n=$('#nores');if(n)n.classList.toggle('hidden',!!h)}
 function tyUpdate(){const h=$('#rh2');if(h)h.textContent=RTERM.toUpperCase()+' EXAMINATION RESULTS — '+RYEAR;const c=$('#chipEx');if(c)c.innerHTML='Exam: <b>'+esc(RTERM)+' '+esc(RYEAR)+'</b>';drawCards()}
+function markStu(){document.querySelectorAll('#zbox table').forEach(t=>{const h=t.querySelector('th');if(h&&h.textContent.trim()==='#')t.classList.add('stu')})}
 function bindResults(){
-  const pn=$('#dpanel');if(!pn)return;
+  const pn=$('#dpanel');if(!pn)return;markStu();
   if(user&&$('#xf'))$('#xf').onchange=e=>e.target.files[0]&&upload(e.target.files[0]);
   const ch=$('#crHome');if(ch)ch.onclick=()=>go('home');
-  pn.onclick=e=>{const a=e.target.closest&&e.target.closest('[data-open]');if(a){e.preventDefault();openClass(a.dataset.open)}};
+  pn.onclick=e=>{const a=e.target.closest&&e.target.closest('[data-open]');if(a){e.preventDefault();openClass(a.dataset.open);return}const tr=e.target.closest&&e.target.closest('table.stu tr');if(tr&&!tr.querySelector('th')){const k=['','hl1','hl2','hl3'];let n=0;for(let i=1;i<4;i++)if(tr.classList.contains(k[i]))n=i;if(n)tr.classList.remove(k[n]);if(n<3)tr.classList.add(k[n+1])}};
   if(VIEWCLS){
     $('#bkl').onclick=e=>{e.preventDefault();backList()};
     bindZoom();
-    const q=$('#q');if(q)q.oninput=()=>{$('#zbox').innerHTML=repHtml(VIEWCLS,q.value.toLowerCase());applyZoom()};
+    const q=$('#q');if(q)q.oninput=()=>{$('#zbox').innerHTML=repHtml(VIEWCLS,q.value.toLowerCase());markStu();applyZoom()};
     if(user&&$('#delc'))arm($('#delc'),()=>{delete DATA[VIEWCLS];VIEWCLS=null;saveData();msg='Class deleted.';go('results')});
     applyZoom();
   }else{
