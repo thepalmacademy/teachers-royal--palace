@@ -161,6 +161,30 @@ nav .x{background:rgba(255,255,255,.6);color:#0f294a;border-radius:12px;margin:0
 
 @media print{body{background:#fff!important}footer{background:none}}
 .hero{border-top:1px solid #2b456e;border-bottom:6px solid #132238}
+/* ===== Results page (class list + class pages) ===== */
+.rhead{background:linear-gradient(180deg,#132238,#0b1524);color:#fff;text-align:center;padding:18px 16px 20px;border-bottom:5px solid #d49b27;border-radius:14px;margin:0 auto 14px;max-width:960px}
+.rhead .crest{width:64px;height:64px;border-radius:50%;background:#fff;border:3px solid #d49b27;margin:0 auto 8px;display:grid;place-items:center;font-size:30px;overflow:hidden}.rhead .crest img{width:100%;height:100%;object-fit:contain}
+.rhead h1{margin:4px 0 2px;font-size:24px;letter-spacing:.5px;color:#fff}.rhead h2{margin:0;font-size:15px;font-weight:400;color:#dfe6f5}.rhead .sub{margin-top:8px;font-size:12.5px;color:#b9c4dd}
+.dpanel{background:var(--card);border-radius:14px;padding:16px;max-width:960px;margin:0 auto;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.crumb{font-size:13px;color:var(--muted);margin-bottom:10px}.crumb a{color:var(--navy);font-weight:600;cursor:pointer;text-decoration:none}
+.sbar{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 12px}.sbar input,.sbar select{margin:0}.sbar #sq{flex:3;min-width:200px}.sbar select,.sbar #yr{flex:1;min-width:110px}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.chip{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-size:13px;color:var(--muted)}.chip b{color:var(--navy);font-size:15px}
+.clist{display:grid;gap:10px}
+.school-card{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--navy);border-radius:8px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:inherit;text-decoration:none;transition:box-shadow .15s,transform .15s}
+.school-card:hover{box-shadow:0 4px 14px rgba(11,35,80,.18);transform:translateY(-1px)}
+.school-card .name{font-weight:700;font-size:15px;color:var(--navy)}.school-card .meta{font-size:12.5px;color:var(--muted);margin-top:3px}.school-card .arrow{font-size:22px;color:#d49b27}
+.nores{text-align:center;color:var(--muted);padding:26px 0}.nores.hidden{display:none}
+.osec{margin-top:26px;padding-top:16px;border-top:3px solid #d49b27}.osec h2{color:var(--navy);font-size:17px;margin:0 0 10px}
+.ocards{display:grid;gap:10px;margin-bottom:14px}.ocard{background:var(--card);border:1px solid var(--line);border-left:5px solid #d49b27;border-radius:8px;padding:12px 14px}.ocard .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}.ocard .value{font-size:15px;font-weight:700;color:var(--navy);margin-top:3px}.ocard .sub{font-size:12.5px;color:var(--muted);margin-top:2px}
+.stitle{font-size:15px;font-weight:700;color:var(--navy);margin:22px 0 10px;padding-bottom:6px;border-bottom:2px solid #d49b27}
+table.otable{width:100%;border-collapse:collapse;font-size:12.5px}table.otable th{background:var(--navy);color:#fff;padding:7px 6px;text-align:left;cursor:default}table.otable td{padding:6px;border-bottom:1px solid var(--line)}table.otable tr:nth-child(even){background:var(--bg)}table.otable a{color:var(--navy);font-weight:600;cursor:pointer;text-decoration:underline}
+table.otable .c{text-align:center}
+.rank-badge{display:inline-block;min-width:34px;padding:3px 8px;border-radius:20px;font-weight:800;font-size:12.5px;text-align:center;color:#fff}
+.rank-1{background:#c8a13a}.rank-2{background:#9aa4b2}.rank-3{background:#a9662f}.rank-4{background:#3a6bc8}.rank-5{background:#3aa1c8}.rank-6{background:#6a3ac8}.rank-7{background:#c83a7a}.rank-8{background:#5c6473}.rank-9{background:#1f7a3d}.rank-10{background:#a3212a}
+.back-link{display:inline-block;margin-bottom:12px;color:var(--navy);font-weight:600;font-size:13.5px;cursor:pointer;text-decoration:none}.back-link:hover{text-decoration:underline}
+.dh{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin-bottom:12px;text-align:center}.dh h2{margin:0 0 4px;color:var(--navy);font-size:19px}.dh .ey{color:var(--muted);font-size:13px}
+@media print{.rhead,.crumb,.back-link,.zbar,.tools{display:none!important}.dpanel{box-shadow:none;padding:0;background:#fff;max-width:none}}
+
 </style>
 </head>
 <body>
@@ -213,7 +237,7 @@ async function upFile(path,file){const {error}=await sb.storage.from('palm-schoo
 async function putImg(d,path){if(!sb)return d;try{return await upFile(path,toBlob(d))}catch(e){ERR=e.message;return null}}
 function logout(){user=null;if(sb)sb.auth.signOut();updNav()}
 const setLogo=u=>{$("#logoBox").innerHTML=`<img alt="School logo" src="${u}">`};
-const ORDER=["kg1","kg2","kg3","std1","std2","std3","std4","std5","std6","std7","form1","form2","form3"];
+const ORDER=["kg1","kg2","kg3","std1","std2","std3","std4","std5","std6","std7","form1","form2","form3","form4"];
 const key=c=>String(c).toLowerCase().replace(/standard|class|darasa/g,"std").replace(/[^a-z0-9]/g,"");
 const grade=m=>m>=81?"A":m>=61?"B":m>=41?"C":m>=21?"D":"F";
 let DATA={},user=null,sort="rank",msg="";
@@ -350,7 +374,7 @@ function bindLib(p){
     LM='Added.';go(p);
   };
 }
-const NECTA=['form1','form2','form3'];
+const NECTA=['form1','form2','form3','form4'];
 const CENTRE={location:'Tunguu-Zanzibar'}; // change to your school location
 const np=m=>m>=75?1:m>=65?2:m>=45?3:m>=30?4:5,ng=m=>['','A','B','C','D','F'][np(m)];
 const SCODE={eng:201,kisw:202,htm:250,dini:207,geo:209,'b/s':252,math:204,bio:217,phy:215,che:216,arb:208,hist:211,english:201,kiswahili:202,'historia na maadili':250,geography:209,'business study':252,'business studies':252,mathematics:204,maths:204,biology:217,physics:215,chemistry:216,arabic:208,'arabic language':208,history:211};
@@ -372,7 +396,7 @@ function necta(c,q){
   const order=ss.filter(x=>x.k).sort((a,b)=>a.gpa-b.gpa);
   const cg=ent?gp/ent:0,cc=comp(cg),cell=(t,bg)=>`<td style='background:${bg};color:#000;font-weight:700'>${t}</td>`;
   const T=(h,b,st,cl)=>`<div class='wrap ${cl||''}'><table style='${st||''}'><tr>${h}</tr>${b}</table></div>`;
-  return `<div class='rpt nt'><div class='rh'>${lg?`<img src='${lg.src}' alt='Logo'><br>`:''}<h1>THE PALM ACADEMY</h1><h2>${esc($('#trm').value)} Examination Results - ${esc($('#yr').value)}</h2><h3>${esc(c)}</h3></div>
+  return `<div class='rpt nt'><div class='rh'>${lg?`<img src='${lg.src}' alt='Logo'><br>`:''}<h1>THE PALM ACADEMY</h1><h2>${esc(RTERM)} Examination Results - ${esc(RYEAR)}</h2><h3>${esc(c)}</h3></div>
   <div class='sech l2'>DIVISION PERFORMANCE SUMMARY</div>
   ${T(`<th>SEX</th>${DV.map(d=>`<th>${d}</th>`).join('')}`,[['M','M'],['F','F'],['','T']].map(([sx,l])=>`<tr><td><b>${l}</b></td>${DV.map(d=>`<td>${cnt(sx,d)}</td>`).join('')}</tr>`).join(''),'width:auto;margin:0;min-width:300px','dbl')}
   <div class='sech l2' style='margin-top:24px'>STUDENTS RESULTS</div>
@@ -404,7 +428,7 @@ function stdRep(c,q){
     return {s,k,reg:n,abs:n-k,pass:rows.filter(r=>gOf(r,i)&&gOf(r,i)!=='F').length,avg:k?v.reduce((a,b)=>a+b,0)/k:0,g}});
   const order=ss.filter(x=>x.k).sort((a,b)=>b.avg-a.avg),p2=x=>String(x).padStart(2,'0');
   const T=(h,b,st,cl)=>`<div class='wrap ${cl||''}'><table style='${st||''}'><tr>${h}</tr>${b}</table></div>`;
-  return `<div class='rpt nt nstd'><div class='rh'>${lg?`<img src='${lg.src}' alt='Logo'><br>`:''}<h1>THE PALM ACADEMY</h1><h2>${esc($('#trm').value)} Examination Results - ${esc($('#yr').value)}</h2><h3>${esc(c)}</h3></div>
+  return `<div class='rpt nt nstd'><div class='rh'>${lg?`<img src='${lg.src}' alt='Logo'><br>`:''}<h1>THE PALM ACADEMY</h1><h2>${esc(RTERM)} Examination Results - ${esc(RYEAR)}</h2><h3>${esc(c)}</h3></div>
   <div class='sech l2'>GRADE PERFORMANCE SUMMARY</div>
   ${T(`<th>SEX</th>${G.map(g=>`<th>${g}</th>`).join('')}`,[['F','F'],['M','M'],['','T']].map(([sx,l])=>`<tr><td><b>${l}</b></td>${G.map(g=>`<td>${cnt(sx,g)}</td>`).join('')}</tr>`).join(''),'width:auto;margin:0;min-width:300px','dbl')}
   <div class='sech l2' style='margin-top:24px'>STUDENTS RESULTS</div>
@@ -429,13 +453,13 @@ function kgRep(c,q){
   const ss=S.map((s,i)=>{const v=rows.map(r=>r.marks[i]).filter(x=>x!==null),k=v.length;return {s,k,abs:n-k,avg:k?v.reduce((a,b)=>a+b,0)/k:0,g:GL.map(x=>v.filter(m=>gf(m)===x).length)}});
   const order=ss.filter(x=>x.k).sort((a,b)=>b.avg-a.avg);
   const W=(h,b)=>`<div class='wrap'><table><tr>${h}</tr>${b}</table></div>`;
-  return `<div class='rpt kg'><div class='rh'>${lg?`<img src='${lg.src}' alt='Logo'><br>`:''}<h1>THE PALM ACADEMY</h1><h2>${esc($('#trm').value)} Examination Results - ${esc($('#yr').value)}</h2><h3>${esc(c)}</h3></div>
+  return `<div class='rpt kg'><div class='dh'><h2>${esc(c)}</h2><div class='ey'>RESULTS SHEET: ${esc(c.toUpperCase())} &mdash; ${esc(RTERM.toUpperCase())} EXAMINATION (${esc(RYEAR)})</div></div>
   <h4 class='kgh'>Average Grade Summary</h4>
   ${W(`<th>Average Grade</th>${GL.map(g=>`<th>${g}</th>`).join('')}`,[['M','Male'],['F','Female'],['','Total']].map(([sx,l])=>`<tr><td class='l'>${sx?l:`<b>${l}</b>`}</td>${GL.map(g=>`<td>${sx?cnt(sx,g):`<b>${cnt('',g)}</b>`}</td>`).join('')}</tr>`).join(''))}
-  <h4 class='kgh'>Full Student Results</h4>
-  ${W(`<th>#</th><th>${esc(D.nameLabel||'Student Name')}</th><th>Gender</th>${S.map(s=>`<th>${esc(String(s).toUpperCase())}</th>`).join('')}<th>Total</th><th>Grade</th><th>Pos</th>`,shown.map((r,k)=>`<tr><td>${k+1}</td><td class='l'>${esc(r.name)}</td><td>${r.sex||'-'}</td>${r.marks.map(m=>{const g=m===null?'':gf(m);return `<td class='${g?gcl(g):''}'>${g||'--'}</td>`}).join('')}<td><b>${r.total}</b></td><td class='${r.gr==='ABS'?'':gcl(r.gr)}'><b>${r.gr}</b></td><td>${r.pos}</td></tr>`).join('')||`<tr><td colspan='${S.length+6}'>No students match your search.</td></tr>`)}
   <h4 class='kgh'>Subjects Performance Summary</h4>
   ${W(`<th>Short</th><th>Full Name</th><th>REG</th><th>SAT</th><th>ABS</th><th>AVG</th><th>Rank</th><th>Grade</th>${GL.map(g=>`<th>${g}</th>`).join('')}`,ss.map(x=>{const rk=order.indexOf(x),g=gf(x.avg);return `<tr><td>${esc(String(x.s).toUpperCase())}</td><td class='l'>${esc((['kg1','kg2'].includes(base(c))?String(x.s):fullName(x.s)).toUpperCase())}</td><td>${n}</td><td>${x.k}</td><td>${x.abs}</td><td><b>${x.k?x.avg.toFixed(1):'-'}</b></td><td>${rk<0?'-':`<span class='rk' style='background:${RKC[rk%8]}'>${ordn(rk+1)}</span>`}</td><td class='${gcl(g)}'>${x.k?g+' - '+LB[g]:'-'}</td>${x.g.map(v=>`<td>${p2(v)}</td>`).join('')}</tr>`}).join(''))}
+  <h4 class='kgh'>Full Student Results</h4>
+  ${W(`<th>#</th><th>${esc(D.nameLabel||'Student Name')}</th><th>Gender</th>${S.map(s=>`<th>${esc(String(s).toUpperCase())}</th>`).join('')}<th>Total</th><th>Grade</th><th>Pos</th>`,shown.map((r,k)=>`<tr><td>${k+1}</td><td class='l'>${esc(r.name)}</td><td>${r.sex||'-'}</td>${r.marks.map(m=>{const g=m===null?'':gf(m);return `<td class='${g?gcl(g):''}'>${g||'--'}</td>`}).join('')}<td><b>${r.total}</b></td><td class='${r.gr==='ABS'?'':gcl(r.gr)}'><b>${r.gr}</b></td><td>${r.pos}</td></tr>`).join('')||`<tr><td colspan='${S.length+6}'>No students match your search.</td></tr>`)}
   <p style='font-size:12px;color:var(--muted)'>Grades: ${s4?'A 81-100, B 61-80, C 41-60, D 21-40, F 0-20':'A+ 95-100, A 70-94, B 60-69, C 50-59, D 40-49, F below 40'}. Average = total marks divided by ${S.length} subjects. Subject AVG = average mark of the students who sat it.</p></div>`;
 }
 const perf=a=>a>=81?'Excellent':a>=61?'Good':a>=41?'Satisfactory':a>=21?'Weak':'Poor';
@@ -448,7 +472,7 @@ function report(c,q){
   const shown=rows.filter(r=>r.name.toLowerCase().includes(q));
   const ss=S.map((s,i)=>{const v=rows.map(r=>r.marks[i]).filter(x=>x!==null),k=v.length,av=k?v.reduce((a,b)=>a+b,0)/k:0;return {s,k,av,hi:k?Math.max(...v):0,lo:k?Math.min(...v):0,ps:k?Math.round(v.filter(x=>x>=41).length/k*100):0}});
   const best=ss.slice().sort((a,b)=>b.av-a.av)[0],worst=ss.slice().sort((a,b)=>a.av-b.av)[0];
-  return `<div class='rpt'><div class='rh'>${lg?`<img src='${lg.src}' alt='Logo'>`:''}<h1>THE PALM ACADEMY</h1><h2>${esc($('#trm').value)} Examination Results - ${esc($('#yr').value)}</h2><h3>${esc(c)}</h3></div>
+  return `<div class='rpt'><div class='rh'>${lg?`<img src='${lg.src}' alt='Logo'>`:''}<h1>THE PALM ACADEMY</h1><h2>${esc(RTERM)} Examination Results - ${esc(RYEAR)}</h2><h3>${esc(c)}</h3></div>
   <h4>Grade summary</h4><div class='wrap'><table><tr><th>Grade</th>${Object.keys(gs).map(g=>`<th>${g}</th>`).join('')}<th>Students</th><th>Class average</th><th>Pass rate (C and above)</th></tr>
   <tr><td>Number of students</td>${Object.values(gs).map(v=>`<td>${v}</td>`).join('')}<td><b>${n}</b></td><td><b>${cav.toFixed(1)}</b></td><td><b>${n?Math.round((gs.A+gs.B+gs.C)/n*100):0}%</b></td></tr></table></div>
   <h4>Student results</h4><div class='wrap'><table><tr><th>Pos</th><th>Name</th>${S.map(s=>`<th>${esc(s)}</th>`).join('')}<th>Total</th><th>Avg</th><th>Grade</th></tr>
@@ -517,13 +541,70 @@ login:()=>`<div class="card login"><div class="avatar">&#128100;</div><h2 style=
 <input id="u" placeholder="${sb?'Admin email':'Username'}" autocomplete="username"><input id="p" type="password" placeholder="Password" autocomplete="current-password">
 <div class="err" id="err"></div><button id="lb">Log in</button></div>`
 };
-function dash(){return `<div class="card">${user?`<div class="out"><span style="margin-right:12px">Signed in as <b>Admin</b></span><button onclick="logout();go('home')">Log out</button></div>
-<div class="bar selbar"><label style="flex:2">Upload results (Excel .xlsx)<input type="file" id="xf" accept=".xlsx,.xls"></label><button onclick="template()" style="background:#444;box-shadow:none">Download template</button></div>`:''}
-<p class="err" style="color:var(--navy)">${msg}</p>
-${classes().length?`<div class="bar selbar"><label>Class<select id="cls">${classes().map(c=>`<option>${c}</option>`).join("")}<option value="ALL">All classes</option></select></label>
-<label>Term<select id="trm"><option>First Term</option><option selected>Second Term</option><option>Third Term</option></select></label><label>Year<input id="yr" value="2026"></label>
-<label>Search student<input id="q" placeholder="Name"></label><button id="vw" class="onlyph">View results</button><button onclick="window.print()">Print</button>${user?`<button id="delc" style="background:#8a1c1c;box-shadow:none">Delete class</button><button id="dela" style="background:#8a1c1c;box-shadow:none">Delete all results</button>`:''}</div>
-<div class="bar zbar" style="align-items:center;gap:8px"><button id="bk" class="onlyfs" style="background:#444;box-shadow:none">&larr; Back</button><span>Zoom:</span><button id="zm" style="padding:8px 16px">&minus;</button><b id="zv">100%</b><button id="zp" style="padding:8px 16px">+</button><button id="zf" style="padding:8px 14px;background:#444;box-shadow:none">Fit to screen</button><button class="onlyfs" onclick="window.print()" style="padding:8px 14px">Print</button></div><div id="zbox"><div class="stats" id="stats"></div><div class="wrap"><table id="tbl"></table></div><div id="rep"></div></div>`:`<p>${user?'No results yet. Upload your Excel file above. Use one sheet per class (for example “KG1 EAST” or “Std 4”), with the student name or exam number, then one column per subject, then TOTAL.':'No results have been published yet.'}</p>`}</div>`}
+// ===== RESULTS PAGE: heading, class list, overall summary, one page per class =====
+let RTERM='Second Term',RYEAR='2026',VIEWCLS=null;
+function rankBadge(n){return `<span class="rank-badge rank-${n<=10?n:10}">${ordn(n)}</span>`}
+function sAvg(c,r){const S=DATA[c].subjects,v=r.marks.filter(x=>x!==null),t=v.reduce((a,b)=>a+b,0),b=base(c);return v.length?((STDREP.includes(b)||isKG(b))?Math.min(100,t/S.length):t/v.length):0}
+function repHtml(c,q){const b=base(c);return NECTA.includes(b)?necta(c,q):STDREP.includes(b)?stdRep(c,q):isKG(b)?kgRep(c,q):report(c,q)}
+function cardsHtml(q){return classes().filter(c=>c.toLowerCase().includes(q)).map(c=>`<a class="school-card" data-open="${esc(c)}"><div><div class="name">${esc(c)}</div><div class="meta">Candidates: ${DATA[c].rows.length} &nbsp;|&nbsp; Exam: ${esc(c)} - ${esc(RTERM)} ${esc(RYEAR)}</div></div><div class="arrow">&#8250;</div></a>`).join('')}
+function overallHtml(){
+  const stu=[],cav=[],subj={};let cand=0;
+  classes().forEach(c=>{const D=DATA[c],rs=D.rows.map(r=>({name:r.name,cls:c,avg:sAvg(c,r),has:r.marks.some(x=>x!==null)})).filter(r=>r.has);
+    rs.forEach(r=>stu.push(r));cand+=D.rows.length;cav.push({c,avg:rs.length?rs.reduce((a,r)=>a+r.avg,0)/rs.length:0,n:D.rows.length});
+    D.subjects.forEach((s,i)=>{const v=D.rows.map(r=>r.marks[i]).filter(x=>x!==null);if(!v.length)return;const k=fullName(s).toUpperCase();(subj[k]||(subj[k]={short:ab(s),list:[]})).list.push({c,avg:v.reduce((a,b)=>a+b,0)/v.length})})});
+  if(!stu.length)return '<p>No marks yet.</p>';
+  stu.sort((a,b)=>b.avg-a.avg);cav.sort((a,b)=>b.avg-a.avg);
+  const all=stu.reduce((a,r)=>a+r.avg,0)/stu.length,lk=c=>`<a data-open="${esc(c)}">${esc(c)}</a>`;
+  const T=(h,b)=>`<div class="wrap"><table class="otable"><thead><tr>${h}</tr></thead><tbody>${b}</tbody></table></div>`;
+  return `<div class="ocards"><div class="ocard"><div class="label">School Average</div><div class="value">${all.toFixed(1)} marks</div><div class="sub">From ${cav.length} classes, ${cand} candidates</div></div>
+  <div class="ocard"><div class="label">Best Class</div><div class="value">${esc(cav[0].c)}</div><div class="sub">Average score: ${cav[0].avg.toFixed(1)}</div></div>
+  <div class="ocard"><div class="label">Top Student</div><div class="value">${esc(stu[0].name)}</div><div class="sub">${esc(stu[0].cls)} &mdash; Average: ${stu[0].avg.toFixed(1)}</div></div></div>
+  <div class="stitle">Top Students Overall (School)</div>${T('<th class="c">#</th><th>Student</th><th>Class</th><th class="c">Average</th>',stu.slice(0,10).map((r,i)=>`<tr><td class="c">${rankBadge(i+1)}</td><td>${esc(r.name)}</td><td>${lk(r.cls)}</td><td class="c"><b>${r.avg.toFixed(1)}</b></td></tr>`).join(''))}
+  <div class="stitle">Best Classes Overall (By Average)</div>${T('<th class="c">#</th><th>Class</th><th class="c">Average Score</th><th class="c">Candidates</th>',cav.slice(0,10).map((x,i)=>`<tr><td class="c">${rankBadge(i+1)}</td><td>${lk(x.c)}</td><td class="c"><b>${x.avg.toFixed(1)}</b></td><td class="c">${x.n}</td></tr>`).join(''))}
+  <div class="stitle">Best Class Per Subject</div>${T('<th>Short</th><th>Full Name</th><th>Best Class</th><th class="c">Average</th>',Object.keys(subj).map(k=>{const b=subj[k].list.sort((a,c)=>c.avg-a.avg)[0];return `<tr><td>${esc(subj[k].short)}</td><td>${esc(k)}</td><td>${lk(b.c)}</td><td class="c"><b>${b.avg.toFixed(1)}</b></td></tr>`}).join(''))}`;
+}
+function listHtml(){
+  const cl=classes(),cand=cl.reduce((a,c)=>a+DATA[c].rows.length,0);
+  const tools=user?`<div class="bar tools"><label style="flex:2">Upload results (Excel .xlsx)<input type="file" id="xf" accept=".xlsx,.xls"></label><button onclick="template()" style="background:#444;box-shadow:none">Download template</button>${cl.length?`<button id="dela" style="background:#8a1c1c;box-shadow:none">Delete all results</button>`:''}</div>`:'';
+  if(!cl.length)return tools+`<p>${user?'No results yet. Upload your Excel file above. Use one sheet per class (for example “KG1 EAST” or “Std 4”), with the student name or exam number, then one column per subject, then TOTAL.':'No results have been published yet.'}</p>`;
+  return tools+`<div class="sbar"><input id="sq" placeholder="Search class by name..."><select id="trm">${['First Term','Second Term','Third Term'].map(t=>`<option${t===RTERM?' selected':''}>${t}</option>`).join('')}</select><input id="yr" value="${esc(RYEAR)}"></div>
+  <div class="chips"><div class="chip"><b>${cl.length}</b> Classes</div><div class="chip"><b>${cand}</b> Candidates</div><div class="chip" id="chipEx">Exam: <b>${esc(RTERM)} ${esc(RYEAR)}</b></div></div>
+  <div class="clist" id="clist">${cardsHtml('')}</div><div class="nores hidden" id="nores">No class found.</div>
+  <div class="osec"><h2>Overall School Summary</h2>${overallHtml()}</div>`;
+}
+function detailHtml(){
+  return `<a class="back-link" id="bkl">&larr; Back to class list</a>
+  <div class="bar zbar" style="align-items:center;gap:8px"><span>Zoom:</span><button id="zm" style="padding:8px 16px">&minus;</button><b id="zv">100%</b><button id="zp" style="padding:8px 16px">+</button><button id="zf" style="padding:8px 14px;background:#444;box-shadow:none">Fit to screen</button><label style="flex:1;min-width:140px">Search student<input id="q" placeholder="Name"></label><button onclick="window.print()">Print</button>${user?`<button id="delc" style="background:#8a1c1c;box-shadow:none">Delete this class</button>`:''}</div>
+  <div id="zbox">${repHtml(VIEWCLS,'')}</div>`;
+}
+function dash(){
+  if(VIEWCLS&&!DATA[VIEWCLS])VIEWCLS=null;
+  const lg=$('#logoBox img');
+  return `<header class="rhead"><div class="crest">${lg?`<img src="${lg.src}" alt="Logo">`:'🌴'}</div><h1>THE PALM ACADEMY</h1><h2 id="rh2">${esc(RTERM.toUpperCase())} EXAMINATION RESULTS &mdash; ${esc(RYEAR)}</h2><div class="sub">Open to everyone &middot; no login needed</div></header>
+  <div class="dpanel" id="dpanel"><div class="crumb"><a id="crHome">Home</a> / <span>Results${VIEWCLS?' / '+esc(VIEWCLS):''}</span></div>
+  <p class="err" style="color:var(--navy)">${msg}</p>${VIEWCLS?detailHtml():listHtml()}</div>`;
+}
+function openClass(c){VIEWCLS=c;history.pushState({cls:c},'');go('results')}
+function backList(){if(history.state&&history.state.cls)history.back();else{VIEWCLS=null;go('results')}}
+function drawCards(){const sq=$('#sq'),el=$('#clist');if(!el)return;const h=cardsHtml(sq?sq.value.trim().toLowerCase():'');el.innerHTML=h;const n=$('#nores');if(n)n.classList.toggle('hidden',!!h)}
+function tyUpdate(){const h=$('#rh2');if(h)h.textContent=RTERM.toUpperCase()+' EXAMINATION RESULTS — '+RYEAR;const c=$('#chipEx');if(c)c.innerHTML='Exam: <b>'+esc(RTERM)+' '+esc(RYEAR)+'</b>';drawCards()}
+function bindResults(){
+  const pn=$('#dpanel');if(!pn)return;
+  if(user&&$('#xf'))$('#xf').onchange=e=>e.target.files[0]&&upload(e.target.files[0]);
+  const ch=$('#crHome');if(ch)ch.onclick=()=>go('home');
+  pn.onclick=e=>{const a=e.target.closest&&e.target.closest('[data-open]');if(a){e.preventDefault();openClass(a.dataset.open)}};
+  if(VIEWCLS){
+    $('#bkl').onclick=e=>{e.preventDefault();backList()};
+    bindZoom();
+    const q=$('#q');if(q)q.oninput=()=>{$('#zbox').innerHTML=repHtml(VIEWCLS,q.value.toLowerCase());applyZoom()};
+    if(user&&$('#delc'))arm($('#delc'),()=>{delete DATA[VIEWCLS];VIEWCLS=null;saveData();msg='Class deleted.';go('results')});
+    applyZoom();
+  }else{
+    const sq=$('#sq');if(sq)sq.oninput=drawCards;
+    const t=$('#trm'),y=$('#yr');if(t)t.onchange=()=>{RTERM=t.value;tyUpdate()};if(y)y.oninput=()=>{RYEAR=y.value;tyUpdate()};
+    if(user&&$('#dela'))arm($('#dela'),()=>{DATA={};saveData();msg='All results deleted.';go('results')});
+  }
+}
 let ZOOM=null,FS=false;
 function applyZoom(){const z0=$('#zbox');if(!z0)return;z0.style.zoom=1;let z=ZOOM;
   if(z===null){if(window.innerWidth>800)z=1;else{const tw=Math.max(1,...[...z0.querySelectorAll('table')].map(t=>t.scrollWidth)),cw=(z0.parentElement?z0.parentElement.clientWidth:z0.clientWidth)||window.innerWidth-32;z=Math.min(1,Math.max(.22,(cw-4)/tw))}}
@@ -531,37 +612,16 @@ function applyZoom(){const z0=$('#zbox');if(!z0)return;z0.style.zoom=1;let z=ZOO
 function printFit(){const z0=$('#zbox');if(!z0)return;z0.style.zoom=1;const tw=Math.max(1,...[...z0.querySelectorAll('table')].map(t=>t.scrollWidth));z0.style.zoom=Math.min(1,720/tw)}
 window.addEventListener('beforeprint',printFit);window.addEventListener('afterprint',()=>{applyZoom()});
 function setZ(z){ZOOM=Math.max(.2,Math.min(2.5,z));applyZoom()}
-function bindZoom(){const m=$('#zm'),p=$('#zp'),f=$('#zf');if(!m)return;const bk=$('#bk'),vw=$('#vw');if(bk)bk.onclick=()=>{FS=false;document.body.classList.remove('fs');render();window.scrollTo(0,0)};if(vw)vw.onclick=()=>{FS=true;document.body.classList.add('fs');render();window.scrollTo(0,0)};
+function bindZoom(){const m=$('#zm'),p=$('#zp'),f=$('#zf');if(!m)return;
   m.onclick=()=>setZ((window.curZ||1)-.1);p.onclick=()=>setZ((window.curZ||1)+.1);f.onclick=()=>{ZOOM=null;applyZoom()}}
 window.addEventListener('resize',()=>{if(ZOOM===null&&$('#zbox'))applyZoom()});
-function render(){
-  const c=$("#cls").value,q=$("#q").value.toLowerCase(),one=c!=="ALL",subs=one?DATA[c].subjects:[];
-  let rows=[];
-  (one?[c]:classes()).forEach(k=>{const g=DATA[k].rows.map(r=>{const v=r.marks.filter(x=>x!==null);const t=v.reduce((a,b)=>a+b,0);return {...r,cls:k,total:t,avg:v.length?t/v.length:0}});
-    g.slice().sort((a,b)=>b.total-a.total).forEach((r,i)=>r.rank=i+1);rows.push(...g)});
-  rows=rows.filter(r=>r.name.toLowerCase().includes(q));
-  rows.sort((a,b)=>sort==="name"?a.name.localeCompare(b.name):(one?0:classes().indexOf(a.cls)-classes().indexOf(b.cls))||a.rank-b.rank);
-  const all=rows.length?rows.reduce((a,r)=>a+r.avg,0)/rows.length:0,top=rows.slice().sort((a,b)=>b.avg-a.avg)[0];
-  $("#stats").innerHTML=`<div class="stat"><b>${rows.length}</b>Students</div><div class="stat"><b>${all.toFixed(1)}</b>Average</div><div class="stat"><b>${top?top.name.split(" ")[0]:"-"}</b>Top student</div><div class="stat"><b>${rows.filter(r=>r.avg>=41).length}</b>Passed (C and above)</div>`;
-  $("#tbl").innerHTML=`<tr><th data-s="rank">Rank</th><th data-s="name">Student</th>${one?"":"<th>Class</th>"}${subs.map(s=>`<th>${s}</th>`).join("")}<th>Total</th><th>Avg</th><th>Grade</th></tr>`+
-  (rows.length?rows.map(r=>`<tr><td>${r.rank}</td><td>${r.name}</td>${one?"":`<td>${r.cls}</td>`}${r.marks.map(m=>m===null?"<td>-</td>":`<td>${m} <span class="g g${grade(m)}">${grade(m)}</span></td>`).join("")}<td><b>${r.total}</b></td><td>${r.avg.toFixed(1)}</td><td><span class="g g${grade(r.avg)}">${grade(r.avg)}</span></td></tr>`).join(""):`<tr><td colspan="12">No students match your search.</td></tr>`);
-  document.querySelectorAll("th[data-s]").forEach(t=>t.onclick=()=>{sort=t.dataset.s;render()});
-  const showIt=true;
-  $('#rep').innerHTML=one?(NECTA.includes(base(c))?necta(c,q):STDREP.includes(base(c))?stdRep(c,q):isKG(base(c))?kgRep(c,q):report(c,q)):'';if(one){$('#stats').innerHTML='';$('#tbl').innerHTML=''}applyZoom();
-}
 const updNav=()=>{const l=$('#loginLink');if(l)l.textContent=user?'Log out':'Admin Login';const b=$('#logoBox');if(b)b.style.cursor=user?'pointer':'default'};
 function go(p){
   FS=false;document.body.classList.remove('fs');
   if(p==='login'&&user){logout();p='home'}CUR=p;
   document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.p===p));
   $("#main").innerHTML=pages[p]();window.scrollTo(0,0);clearInterval(window.tm);if(p==="home")startBg();if(LIB[p])bindLib(p);if(p==='gallery')bindGal();if(p==='staff')bindStaff();
-  if(p==="results"){
-    if(user&&$("#xf"))$("#xf").onchange=e=>e.target.files[0]&&upload(e.target.files[0]);
-    if(classes().length){$("#cls").onchange=render;$("#q").oninput=render;$("#trm").onchange=render;$("#yr").oninput=render;bindZoom();
-      if(user){arm($('#delc'),()=>{const c=$('#cls').value;if(c==='ALL'){msg='Choose one class first, then delete it.'}else{delete DATA[c];saveData();msg='Deleted '+c+'.'}go('results')});
-      arm($('#dela'),()=>{DATA={};saveData();msg='All results deleted.';go('results')})}
-      render()}
-  }
+  if(p==="results")bindResults();
   if(p==="login"){
     $("#lb").onclick=async()=>{const em=$("#u").value.trim(),pw=$("#p").value,bad=()=>{$("#err").textContent="Wrong email or password. Check both and try again."};
       if(sb){const {error}=await sb.auth.signInWithPassword({email:em,password:pw});if(error)return bad();user={name:'Admin',email:em};msg="";go("results")}
@@ -570,7 +630,8 @@ function go(p){
   }
   updNav();
 }
-document.querySelectorAll("[data-p]").forEach(a=>a.onclick=()=>go(a.dataset.p));
+document.querySelectorAll("[data-p]").forEach(a=>a.onclick=()=>{VIEWCLS=null;go(a.dataset.p)});
+window.addEventListener("popstate",e=>{if(CUR==="results"){VIEWCLS=(e.state&&e.state.cls)||null;go("results")}});
 $("#logoFile").onclick=e=>{if(!user)e.preventDefault()};
 $("#logoFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;const d=await shrink(f,400,.9),u=d&&await putImg(d,'logo-'+Date.now()+'.jpg');if(!u)return;setLogo(u);persist('palmLogo',u)};
 try{const l=JSON.parse(LS('palmLogo')||'null');if(l)setLogo(l)}catch(e){}
