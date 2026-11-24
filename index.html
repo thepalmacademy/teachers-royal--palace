@@ -185,6 +185,7 @@ table.otable .c{text-align:center}
 .dh{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin-bottom:12px;text-align:center}.dh h2{margin:0 0 4px;color:var(--navy);font-size:19px}.dh .ey{color:var(--muted);font-size:13px}
 @media print{.rhead,.crumb,.back-link,.zbar,.tools{display:none!important}.dpanel{box-shadow:none;padding:0;background:#fff;max-width:none}}
 
+@media (max-width:800px){.rhead{padding:14px 12px 16px}.rhead .crest{width:56px;height:56px}.rhead h1{font-size:20px}.rhead h2{font-size:13px}}
 </style>
 </head>
 <body>
@@ -580,7 +581,7 @@ function detailHtml(){
 function dash(){
   if(VIEWCLS&&!DATA[VIEWCLS])VIEWCLS=null;
   const lg=$('#logoBox img');
-  return `<header class="rhead"><div class="crest">${lg?`<img src="${lg.src}" alt="Logo">`:'🌴'}</div><h1>THE PALM ACADEMY</h1><h2 id="rh2">${esc(RTERM.toUpperCase())} EXAMINATION RESULTS &mdash; ${esc(RYEAR)}</h2><div class="sub">Open to everyone &middot; no login needed</div></header>
+  return `<div class="rhead"><div class="crest">${lg?`<img src="${lg.src}" alt="Logo">`:'🌴'}</div><h1>THE PALM ACADEMY</h1><h2 id="rh2">${esc(RTERM.toUpperCase())} EXAMINATION RESULTS &mdash; ${esc(RYEAR)}</h2></div>
   <div class="dpanel" id="dpanel"><div class="crumb"><a id="crHome">Home</a> / <span>Results${VIEWCLS?' / '+esc(VIEWCLS):''}</span></div>
   <p class="err" style="color:var(--navy)">${msg}</p>${VIEWCLS?detailHtml():listHtml()}</div>`;
 }
